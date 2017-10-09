@@ -1,13 +1,13 @@
 extern crate algorithms;
 
-use algorithms::sort::bubble_sort;
+use algorithms::sort::bubble_sort::bubble_sort;
 
 #[test]
 fn test_normal() {
-    assert_eq!(String::from("hello"), bubble_sort());
+    assert_eq!(vec![1, 2, 3, 4], bubble_sort(vec![1, 2, 3, 4]));
 }
 
 #[test]
-fn test_fail() {
-    assert_eq!(String::from("hello world"), bubble_sort());
+fn test_random() {
+    assert_eq!(vec![1, 2, 3, 4], bubble_sort(vec![1, 3, 2, 4]));
 }
