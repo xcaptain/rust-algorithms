@@ -5,7 +5,7 @@
 ## 实现
 
 - [sort](sort)
-    - [bubble_sort](sort/bubble_sort.rs)
+    - [bubble_sort](src/sort/bubble_sort.rs)
 
 
 ## 测试
