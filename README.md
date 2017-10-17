@@ -9,6 +9,7 @@
     - [insertion_sort](src/sort/insertion_sort.rs)
     - [selection_sort](src/sort/selection_sort.rs)
     - [quick_sort](src/sort/quick_sort.rs)
+    - [merge_sort](src/sort/merge_sort.rs)
 
 
 ## 测试
