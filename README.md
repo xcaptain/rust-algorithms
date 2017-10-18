@@ -11,6 +11,9 @@
     - [quick_sort](src/sort/quick_sort.rs)
     - [merge_sort](src/sort/merge_sort.rs)
 
+- [search](search)
+    - [binary_search](src/search/binary_search.rs)
+
 
 ## 测试
 `cargo test`
