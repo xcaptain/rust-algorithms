@@ -16,6 +16,7 @@
 
 - [math](math)
     - [gcd](src/math/gcd.rs)
+    - [is_prime](src/math/is_prime.rs)
 
 ## 测试
 `cargo test`
