@@ -14,6 +14,8 @@
 - [search](search)
     - [binary_search](src/search/binary_search.rs)
 
+- [math](math)
+    - [gcd](src/math/gcd.rs)
 
 ## 测试
 `cargo test`
