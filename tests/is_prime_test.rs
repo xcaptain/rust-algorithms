@@ -18,7 +18,7 @@ fn test_4() {
 }
 
 
-#[test]
+// #[test]
 // fn test_very_large_prime() { // 暂时不测试大素数
 //     assert_eq!(true, is_prime(170141183460469231731687303715884105727));
 // }
