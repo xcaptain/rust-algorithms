@@ -22,5 +22,8 @@
 - [linkedlist](src/linkedlist/mod.rs)
     - [simple_list](src/linkedlist/SimpleList.rs)
 
+- [iters](src/iters/mod.rs)
+    - [shortest_seq](src/iters/shortest_seq.rs)
+
 ## 测试
 `cargo test`
