@@ -24,6 +24,9 @@
 
 - [iters](src/iters/mod.rs)
     - [shortest_seq](src/iters/shortest_seq.rs)
+    - [two_sum](src/iters/two_sum.rs)
 
 ## 测试
-`cargo test`
+跑所有的测试用例 `cargo test`
+
+跑指定测试用例 `cargo test --test two_sum_test`
