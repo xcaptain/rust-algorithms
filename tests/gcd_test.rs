@@ -37,8 +37,8 @@ fn test_zero() {
     assert_eq!(2, gcd(0, 2));
 }
 
-
 #[test]
-fn test_large_distance() { // 性能测试
+fn test_large_distance() {
+    // 性能测试
     assert_eq!(1, gcd(1, 90000000000));
 }

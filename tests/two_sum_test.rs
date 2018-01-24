@@ -4,7 +4,7 @@ use algorithms::iters::two_sum::two_sum;
 
 #[test]
 fn test_normal() {
-    assert_eq!((0, 2), two_sum(vec![1,2,3], 4));
+    assert_eq!((0, 2), two_sum(vec![1, 2, 3], 4));
 }
 
 #[test]

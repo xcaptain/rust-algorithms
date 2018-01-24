@@ -5,7 +5,7 @@ pub fn merge_sort_v1(arr: Vec<usize>) -> Vec<usize> {
     if len <= 1 {
         return arr;
     }
-    let mid = len/2;
+    let mid = len / 2;
     let left = merge_sort_v1(arr.get(..mid).unwrap().to_vec());
     let right = merge_sort_v1(arr.get(mid..).unwrap().to_vec());
 
@@ -17,7 +17,7 @@ pub fn merge_sort_v2(arr: Vec<usize>) -> Vec<usize> {
     if len <= 1 {
         return arr;
     }
-    let mid = len/2;
+    let mid = len / 2;
     let left = merge_sort_v2(arr.get(..mid).unwrap().to_vec());
     let right = merge_sort_v2(arr.get(mid..).unwrap().to_vec());
 

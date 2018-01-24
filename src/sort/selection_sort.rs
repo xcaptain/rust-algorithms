@@ -7,7 +7,7 @@ pub fn selection_sort(arr: Vec<usize>) -> Vec<usize> {
 
     for i in 0..len {
         let mut minium = i;
-        for j in i+1 .. len {
+        for j in i + 1..len {
             if sorted[j] < sorted[minium] {
                 minium = j;
             }

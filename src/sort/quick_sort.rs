@@ -2,7 +2,7 @@
 pub fn quick_sort(arr: Vec<usize>) -> Vec<usize> {
     let mut sorted = arr.clone();
     let len = sorted.len();
-    quick_sort_help(&mut sorted, 0, len-1);
+    quick_sort_help(&mut sorted, 0, len - 1);
 
     return sorted;
 }
@@ -24,12 +24,12 @@ fn quick_sort_help(arr: &mut Vec<usize>, first: usize, last: usize) {
     if first < last {
         let pos = partition(arr, first, last);
         if pos == first {
-            quick_sort_help(arr, pos+1, last);
+            quick_sort_help(arr, pos + 1, last);
         } else if pos == last {
-            quick_sort_help(arr, first, pos-1);
+            quick_sort_help(arr, first, pos - 1);
         } else {
-            quick_sort_help(arr, first, pos-1);
-            quick_sort_help(arr, pos+1, last);
+            quick_sort_help(arr, first, pos - 1);
+            quick_sort_help(arr, pos + 1, last);
         }
     }
 }
