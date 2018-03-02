@@ -4,3 +4,4 @@ pub mod selection_sort;
 pub mod quick_sort;
 pub mod merge_sort;
 pub mod reverse_pair;
+pub mod counting_sort;

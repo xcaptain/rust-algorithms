@@ -10,7 +10,7 @@ pub fn max_seq_sum_v1(arr: Vec<isize>) -> isize {
     for i in 0..l {
         for j in i..l {
             let mut sum = 0;
-            for k in i..j+1 {
+            for k in i..j + 1 {
                 sum += arr[k];
             }
             best = max(sum, best);
@@ -26,7 +26,8 @@ pub fn max_seq_sum_v2(arr: Vec<isize>) -> isize {
 
     for i in 0..l {
         let mut sum = 0;
-        for j in i..l { // every time j moves, use the previous sum
+        for j in i..l {
+            // every time j moves, use the previous sum
             sum += arr[j];
             best = max(sum, best);
         }
