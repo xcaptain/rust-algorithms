@@ -46,6 +46,10 @@ referencing [https://github.com/trekhleb/javascript-algorithms](https://github.c
 
 ## how to test
 
-跑所有的测试用例 `cargo test`
+### run all test cases
 
-跑指定测试用例 `cargo test --test two_sum_test`
+`cargo test`
+
+### run specific test case
+
+`cargo test two_sum_test`
