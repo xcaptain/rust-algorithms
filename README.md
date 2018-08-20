@@ -1,5 +1,8 @@
 # rust algorithms and data structures
 
+[![Coverage Status](https://coveralls.io/repos/github/xcaptain/rust-algorithms/badge.svg?branch=master)](https://coveralls.io/github/xcaptain/rust-algorithms?branch=master)
+[![Build Status](https://travis-ci.com/xcaptain/rust-algorithms.svg?branch=master)](https://travis-ci.com/xcaptain/rust-algorithms)
+
 referencing [https://github.com/trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms)
 
 ## algorithms

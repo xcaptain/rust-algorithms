@@ -1,4 +1,4 @@
-pub mod sort;
-pub mod search;
-pub mod math;
 pub mod iters;
+pub mod math;
+pub mod search;
+pub mod sort;
