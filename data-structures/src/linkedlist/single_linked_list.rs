@@ -2,7 +2,6 @@
 // https://doc.rust-lang.org/book/second-edition/ch15-01-box.html
 // https://rustbyexample.com/custom_types/enum/testcase_linked_list.html
 
-
 pub struct SingleLinkedList {
     length: usize,
     head: Link,
@@ -19,7 +18,7 @@ impl SingleLinkedList {
     pub fn new() -> Self {
         return SingleLinkedList {
             length: 0,
-            head: None
+            head: None,
         };
     }
 
