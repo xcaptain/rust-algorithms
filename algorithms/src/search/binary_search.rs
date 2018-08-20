@@ -1,6 +1,4 @@
-// 二分查找，输入是有序的，如果查找到了则返回对应的index，否则返回None
-
-// 递归实现
+// binary search using recursion
 pub fn binary_search_rec(arr: Vec<usize>, target: usize) -> Option<usize> {
     let len = arr.len();
     return binary_search_help(arr, 0, len - 1, target);
@@ -20,7 +18,7 @@ fn binary_search_help(arr: Vec<usize>, left: usize, right: usize, target: usize)
     return None;
 }
 
-// 迭代实现
+// binary search using iteration
 pub fn binary_search_iter(arr: Vec<usize>, target: usize) -> Option<usize> {
     let len = arr.len();
     let mut left = 0;
@@ -43,33 +41,33 @@ pub fn binary_search_iter(arr: Vec<usize>, target: usize) -> Option<usize> {
 mod tests {
     use super::*;
     #[test]
-    fn test_normal_rec() {
+    fn test_binary_search_rec_yes() {
         assert_eq!(Some(0), binary_search_rec(vec![1, 2, 3], 1));
     }
 
     #[test]
-    fn test_not_found_rec() {
+    fn test_binary_search_rec_no() {
         assert_eq!(None, binary_search_rec(vec![1, 2, 3], 10));
     }
 
     #[test]
-    fn test_greater_rec() {
+    fn test_binary_search_rec_last() {
         assert_eq!(Some(2), binary_search_rec(vec![1, 2, 3], 3));
     }
 
     // for iter version
     #[test]
-    fn test_normal_iter() {
+    fn test_binary_search_iter_yes() {
         assert_eq!(Some(0), binary_search_iter(vec![1, 2, 3], 1));
     }
 
     #[test]
-    fn test_not_found_iter() {
+    fn test_binary_search_iter_no() {
         assert_eq!(None, binary_search_iter(vec![1, 2, 3], 10));
     }
 
     #[test]
-    fn test_greater_iter() {
+    fn test_binary_search_iter_last() {
         assert_eq!(Some(2), binary_search_iter(vec![1, 2, 3], 3));
     }
 }
