@@ -1,32 +1,51 @@
-# rust算法练习
+# rust algorithms and data structures
 
-参考了[https://github.com/keon/algorithms](https://github.com/keon/algorithms)的组织结构
+referencing [https://github.com/trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms)
 
-## 实现
+## algorithms
 
-- [sort](src/sort/mod.rs)
-    - [bubble_sort](src/sort/bubble_sort.rs)
-    - [insertion_sort](src/sort/insertion_sort.rs)
-    - [selection_sort](src/sort/selection_sort.rs)
-    - [quick_sort](src/sort/quick_sort.rs)
-    - [merge_sort](src/sort/merge_sort.rs)
+- [sort](algorithms/src/sort/mod.rs)
 
-- [search](src/search/mod.rs)
-    - [binary_search](src/search/binary_search.rs)
+  - [bubble_sort](algorithms/src/sort/bubble_sort.rs)
+  - [insertion_sort](algorithms/src/sort/insertion_sort.rs)
+  - [selection_sort](algorithms/src/sort/selection_sort.rs)
+  - [quick_sort](algorithms/src/sort/quick_sort.rs)
+  - [merge_sort](algorithms/src/sort/merge_sort.rs)
 
-- [math](src/math/mod.rs)
-    - [gcd](src/math/gcd.rs)
-    - [lcm](src/math/lcm.rs)
-    - [is_prime](src/math/is_prime.rs)
+- [search](algorithms/src/search/mod.rs)
 
-- [linkedlist](src/linkedlist/mod.rs)
-    - [simple_list](src/linkedlist/SimpleList.rs)
+  - [binary_search](algorithms/src/search/binary_search.rs)
 
-- [iters](src/iters/mod.rs)
-    - [shortest_seq](src/iters/shortest_seq.rs)
-    - [two_sum](src/iters/two_sum.rs)
+- [math](algorithms/src/math/mod.rs)
 
-## 测试
+  - [gcd](algorithms/src/math/gcd.rs)
+  - [lcm](algorithms/src/math/lcm.rs)
+  - [is_prime](algorithms/src/math/is_prime.rs)
+
+- [iters](algorithms/src/iters/mod.rs)
+  - [shortest_seq](algorithms/src/iters/shortest_seq.rs)
+  - [two_sum](algorithms/src/iters/two_sum.rs)
+
+## data structures
+
+- [linkedlist](data-structures/src/linkedlist/mod.rs)
+
+  - [simple_list](data-structures/src/linkedlist/SimpleList.rs)
+
+## how to build
+
+### build the whole workspace
+
+`cargo build`
+
+### build per workspace
+
+`cargo build -p algorithms`
+
+`cargo build -p data-structures`
+
+## how to test
+
 跑所有的测试用例 `cargo test`
 
 跑指定测试用例 `cargo test --test two_sum_test`
