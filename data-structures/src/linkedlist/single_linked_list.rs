@@ -60,7 +60,7 @@ mod tests {
     #[test]
     fn test_new() {
         let l = SingleLinkedList::new();
-        // assert_eq!(l.head, None);
+        assert_eq!(true, l.head.is_none());
         assert_eq!(0, l.length);
     }
 
@@ -68,6 +68,7 @@ mod tests {
     fn test_push() {
         let mut l = SingleLinkedList::new();
         l.push(10);
+        assert_eq!(true, l.head.is_some());
         assert_eq!(1, l.length);
     }
 
@@ -77,6 +78,6 @@ mod tests {
         l.push(10);
         let _ = l.pop();
         assert_eq!(0, l.length);
-        // assert_eq!(None, l.head);
+        assert_eq!(true, l.head.is_none());
     }
 }
