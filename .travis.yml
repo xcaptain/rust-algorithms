@@ -20,10 +20,10 @@ script:
 
 after_success: |
   if [[ "$TRAVIS_RUST_VERSION" == stable ]]; then
-    RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin 
+    # RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin 
     # Uncomment the following line for coveralls.io
-    cargo tarpaulin --ciserver travis-ci --coveralls $TRAVIS_JOB_ID
-
+    # cargo tarpaulin --ciserver travis-ci --coveralls $TRAVIS_JOB_ID
+    docker run --security-opt seccomp=unconfined -v "$PWD:/volume" xd009642/tarpaulin sh -c "cargo tarpaulin --ciserver travis-ci --coveralls $TRAVIS_JOB_ID"
     # Uncomment the following two lines create and upload a report for codecov.io
     # cargo tarpaulin --out Xml
     # bash <(curl -s https://codecov.io/bash)
