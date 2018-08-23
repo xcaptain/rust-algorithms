@@ -2,19 +2,19 @@
 // https://doc.rust-lang.org/book/second-edition/ch15-01-box.html
 // https://rustbyexample.com/custom_types/enum/testcase_linked_list.html
 
-pub struct SingleLinkedList {
+pub struct SingleLinkedList<T> {
     length: usize,
-    head: Link,
+    head: Link<T>,
 }
 
-type Link = Option<Box<Node>>;
+type Link<T> = Option<Box<Node<T>>>;
 
-struct Node {
-    elem: i32,
-    next: Link,
+struct Node<T> {
+    elem: T,
+    next: Link<T>,
 }
 
-impl SingleLinkedList {
+impl<T> SingleLinkedList<T> {
     pub fn new() -> Self {
         return SingleLinkedList {
             length: 0,
@@ -22,7 +22,7 @@ impl SingleLinkedList {
         };
     }
 
-    pub fn push(&mut self, elem: i32) {
+    pub fn push(&mut self, elem: T) {
         let new_node = Box::new(Node {
             elem: elem,
             next: self.head.take(),
@@ -31,7 +31,7 @@ impl SingleLinkedList {
         self.length += 1;
     }
 
-    pub fn pop(&mut self) -> Option<i32> {
+    pub fn pop(&mut self) -> Option<T> {
         match self.head.take() {
             None => None,
             Some(node) => {
@@ -44,7 +44,7 @@ impl SingleLinkedList {
     }
 }
 
-impl Drop for SingleLinkedList {
+impl<T> Drop for SingleLinkedList<T> {
     fn drop(&mut self) {
         let mut cur_link = self.head.take();
         // 从box中解出node本身，把指针清空，避免递归的清空资源
@@ -59,7 +59,7 @@ mod tests {
     use super::*;
     #[test]
     fn test_new() {
-        let l = SingleLinkedList::new();
+        let l: SingleLinkedList<i32> = SingleLinkedList::new();
         assert_eq!(true, l.head.is_none());
         assert_eq!(0, l.length);
     }
@@ -75,9 +75,10 @@ mod tests {
     #[test]
     fn test_pop() {
         let mut l = SingleLinkedList::new();
-        l.push(10);
-        let _ = l.pop();
+        l.push("ele1");
+        let ele1 = l.pop();
         assert_eq!(0, l.length);
         assert_eq!(true, l.head.is_none());
+        assert_eq!(Some("ele1"), ele1);
     }
 }
