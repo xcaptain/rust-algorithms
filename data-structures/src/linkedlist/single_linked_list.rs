@@ -42,6 +42,33 @@ impl<T> SingleLinkedList<T> {
             }
         }
     }
+
+    pub fn peek(&self) -> Option<&T> {
+        self.head.as_ref().map(|node| &node.elem)
+    }
+
+    pub fn peek_mut(&mut self) -> Option<&mut T> {
+        self.head.as_mut().map(|node| &mut node.elem)
+    }
+
+    pub fn into_iter(self) -> IntoIter<T> {
+        IntoIter(self)
+    }
+}
+
+pub trait Iterator {
+    type Item;
+    fn next(&mut self) -> Option<Self::Item>;
+}
+
+pub struct IntoIter<T>(SingleLinkedList<T>);
+
+impl<T> Iterator for IntoIter<T> {
+    type Item = T;
+    fn next(&mut self) -> Option<Self::Item> {
+        // access fields of a tuple struct numerically
+        self.0.pop()
+    }
 }
 
 impl<T> Drop for SingleLinkedList<T> {
@@ -80,5 +107,38 @@ mod tests {
         assert_eq!(0, l.length);
         assert_eq!(true, l.head.is_none());
         assert_eq!(Some("ele1"), ele1);
+    }
+
+    #[test]
+    fn test_peak() {
+        let mut l = SingleLinkedList::new();
+        l.push(1);
+        l.push(2);
+        l.push(3);
+        let p = l.peek();
+        assert_eq!(Some(&3), p);
+    }
+
+    #[test]
+    fn test_peak_mut() {
+        let mut l = SingleLinkedList::new();
+        l.push(1);
+        l.push(2);
+        l.push(3);
+        let p = l.peek_mut();
+        assert_eq!(Some(&mut 3), p);
+    }
+
+    #[test]
+    fn test_into_iter() {
+        let mut l = SingleLinkedList::new();
+        l.push(1);
+        l.push(2);
+        l.push(3);
+
+        let mut iter = l.into_iter();
+        assert_eq!(Some(3), iter.next());
+        assert_eq!(Some(2), iter.next());
+        assert_eq!(Some(1), iter.next());
     }
 }
