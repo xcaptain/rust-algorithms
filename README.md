@@ -35,6 +35,12 @@ referencing [https://github.com/trekhleb/javascript-algorithms](https://github.c
 
   - [simple_list](data-structures/src/linkedlist/SimpleList.rs)
 
+- [stack](data-structures/src/stack/mod.rs)
+  - [simple_stack](data-structures/src/stack/simple_stack.rs)
+
+- [queue](data-structures/src/queue/mod.rs)
+  - [mpsc_queue](data-structures/src/queue/mpsc_queue.rs)
+
 ## how to build
 
 ### build the whole workspace
