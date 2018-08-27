@@ -41,6 +41,9 @@ referencing [https://github.com/trekhleb/javascript-algorithms](https://github.c
 - [queue](data-structures/src/queue/mod.rs)
   - [mpsc_queue](data-structures/src/queue/mpsc_queue.rs)
 
+- [tree](data-structures/src/tree/mod.rs)
+  - [binary_tree](data-structures/src/tree/binary_tree.rs)
+
 ## how to build
 
 ### build the whole workspace
