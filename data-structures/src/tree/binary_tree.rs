@@ -89,7 +89,7 @@ impl<T: PartialOrd + Debug + Copy> Tree<T> {
                 match left_node {
                     None => {
                         return false;
-                    },
+                    }
                     Some(left_node_ptr) => {
                         cur = Some(left_node_ptr);
                     }
@@ -99,7 +99,7 @@ impl<T: PartialOrd + Debug + Copy> Tree<T> {
                 match right_node {
                     None => {
                         return false;
-                    },
+                    }
                     Some(right_node_ptr) => {
                         cur = Some(right_node_ptr);
                     }

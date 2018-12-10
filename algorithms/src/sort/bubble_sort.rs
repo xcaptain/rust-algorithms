@@ -33,6 +33,9 @@ mod tests {
 
     #[test]
     fn test_bubble_sort_string() {
-        assert_eq!(vec!["1", "2", "3", "4"], bubble_sort(vec!["1", "3", "2", "4"]));
+        assert_eq!(
+            vec!["1", "2", "3", "4"],
+            bubble_sort(vec!["1", "3", "2", "4"])
+        );
     }
 }

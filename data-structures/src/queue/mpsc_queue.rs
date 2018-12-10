@@ -90,7 +90,7 @@ impl<T> Drop for Queue<T> {
 
 #[cfg(test)]
 mod tests {
-    use super::{Queue, PopResult};
+    use super::{PopResult, Queue};
     #[test]
     fn test_full() {
         let q: Queue<Box<i32>> = Queue::new();

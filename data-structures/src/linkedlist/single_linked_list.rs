@@ -83,7 +83,7 @@ impl<T> Drop for List<T> {
 
 #[cfg(test)]
 mod tests {
-    use super::{List, Iterator};
+    use super::{Iterator, List};
     #[test]
     fn test_new() {
         let l: List<i32> = List::new();

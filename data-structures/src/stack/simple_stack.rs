@@ -51,15 +51,11 @@ impl<T> Stack<T> {
 
     /// return the reference of the top element of the stack
     pub fn top(&self) -> Option<&T> {
-        self.sp.as_ref().map(|node| {
-            &node.elem
-        })
+        self.sp.as_ref().map(|node| &node.elem)
     }
 
     pub fn top_mut(&mut self) -> Option<&mut T> {
-        self.sp.as_mut().map(|node| {
-            &mut node.elem
-        })
+        self.sp.as_mut().map(|node| &mut node.elem)
     }
 }
 
