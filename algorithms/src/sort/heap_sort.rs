@@ -22,7 +22,7 @@ fn build_max_heap(arr: &mut Vec<usize>) {
     max_heapify(arr, n, i);
 }
 
-fn max_heapify(arr: &mut Vec<usize>, size: usize, i: usize) {
+pub fn max_heapify(arr: &mut Vec<usize>, size: usize, i: usize) {
     let left = 2 * i + 1;
     let right = 2 * i + 2;
     let mut largest = i;

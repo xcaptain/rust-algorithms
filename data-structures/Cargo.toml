@@ -2,3 +2,6 @@
 name = "data-structures"
 version = "0.1.0"
 authors = ["Joey <joey.xf@gmail.com>"]
+
+[dependencies]
+algorithms = { path = "../algorithms" }
