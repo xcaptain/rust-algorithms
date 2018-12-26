@@ -44,6 +44,10 @@ referencing [https://github.com/trekhleb/javascript-algorithms](https://github.c
 - [tree](data-structures/src/tree/mod.rs)
   - [binary_tree](data-structures/src/tree/binary_tree.rs)
 
+## project euler
+
+This directory contains my solutions of the [https://projecteuler.net/](https://projecteuler.net/)
+
 ## how to build
 
 ### build the whole workspace
