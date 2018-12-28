@@ -1,4 +1,4 @@
-use math::gcd::gcd_3;
+use crate::math::gcd::gcd_3;
 
 pub fn lcm(m: usize, n: usize) -> usize {
     let g = gcd_3(m, n);
