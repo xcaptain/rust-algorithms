@@ -25,9 +25,9 @@ referencing [https://github.com/trekhleb/javascript-algorithms](https://github.c
   - [lcm](algorithms/src/math/lcm.rs)
   - [is_prime](algorithms/src/math/is_prime.rs)
 
-- [iters](algorithms/src/iters/mod.rs)
-  - [shortest_seq](algorithms/src/iters/shortest_seq.rs)
-  - [two_sum](algorithms/src/iters/two_sum.rs)
+- [misc](algorithms/src/misc/mod.rs)
+  - [shortest_seq](algorithms/src/misc/shortest_seq.rs)
+  - [two_sum](algorithms/src/misc/two_sum.rs)
 
 ## data structures
 
@@ -40,6 +40,7 @@ referencing [https://github.com/trekhleb/javascript-algorithms](https://github.c
 
 - [queue](data-structures/src/queue/mod.rs)
   - [mpsc_queue](data-structures/src/queue/mpsc_queue.rs)
+  - [priority queue](data-structures/src/queue/priority_queue.rs)
 
 - [tree](data-structures/src/tree/mod.rs)
   - [binary_tree](data-structures/src/tree/binary_tree.rs)
