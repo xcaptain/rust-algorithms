@@ -12,4 +12,7 @@ dependencies = [
 [[package]]
 name = "project-euler"
 version = "0.1.0"
+dependencies = [
+ "algorithms 0.1.0",
+]
 
