@@ -2,6 +2,7 @@
 // https://doc.rust-lang.org/book/second-edition/ch15-01-box.html
 // https://rustbyexample.com/custom_types/enum/testcase_linked_list.html
 
+#[derive(Default)]
 pub struct List<T> {
     length: usize,
     head: Link<T>,
@@ -15,16 +16,16 @@ struct Node<T> {
 }
 
 impl<T> List<T> {
-    pub fn new() -> Self {
-        return List {
+    pub fn create() -> Self {
+        List {
             length: 0,
             head: None,
-        };
+        }
     }
 
     pub fn push(&mut self, elem: T) {
         let new_node = Box::new(Node {
-            elem: elem,
+            elem,
             next: self.head.take(),
         });
         self.head = Some(new_node);
@@ -86,14 +87,14 @@ mod tests {
     use super::{Iterator, List};
     #[test]
     fn test_new() {
-        let l: List<i32> = List::new();
+        let l: List<i32> = List::create();
         assert_eq!(true, l.head.is_none());
         assert_eq!(0, l.length);
     }
 
     #[test]
     fn test_push() {
-        let mut l = List::new();
+        let mut l = List::create();
         l.push(10);
         assert_eq!(true, l.head.is_some());
         assert_eq!(1, l.length);
@@ -101,7 +102,7 @@ mod tests {
 
     #[test]
     fn test_pop() {
-        let mut l = List::new();
+        let mut l = List::create();
         l.push("ele1");
         let ele1 = l.pop();
         assert_eq!(0, l.length);
@@ -111,7 +112,7 @@ mod tests {
 
     #[test]
     fn test_peak() {
-        let mut l = List::new();
+        let mut l = List::create();
         l.push(1);
         l.push(2);
         l.push(3);
@@ -121,7 +122,7 @@ mod tests {
 
     #[test]
     fn test_peak_mut() {
-        let mut l = List::new();
+        let mut l = List::create();
         l.push(1);
         l.push(2);
         l.push(3);
@@ -131,7 +132,7 @@ mod tests {
 
     #[test]
     fn test_into_iter() {
-        let mut l = List::new();
+        let mut l = List::create();
         l.push(1);
         l.push(2);
         l.push(3);

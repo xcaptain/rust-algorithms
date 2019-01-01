@@ -66,8 +66,8 @@ impl<T: PartialOrd + Debug + Copy> Tree<T> {
             }
             Some(node) => {
                 let mut node = *node;
-                &node.insert(t);
-                println!("cur node {:?}, insert elem {:?}", node.elem, t.clone());
+                node.insert(t);
+                println!("cur node {:?}, insert elem {:?}", node.elem, t);
                 self.root = Some(Box::new(node));
             }
         }
@@ -106,7 +106,7 @@ impl<T: PartialOrd + Debug + Copy> Tree<T> {
                 }
             }
         }
-        return false;
+        false
     }
 }
 

@@ -11,7 +11,7 @@ pub fn max_heap_extract(queue: &mut Vec<usize>) -> usize {
     let largest = queue.swap_remove(0); // 返回第0个元素，删除第0个元素，用最末尾元素替代
     let size = queue.len();
     max_heapify(queue, size, 0); // 重新建堆
-    return largest;
+    largest
 }
 
 // 把第i个位置的值设置为key，只能增加不能减少
@@ -28,7 +28,7 @@ fn heap_increase_key(queue: &mut Vec<usize>, pos: usize, key: usize) {
 }
 
 fn parent(i: usize) -> usize {
-    return (i - 1) / 2;
+    (i - 1) / 2
 }
 
 #[cfg(test)]

@@ -36,17 +36,21 @@ pub fn max_seq_sum_v2(arr: Vec<isize>) -> isize {
     return best;
 }
 
-// iter 1 time
+/// iter 1 time
+///      sum                best
+/// i=0  a0                 a0
+/// i=1  max(a1, prev_sum)  max(sum, prev_best)   largest sequence sum when array length is 1
+/// i=2  max(a2, prev_sum)  max(sum, prev_best)   largest sequence sum when array length is 2
 pub fn max_seq_sum_v3(arr: Vec<isize>) -> isize {
     let l = arr.len();
-    let mut best = MIN_VALUE;
+    let mut largest = MIN_VALUE;
     let mut sum = 0;
 
     for i in 0..l {
         sum = max(arr[i], sum + arr[i]);
-        best = max(best, sum);
+        largest = max(largest, sum);
     }
-    return best;
+    return largest;
 }
 
 #[cfg(test)]
@@ -71,5 +75,11 @@ mod tests {
         assert_eq!(5, max_seq_sum_v1(vec![-1, -2, 3, -4, 5]));
         assert_eq!(5, max_seq_sum_v2(vec![-1, -2, 3, -4, 5]));
         assert_eq!(5, max_seq_sum_v3(vec![-1, -2, 3, -4, 5]));
+        assert_eq!(
+            43,
+            max_seq_sum_v3(vec![
+                13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7
+            ])
+        );
     }
 }
