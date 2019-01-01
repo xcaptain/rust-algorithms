@@ -13,11 +13,7 @@ pub struct SimpleDate {
 
 impl SimpleDate {
     pub fn new(year: usize, month: usize, day: usize) -> Self {
-        SimpleDate {
-            year: year,
-            month: month,
-            day: day,
-        }
+        SimpleDate { year, month, day }
     }
 
     pub fn to_string(&self) -> String {
@@ -35,8 +31,7 @@ impl SimpleDate {
             day_diff += 1;
             start_date = start_date.next_day();
         }
-        let day_in_week = day_diff % 7; // sunday is 0
-        return day_in_week;
+        day_diff % 7 // sunday is 0
     }
 
     /// add a day to self
@@ -44,37 +39,35 @@ impl SimpleDate {
         if self.month == 12 {
             if self.day == 31 {
                 // last day of the year, to a new year
-                return SimpleDate::new(self.year + 1, 1, 1);
+                SimpleDate::new(self.year + 1, 1, 1)
             } else {
                 // just add one day
-                return SimpleDate::new(self.year, self.month, self.day + 1);
+                SimpleDate::new(self.year, self.month, self.day + 1)
             }
         } else if [4, 6, 9, 11].contains(&self.month) {
             // 30-day months
             if self.day == 30 {
-                return SimpleDate::new(self.year, self.month + 1, 1);
+                SimpleDate::new(self.year, self.month + 1, 1)
             } else {
-                return SimpleDate::new(self.year, self.month, self.day + 1);
+                SimpleDate::new(self.year, self.month, self.day + 1)
             }
         } else if [1, 3, 5, 7, 8, 10].contains(&self.month) {
             if self.day == 31 {
-                return SimpleDate::new(self.year, self.month + 1, 1);
+                SimpleDate::new(self.year, self.month + 1, 1)
             } else {
-                return SimpleDate::new(self.year, self.month, self.day + 1);
+                SimpleDate::new(self.year, self.month, self.day + 1)
             }
         } else if self.month == 2 {
             if is_leap_year(self.year) {
                 if self.day == 29 {
-                    return SimpleDate::new(self.year, self.month + 1, 1);
+                    SimpleDate::new(self.year, self.month + 1, 1)
                 } else {
-                    return SimpleDate::new(self.year, self.month, self.day + 1);
+                    SimpleDate::new(self.year, self.month, self.day + 1)
                 }
+            } else if self.day == 28 {
+                SimpleDate::new(self.year, self.month + 1, 1)
             } else {
-                if self.day == 28 {
-                    return SimpleDate::new(self.year, self.month + 1, 1);
-                } else {
-                    return SimpleDate::new(self.year, self.month, self.day + 1);
-                }
+                SimpleDate::new(self.year, self.month, self.day + 1)
             }
         } else {
             panic!("error here, invalid month");
@@ -105,7 +98,7 @@ impl PartialOrd for SimpleDate {
             }
             return Some(Ordering::Greater);
         }
-        return Some(Ordering::Greater);
+        Some(Ordering::Greater)
     }
 }
 
@@ -119,9 +112,9 @@ pub fn count_sundays(s: &SimpleDate, end_date: &SimpleDate) -> usize {
         }
         start_date = start_date.next_day();
         weekday += 1;
-        weekday = weekday % 7;
+        weekday %= 7;
     }
-    return num;
+    num
 }
 
 #[cfg(test)]

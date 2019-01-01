@@ -9,16 +9,16 @@ use std::collections::HashMap;
 /// get the sum of all words less or equal than num
 pub fn get_all_words_len(num: usize) -> usize {
     let mut sum = 0;
-    for i in 1..(num + 1) {
+    for i in 1..=num {
         sum += get_single_word_len(i);
     }
-    return sum;
+    sum
 }
 
 /// get the length of characters in a single number
 pub fn get_single_word_len(num: usize) -> usize {
     let word = num_to_word(num);
-    return word.len();
+    word.len()
 }
 
 fn num_to_word(num: usize) -> String {
@@ -64,7 +64,7 @@ fn num_to_word(num: usize) -> String {
     } else {
         panic!("not implemented!");
     }
-    return word;
+    word
 }
 
 fn get_word_gt1000(m: &HashMap<String, usize>, num: usize) -> String {
@@ -83,7 +83,7 @@ fn get_word_gt1000(m: &HashMap<String, usize>, num: usize) -> String {
 /// get word from a num which is less then 100(<100)
 fn get_word_lt100(m: &HashMap<String, usize>, num: usize) -> String {
     let mut word = direct_get_from_table(&m, num);
-    if word.len() == 0 {
+    if word.is_empty() {
         // not found in the table, do simple addition
         let low = num % 10;
         let high = num - low;
@@ -91,7 +91,7 @@ fn get_word_lt100(m: &HashMap<String, usize>, num: usize) -> String {
         let low_word = direct_get_from_table(&m, low);
         word = format!("{}{}", high_word, low_word);
     }
-    return word;
+    word
 }
 
 fn get_word_gt100lt1000(m: &HashMap<String, usize>, num: usize) -> String {
@@ -113,7 +113,7 @@ fn direct_get_from_table(m: &HashMap<String, usize>, num: usize) -> String {
             return key.to_owned();
         }
     }
-    return String::from("");
+    String::from("")
 }
 
 #[cfg(test)]
