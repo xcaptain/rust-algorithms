@@ -15,6 +15,19 @@ pub fn insertion_sort<T: PartialOrd + Copy>(mut sorted: Vec<T>) -> Vec<T> {
     return sorted;
 }
 
+pub fn insertion_sort1(arr: &mut Vec<usize>) {
+    let len = arr.len();
+    for i in 0..len {
+        let mut pos = i;
+        let cursor = arr[i];
+        while pos > 0 && arr[pos - 1] > cursor {
+            arr[pos] = arr[pos - 1];
+            pos = pos - 1;
+        }
+        arr[pos] = cursor;
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -39,5 +52,12 @@ mod tests {
             vec!["1", "2", "3", "4"],
             insertion_sort(vec!["1", "3", "2", "4"])
         );
+    }
+
+    #[test]
+    fn test_insertion_sort1() {
+        let mut arr = vec![4, 3, 2, 1];
+        insertion_sort1(&mut arr);
+        assert_eq!(vec![1, 2, 3, 4], arr);
     }
 }
