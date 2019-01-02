@@ -7,33 +7,28 @@
 /// the greatest number that cannot be expressed as the sum of two abundant numbers is less than this limit.
 /// Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
 
-// 太傻了，现在要跑好几分钟
 pub fn solution() -> usize {
     let mut abundant_arr = vec![];
-    for i in 12..=28123 {
+    let threshold = 28123;
+    for i in 12..=threshold {
         if is_abundant(i) {
             abundant_arr.push(i);
         }
     }
-    println!("{}", abundant_arr.len());
-    let mut two_abundant_sum_arr: Vec<usize> = vec![]; // numbers that can be represented as two abundant number sum
     let abundant_arr_len = abundant_arr.len();
+    let mut target_arr = vec![];
+    for i in 0..=threshold {
+        target_arr.push(i);
+    }
     for i in 0..abundant_arr_len {
         for j in i..abundant_arr_len {
             let s = abundant_arr[i] + abundant_arr[j];
-            if s > 1 && s <= 28123 {
-                two_abundant_sum_arr.push(s);
+            if s <= threshold {
+                target_arr[s] = 0; // array index is much faster then array search
             }
         }
     }
-    two_abundant_sum_arr.dedup();
-    let mut sum = 0;
-    for i in 1..=28123 { // get numbers can't be represented to be the sum of 2 abundant number
-        if !two_abundant_sum_arr.contains(&i) {
-            sum += i;
-        }
-    }
-    return sum;
+    return target_arr.iter().sum();
 }
 
 fn is_abundant(num: usize) -> bool {
