@@ -16,10 +16,7 @@ pub fn solution() -> usize {
         }
     }
     let abundant_arr_len = abundant_arr.len();
-    let mut target_arr = vec![];
-    for i in 0..=threshold {
-        target_arr.push(i);
-    }
+    let mut target_arr: Vec<usize> = (0..=threshold).collect();
     for i in 0..abundant_arr_len {
         for j in i..abundant_arr_len {
             let s = abundant_arr[i] + abundant_arr[j];
@@ -32,10 +29,18 @@ pub fn solution() -> usize {
 }
 
 fn is_abundant(num: usize) -> bool {
-    let mut divisor_sum = 0;
-    for i in 1..num {
+    let mut divisor_sum = 1;
+    let mid = (num as f64).sqrt() as usize + 1;
+    for i in 2..mid+1 {
         if num % i == 0 {
-            divisor_sum += i;
+            let q = num / i;
+            if i < q {
+                divisor_sum += i;
+                divisor_sum += q;
+            }
+            if i == q {
+                divisor_sum += i;
+            }
         }
     }
     if divisor_sum > num {
@@ -55,6 +60,7 @@ mod tests {
         }
         assert_eq!(true, is_abundant(12));
         assert_eq!(false, is_abundant(13));
+        assert_eq!(false, is_abundant(16));
         assert_eq!(true, is_abundant(4088));
         assert_eq!(true, is_abundant(20));
         assert_eq!(false, is_abundant(28)); // 28 is perfect number, so not abundant number
