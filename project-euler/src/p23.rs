@@ -25,13 +25,13 @@ pub fn solution() -> usize {
             }
         }
     }
-    return target_arr.iter().sum();
+    target_arr.iter().sum()
 }
 
 fn is_abundant(num: usize) -> bool {
     let mut divisor_sum = 1;
     let mid = (num as f64).sqrt() as usize + 1;
-    for i in 2..mid+1 {
+    for i in 2..=mid {
         if num % i == 0 {
             let q = num / i;
             if i < q {
@@ -46,7 +46,7 @@ fn is_abundant(num: usize) -> bool {
     if divisor_sum > num {
         return true;
     }
-    return false;
+    false
 }
 
 #[cfg(test)]
