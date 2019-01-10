@@ -7,7 +7,7 @@
 /// the greatest number that cannot be expressed as the sum of two abundant numbers is less than this limit.
 /// Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
 
-pub fn solution() -> usize {
+pub fn solution_of_p23() -> usize {
     let mut abundant_arr = vec![];
     let threshold = 28123;
     for i in 12..=threshold {
@@ -68,6 +68,6 @@ mod tests {
 
     #[test]
     fn test_solution() {
-        assert_eq!(4179871, solution());
+        assert_eq!(4179871, solution_of_p23());
     }
 }

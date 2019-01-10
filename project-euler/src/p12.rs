@@ -1,5 +1,5 @@
 /// get triangular number whose divisors have over divisor_num
-pub fn solution(divisor_num: usize) -> usize {
+pub fn solution_of_p12(divisor_num: usize) -> usize {
     let mut i = 1;
     loop {
         let tri_num = triangular_number(i);
@@ -31,8 +31,8 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_solution() {
-        assert_eq!(76576500, solution(500));
+    fn test_solution_of_p12() {
+        assert_eq!(76576500, solution_of_p12(500));
     }
 
     #[test]
