@@ -1,4 +1,4 @@
-use algorithms::math::is_prime::is_prime;
+use algorithms::math::prime::is_prime;
 use algorithms::misc::permutation::permutation;
 
 pub fn largest_pandigital_prime() -> usize {
