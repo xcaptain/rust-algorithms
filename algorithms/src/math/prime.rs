@@ -27,6 +27,22 @@ pub fn get_prime_table(n: usize) -> Vec<usize> {
     arr
 }
 
+/// get prime table less or equal than n
+pub fn get_prime_table_le(n: usize) -> Vec<usize> {
+    let mut num = 2;
+    let mut arr = vec![];
+    loop {
+        if num > n {
+            break;
+        }
+        if is_prime(num) {
+            arr.push(num);
+        }
+        num += 1;
+    }
+    arr
+}
+
 /// get the prime factor array of num
 pub fn get_prime_factors(num: usize) -> Vec<usize> {
     let mut n = num;
@@ -73,6 +89,11 @@ mod tests {
             vec![2, 3, 5, 7, 11, 13, 17, 19, 23, 29],
             get_prime_table(10)
         );
+    }
+
+    #[test]
+    fn test_get_prime_table_le() {
+        assert_eq!(vec![2, 3, 5], get_prime_table_le(5));
     }
 
     #[test]
