@@ -67,7 +67,7 @@ mod tests {
     }
 
     #[test]
-    fn test_solution() {
+    fn test_solution_of_p23() {
         assert_eq!(4179871, solution_of_p23());
     }
 }
