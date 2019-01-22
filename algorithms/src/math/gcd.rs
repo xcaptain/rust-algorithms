@@ -1,3 +1,5 @@
+use num_bigint::BigInt;
+
 pub fn gcd(m: usize, n: usize) -> usize {
     let g = m % n;
     if g == 0 {
@@ -33,6 +35,26 @@ pub fn gcd_3(mut m: usize, mut n: usize) -> usize {
     return m;
 }
 
+pub fn gcd_4(mut m: u128, mut n: u128) -> u128 {
+    while n != 0 {
+        let t = n;
+        n = m % n;
+        m = t;
+    }
+    return m;
+}
+
+pub fn gcd_5(mm: BigInt, nn: BigInt) -> BigInt {
+    let mut m = mm.clone();
+    let mut n = nn.clone();
+    while n != BigInt::from(0) {
+        let t = n.clone();
+        n = m % n;
+        m = t;
+    }
+    return m;
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -41,6 +63,7 @@ mod tests {
         assert_eq!(1, gcd(1, 2));
         assert_eq!(1, gcd_2(1, 2));
         assert_eq!(1, gcd_3(1, 2));
+        assert_eq!(BigInt::from(1), gcd_5(BigInt::from(1), BigInt::from(2)));
     }
 
     #[test]
