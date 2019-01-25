@@ -1,16 +1,29 @@
+use std::collections::HashMap;
+
 pub fn solution_of_p62() -> usize {
     let cbrt_arr = gen_cubic_arr(1_00_000_000_000, 1_000_000_000_000);
     // let cbrt_arr = vec![41063625, 56623104, 66430125];
+    let mut h: HashMap<String, Vec<usize>> = HashMap::new();
     let l = cbrt_arr.len();
     for i in 0..l {
-        let mut perm_num = 0;
-        for j in i + 1..l {
-            if is_permutate(cbrt_arr[i], cbrt_arr[j]) {
-                perm_num += 1;
+        let mut kv: Vec<char> = cbrt_arr[i].to_string().chars().collect();
+        kv.sort();
+        let key: String = kv.into_iter().collect();
+        match h.get_mut(&key) {
+            Some(v) => {
+                let mut new_v: Vec<usize> = v.clone();
+                new_v.push(cbrt_arr[i]);
+                *v = new_v;
+            }
+            None => {
+                let new_v = vec![cbrt_arr[i]];
+                h.insert(key, new_v);
             }
         }
-        if perm_num == 4 {
-            return cbrt_arr[i];
+    }
+    for (_k, v) in h.iter() {
+        if v.len() == 5 {
+            return v[0];
         }
     }
     return 1;
@@ -28,17 +41,6 @@ fn gen_cubic_arr(start: usize, end: usize) -> Vec<usize> {
             return arr;
         }
     }
-}
-
-fn is_permutate(a: usize, b: usize) -> bool {
-    let mut astr: Vec<char> = a.to_string().chars().collect();
-    astr.sort();
-    let mut bstr: Vec<char> = b.to_string().chars().collect();
-    bstr.sort();
-    if astr != bstr {
-        return false;
-    }
-    return true;
 }
 
 #[cfg(test)]
