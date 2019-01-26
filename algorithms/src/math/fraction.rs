@@ -32,6 +32,17 @@ impl<T: Integer + Clone> Fraction<T> {
             denominator: self.numerator.clone(),
         }
     }
+
+    pub fn reduce(&self) -> Fraction<T> {
+        let divisor = gcd(self.numerator.clone(), self.denominator.clone());
+        if divisor > T::one() {
+            return Fraction {
+                numerator: self.numerator.clone() / divisor.clone(),
+                denominator: self.denominator.clone() / divisor.clone(),
+            };
+        }
+        return self.clone();
+    }
 }
 
 pub fn lcm<T: Integer + Clone>(m: T, n: T) -> T {

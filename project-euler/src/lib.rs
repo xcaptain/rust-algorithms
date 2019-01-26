@@ -22,3 +22,6 @@ pub mod p52;
 pub mod p57;
 // pub mod p60; // 这题不走测试
 pub mod p62;
+pub mod p64;
+pub mod p65;
+pub mod p66;
