@@ -20,7 +20,7 @@ fn get_max_n_phi(n: usize) -> usize {
 }
 
 /// 见欧拉乘积公式：https://en.wikipedia.org/wiki/Euler%27s_totient_function
-fn get_phi(n: usize) -> usize {
+pub fn get_phi(n: usize) -> usize {
     let factors = get_uniq_prime_factors(n);
     let mut result = Fraction::new(n, 1);
     for f in &factors {
