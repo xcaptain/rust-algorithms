@@ -26,6 +26,25 @@ impl<T: Integer + Clone> Fraction<T> {
         }
     }
 
+    pub fn sub(&self, subtractor: &Fraction<T>) -> Fraction<T> {
+        let new_deno = lcm(self.denominator.clone(), subtractor.denominator.clone());
+        let new_self_num = (new_deno.clone() / self.denominator.clone()) * self.numerator.clone();
+        let new_sub_num =
+            (new_deno.clone() / subtractor.denominator.clone()) * subtractor.numerator.clone();
+        let new_num = new_self_num - new_sub_num;
+        Fraction {
+            numerator: new_num,
+            denominator: new_deno,
+        }
+    }
+
+    pub fn mul(&self, multiplier: &Fraction<T>) -> Fraction<T> {
+        Fraction {
+            numerator: self.numerator.clone() * multiplier.numerator.clone(),
+            denominator: self.denominator.clone() * multiplier.denominator.clone(),
+        }
+    }
+
     pub fn reciprocal(&self) -> Fraction<T> {
         Fraction {
             numerator: self.denominator.clone(),
@@ -98,5 +117,23 @@ mod tests {
 
         assert_eq!(2, f2.numerator);
         assert_eq!(2, f2.denominator);
+    }
+
+    #[test]
+    fn test_sub() {
+        let f1 = Fraction::new(1, 2);
+        let f2 = Fraction::new(1, 3);
+        let f3 = f1.sub(&f2);
+        assert_eq!(1, f3.numerator);
+        assert_eq!(6, f3.denominator);
+    }
+
+    #[test]
+    fn test_mul() {
+        let f1 = Fraction::new(1, 2);
+        let f2 = Fraction::new(1, 3);
+        let f3 = f1.mul(&f2);
+        assert_eq!(1, f3.numerator);
+        assert_eq!(6, f3.denominator);
     }
 }
