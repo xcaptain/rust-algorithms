@@ -21,12 +21,15 @@ pub fn solution_of_p62() -> usize {
             }
         }
     }
+    let mut min_value = 1_000_000_000_000;
     for (_k, v) in h.iter() {
         if v.len() == 5 {
-            return v[0];
+            if v[0] < min_value {
+                min_value = v[0];
+            }
         }
     }
-    return 1;
+    return min_value;
 }
 
 fn gen_cubic_arr(start: usize, end: usize) -> Vec<usize> {
