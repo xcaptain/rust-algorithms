@@ -2,6 +2,8 @@
 // https://doc.rust-lang.org/book/second-edition/ch15-01-box.html
 // https://rustbyexample.com/custom_types/enum/testcase_linked_list.html
 
+// use std::mem;
+
 #[derive(Default)]
 pub struct List<T> {
     length: usize,
@@ -24,11 +26,14 @@ impl<T> List<T> {
     }
 
     pub fn push(&mut self, elem: T) {
-        let new_node = Box::new(Node {
+        self.head = Some(Box::new(Node {
             elem,
             next: self.head.take(),
-        });
-        self.head = Some(new_node);
+        }));
+        // self.head = Some(Box::new(Node {
+        //     elem,
+        //     next: mem::replace(&mut self.head, None),
+        // }));
         self.length += 1;
     }
 
