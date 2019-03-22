@@ -2,6 +2,9 @@
 /// f(n+2) = f(n) + f(n+1), n starts from 0
 /// 0, 1, 1, 2, 3, 5, 8, 13...
 
+/// the default fib algorithm
+pub use fib1 as fib;
+
 /// get the nth fibonacci number using recursive
 /// note: when n is large, stack will overflow
 pub fn fib1(n: usize) -> usize {
@@ -25,7 +28,7 @@ pub fn fib2(n: usize) -> usize {
         return b;
     }
     let mut c = 1;
-    for _ in 2..n + 1 {
+    for _ in 2..=n {
         c = a + b;
         a = b;
         b = c;

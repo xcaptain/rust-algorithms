@@ -1,12 +1,19 @@
-pub fn gcd(m: usize, n: usize) -> usize {
+/// use gcd1 as the default gcd algorithm
+pub use gcd1 as gcd;
+
+/// gcd algorithms using mod
+pub fn gcd1(m: usize, n: usize) -> usize {
     let g = m % n;
     if g == 0 {
         return n;
     }
-    return gcd(n, g);
+    return gcd1(n, g);
 }
 
-pub fn gcd_2(mut m: usize, mut n: usize) -> usize {
+/// euclid algorithms
+pub fn gcd2(m: usize, n: usize) -> usize {
+    let mut m = m;
+    let mut n = n;
     while m != n {
         if m == 0 {
             return n;
@@ -24,16 +31,10 @@ pub fn gcd_2(mut m: usize, mut n: usize) -> usize {
     return m;
 }
 
-pub fn gcd_3(mut m: usize, mut n: usize) -> usize {
-    while n != 0 {
-        let t = n;
-        n = m % n;
-        m = t;
-    }
-    return m;
-}
-
-pub fn gcd_4(mut m: u128, mut n: u128) -> u128 {
+/// mod algorithm using iteration rather than recursion
+pub fn gcd3(m: usize, n: usize) -> usize {
+    let mut m = m;
+    let mut n = n;
     while n != 0 {
         let t = n;
         n = m % n;
@@ -47,51 +48,51 @@ mod tests {
     use super::*;
     #[test]
     fn test_normal() {
-        assert_eq!(1, gcd(1, 2));
-        assert_eq!(1, gcd_2(1, 2));
-        assert_eq!(1, gcd_3(1, 2));
+        assert_eq!(1, gcd1(1, 2));
+        assert_eq!(1, gcd2(1, 2));
+        assert_eq!(1, gcd3(1, 2));
     }
 
     #[test]
     fn test_normal_reverse() {
-        assert_eq!(1, gcd(2, 1));
-        assert_eq!(1, gcd_2(2, 1));
-        assert_eq!(1, gcd_3(2, 1));
+        assert_eq!(1, gcd1(2, 1));
+        assert_eq!(1, gcd2(2, 1));
+        assert_eq!(1, gcd3(2, 1));
     }
 
     #[test]
     fn test_mut_prime() {
-        assert_eq!(1, gcd(3, 2));
-        assert_eq!(1, gcd_2(3, 2));
-        assert_eq!(1, gcd_3(3, 2));
+        assert_eq!(1, gcd1(3, 2));
+        assert_eq!(1, gcd2(3, 2));
+        assert_eq!(1, gcd3(3, 2));
     }
 
     #[test]
     fn test_mut_prime_reverse() {
-        assert_eq!(1, gcd(2, 3));
-        assert_eq!(1, gcd_2(2, 3));
-        assert_eq!(1, gcd_3(2, 3));
+        assert_eq!(1, gcd1(2, 3));
+        assert_eq!(1, gcd2(2, 3));
+        assert_eq!(1, gcd3(2, 3));
     }
 
     #[test]
     fn test_divide() {
-        assert_eq!(2, gcd(2, 4));
-        assert_eq!(2, gcd_2(2, 4));
-        assert_eq!(2, gcd_3(2, 4));
+        assert_eq!(2, gcd1(2, 4));
+        assert_eq!(2, gcd2(2, 4));
+        assert_eq!(2, gcd3(2, 4));
     }
 
     #[test]
     fn test_divide_reverse() {
-        assert_eq!(2, gcd(4, 2));
-        assert_eq!(2, gcd_2(4, 2));
-        assert_eq!(2, gcd_3(4, 2));
+        assert_eq!(2, gcd1(4, 2));
+        assert_eq!(2, gcd2(4, 2));
+        assert_eq!(2, gcd3(4, 2));
     }
 
     #[test]
     fn test_zero() {
-        assert_eq!(2, gcd(0, 2));
-        assert_eq!(2, gcd_2(0, 2));
-        assert_eq!(2, gcd_3(0, 2));
+        assert_eq!(2, gcd1(0, 2));
+        assert_eq!(2, gcd2(0, 2));
+        assert_eq!(2, gcd3(0, 2));
     }
 
     #[test]
@@ -99,7 +100,7 @@ mod tests {
         // performance test
         assert_eq!(1, gcd(1, 90000000000));
         // too slow because of too many divisions
-        // assert_eq!(1, gcd_2(1, 90000000000));
-        assert_eq!(1, gcd_3(1, 90000000000));
+        // assert_eq!(1, gcd2(1, 90000000000));
+        assert_eq!(1, gcd3(1, 90000000000));
     }
 }
