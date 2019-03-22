@@ -12,8 +12,8 @@ pub fn lcs1(s1: String, s2: String) -> usize {
     let n = s2.len();
     let mut l = vec![vec![0; n + 1]; m + 1]; // n+1 cols, m+1 rows
 
-    for i in 0..m + 1 {
-        for j in 0..n + 1 {
+    for i in 0..=m {
+        for j in 0..=n {
             if i == 0 || j == 0 {
                 l[i][j] = 0;
             } else if s1.chars().nth(i - 1).unwrap() == s2.chars().nth(j - 1).unwrap() {
@@ -23,7 +23,7 @@ pub fn lcs1(s1: String, s2: String) -> usize {
             }
         }
     }
-    return l[m][n];
+    l[m][n]
 }
 
 #[cfg(test)]

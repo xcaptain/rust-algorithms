@@ -12,11 +12,9 @@ pub fn selection_sort(arr: Vec<usize>) -> Vec<usize> {
                 minium = j;
             }
         }
-        let t = sorted[minium];
-        sorted[minium] = sorted[i];
-        sorted[i] = t;
+        sorted.swap(minium, i);
     }
-    return sorted;
+    sorted
 }
 
 #[cfg(test)]

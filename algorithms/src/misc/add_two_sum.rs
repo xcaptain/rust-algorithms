@@ -20,14 +20,14 @@ pub fn add_two_sum(l1: Vec<usize>, l2: Vec<usize>) -> Vec<usize> {
         };
         let mut r = v1 + v2 + carry;
         if r > 9 {
-            r = r - 10;
+            r -= 10;
             carry = 1;
         } else {
             carry = 0;
         }
         result.push(r);
     }
-    return result;
+    result
 }
 
 #[cfg(test)]

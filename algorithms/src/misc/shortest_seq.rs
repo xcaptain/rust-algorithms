@@ -23,7 +23,7 @@ pub fn shortest_seq(arr: Vec<usize>, target: usize) -> (usize, usize, usize) {
     if ans > len {
         return (0, 0, 0);
     }
-    return (ans, start - 1, end - 1);
+    (ans, start - 1, end - 1)
 }
 
 #[cfg(test)]

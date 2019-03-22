@@ -9,11 +9,11 @@ pub use fib1 as fib;
 /// note: when n is large, stack will overflow
 pub fn fib1(n: usize) -> usize {
     if n == 0 {
-        return 0;
+        0
     } else if n == 1 {
-        return 1;
+        1
     } else {
-        return fib1(n - 1) + fib1(n - 2);
+        fib1(n - 1) + fib1(n - 2)
     }
 }
 
@@ -33,7 +33,7 @@ pub fn fib2(n: usize) -> usize {
         a = b;
         b = c;
     }
-    return c;
+    c
 }
 
 /// get the nth fibonacci number using dynamic programming
@@ -41,10 +41,10 @@ pub fn fib3(n: usize) -> usize {
     let mut f = vec![0; n + 2];
     f[0] = 0;
     f[1] = 1;
-    for i in 2..n + 1 {
+    for i in 2..=n {
         f[i] = f[i - 1] + f[i - 2];
     }
-    return f[n];
+    f[n]
 }
 
 /// get the nth fabonacci number using matrix multiply

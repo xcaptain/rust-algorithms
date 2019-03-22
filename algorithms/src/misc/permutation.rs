@@ -1,7 +1,7 @@
 pub fn permutation(s: &str) -> Vec<String> {
     let mut result: Vec<String> = vec![];
     permutate("", s, &mut result);
-    return result;
+    result
 }
 
 fn permutate(prefix: &str, s: &str, result: &mut Vec<String>) {

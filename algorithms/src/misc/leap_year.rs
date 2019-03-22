@@ -5,7 +5,7 @@ pub fn is_leap_year(year: usize) -> bool {
     if year % 400 == 0 {
         return true;
     }
-    return false;
+    false
 }
 
 #[cfg(test)]

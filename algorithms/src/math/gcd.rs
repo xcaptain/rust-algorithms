@@ -7,7 +7,7 @@ pub fn gcd1(m: usize, n: usize) -> usize {
     if g == 0 {
         return n;
     }
-    return gcd1(n, g);
+    gcd1(n, g)
 }
 
 /// euclid algorithms
@@ -23,12 +23,12 @@ pub fn gcd2(m: usize, n: usize) -> usize {
         }
 
         if m > n {
-            m = m - n;
+            m -= n;
         } else {
-            n = n - m;
+            n -= m;
         }
     }
-    return m;
+    m
 }
 
 /// mod algorithm using iteration rather than recursion
@@ -40,7 +40,7 @@ pub fn gcd3(m: usize, n: usize) -> usize {
         n = m % n;
         m = t;
     }
-    return m;
+    m
 }
 
 #[cfg(test)]

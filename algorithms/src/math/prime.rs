@@ -6,7 +6,7 @@ pub fn is_prime(n: usize) -> bool {
             return false;
         }
     }
-    return true;
+    true
 }
 
 /// generate the first n primes
@@ -60,7 +60,7 @@ pub fn get_prime_factors(num: usize) -> Vec<usize> {
     if n > 2 {
         result.push(n);
     }
-    return result;
+    result
 }
 
 /// get unique prime factors of num
@@ -68,7 +68,7 @@ pub fn get_uniq_prime_factors(num: usize) -> Vec<usize> {
     let mut factors = get_prime_factors(num);
     factors.sort();
     factors.dedup();
-    return factors;
+    factors
 }
 
 #[cfg(test)]

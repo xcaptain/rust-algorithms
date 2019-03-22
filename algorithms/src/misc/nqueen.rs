@@ -9,10 +9,10 @@ fn place_queens(board: &mut Vec<u128>, r: usize, result: &mut Vec<Vec<u128>>) {
     } else {
         for j in 0..n {
             let mut legal = true;
-            for i in 0..r {
-                if board[i] == (j as u128)
-                    || (j + r >= i && board[i] == ((j + r - i) as u128))
-                    || (j + i >= r && board[i] == ((j + i - r) as u128))
+            for (i, boardi) in board.iter().enumerate().take(r) {
+                if *boardi == (j as u128)
+                    || (j + r >= i && *boardi == ((j + r - i) as u128))
+                    || (j + i >= r && *boardi == ((j + i - r) as u128))
                 {
                     legal = false;
                 }
@@ -29,7 +29,7 @@ pub fn nqueen(n: usize) -> Vec<Vec<u128>> {
     let mut board = vec![0; n];
     let mut result = vec![];
     place_queens(&mut board, 0, &mut result);
-    return result;
+    result
 }
 
 #[cfg(test)]

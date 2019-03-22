@@ -4,7 +4,7 @@ pub fn quick_sort(arr: Vec<usize>) -> Vec<usize> {
     let len = sorted.len();
     quick_sort_help(&mut sorted, 0, len - 1);
 
-    return sorted;
+    sorted
 }
 
 fn partition(arr: &mut Vec<usize>, first: usize, last: usize) -> usize {
@@ -16,8 +16,7 @@ fn partition(arr: &mut Vec<usize>, first: usize, last: usize) -> usize {
         }
     }
     arr.swap(last, wall);
-    println!("pivot is {}", wall);
-    return wall;
+    wall
 }
 
 fn quick_sort_help(arr: &mut Vec<usize>, first: usize, last: usize) {

@@ -6,10 +6,10 @@ pub fn merge_sort_v1(arr: Vec<usize>) -> Vec<usize> {
         return arr;
     }
     let mid = len / 2;
-    let left = merge_sort_v1(arr.get(..mid).unwrap().to_vec());
-    let right = merge_sort_v1(arr.get(mid..).unwrap().to_vec());
+    let left = merge_sort_v1(arr[..mid].to_vec());
+    let right = merge_sort_v1(arr[mid..].to_vec());
 
-    return merge_v1(left, right);
+    merge_v1(left, right)
 }
 
 pub fn merge_sort_v2(arr: Vec<usize>) -> Vec<usize> {
@@ -18,10 +18,10 @@ pub fn merge_sort_v2(arr: Vec<usize>) -> Vec<usize> {
         return arr;
     }
     let mid = len / 2;
-    let left = merge_sort_v2(arr.get(..mid).unwrap().to_vec());
-    let right = merge_sort_v2(arr.get(mid..).unwrap().to_vec());
+    let left = merge_sort_v2(arr[..mid].to_vec());
+    let right = merge_sort_v2(arr[mid..].to_vec());
 
-    return merge_v2(left, right);
+    merge_v2(left, right)
 }
 
 // 移动游标位置而不修改数组本身
@@ -43,13 +43,13 @@ fn merge_v1(left: Vec<usize>, right: Vec<usize>) -> Vec<usize> {
             right_cursor += 1;
         }
     }
-    for i in left_cursor..left_len {
-        res.push(left[i]);
+    for i in left.iter().take(left_len).skip(left_cursor) {
+        res.push(*i);
     }
-    for i in right_cursor..right_len {
-        res.push(right[i])
+    for i in right.iter().take(right_len).skip(right_cursor) {
+        res.push(*i);
     }
-    return res;
+    res
 }
 
 fn merge_v2(mut left: Vec<usize>, mut right: Vec<usize>) -> Vec<usize> {
@@ -69,7 +69,7 @@ fn merge_v2(mut left: Vec<usize>, mut right: Vec<usize>) -> Vec<usize> {
     if !right.is_empty() {
         res.extend(&right);
     }
-    return res;
+    res
 }
 
 #[cfg(test)]

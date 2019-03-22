@@ -2,7 +2,7 @@ use crate::math::gcd::gcd;
 
 pub fn lcm(m: usize, n: usize) -> usize {
     let g = gcd(m, n);
-    return m * n / g;
+    m * n / g
 }
 
 #[cfg(test)]

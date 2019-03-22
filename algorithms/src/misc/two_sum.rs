@@ -11,7 +11,7 @@ pub fn two_sum(arr: Vec<usize>, target: usize) -> (usize, usize) {
             }
         }
     }
-    return (0, 0);
+    (0, 0)
 }
 
 #[cfg(test)]

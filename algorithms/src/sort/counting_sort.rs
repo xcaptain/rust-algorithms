@@ -13,7 +13,7 @@ pub fn counting_sort(arr: Vec<usize>, max_val: usize) -> Vec<usize> {
 
     // count_arr的key是待排序数组中的元素，value是待排序数组中小于或等于对应元素的值
     for i in 1..max_val {
-        count_arr[i] = count_arr[i] + count_arr[i - 1];
+        count_arr[i] += count_arr[i - 1];
     }
 
     // 把待排序数组中的每个元素放置到已排序数组中的对应位置上
@@ -21,7 +21,7 @@ pub fn counting_sort(arr: Vec<usize>, max_val: usize) -> Vec<usize> {
         sorted[count_arr[arr[i]] - 1] = arr[i];
         count_arr[arr[i]] -= 1; // 待排序数组中有重复元素时，排完一个，计数数组对应要-1
     }
-    return sorted;
+    sorted
 }
 
 #[cfg(test)]

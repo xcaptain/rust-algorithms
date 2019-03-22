@@ -10,7 +10,7 @@ pub fn bubble_sort<T: PartialOrd>(mut sorted: Vec<T>) -> Vec<T> {
             }
         }
     }
-    return sorted;
+    sorted
 }
 
 #[cfg(test)]

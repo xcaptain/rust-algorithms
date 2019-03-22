@@ -8,11 +8,11 @@ pub fn insertion_sort<T: PartialOrd + Copy>(mut sorted: Vec<T>) -> Vec<T> {
         let cursor = sorted[i];
         while pos > 0 && sorted[pos - 1] > cursor {
             sorted[pos] = sorted[pos - 1];
-            pos = pos - 1;
+            pos -= 1;
         }
         sorted[pos] = cursor;
     }
-    return sorted;
+    sorted
 }
 
 pub fn insertion_sort1(arr: &mut Vec<usize>) {
@@ -22,7 +22,7 @@ pub fn insertion_sort1(arr: &mut Vec<usize>) {
         let cursor = arr[i];
         while pos > 0 && arr[pos - 1] > cursor {
             arr[pos] = arr[pos - 1];
-            pos = pos - 1;
+            pos -= 1;
         }
         arr[pos] = cursor;
     }
