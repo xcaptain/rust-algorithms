@@ -6,4 +6,3 @@ authors = ["Joey <joey.xf@gmail.com>"]
 
 [dependencies]
 algorithms = { path = "../algorithms" }
-num-bigint = "0.2"

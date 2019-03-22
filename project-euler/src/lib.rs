@@ -6,7 +6,6 @@ pub mod p23;
 pub mod p26;
 pub mod p31;
 pub mod p32;
-// pub mod p33;
 pub mod p38;
 pub mod p39;
 pub mod p40;
@@ -19,10 +18,5 @@ pub mod p47;
 pub mod p49;
 pub mod p50;
 pub mod p52;
-pub mod p57;
-// pub mod p60; // 这题不走测试
 pub mod p62;
 pub mod p64;
-pub mod p65;
-pub mod p66;
-pub mod p69;

@@ -4,6 +4,3 @@ edition = "2018"
 version = "0.1.0"
 authors = ["Joey <joey.xf@gmail.com>"]
 
-[dependencies]
-num-bigint = "0.2"
-num-integer = "0.1"
