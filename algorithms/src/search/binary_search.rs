@@ -5,7 +5,12 @@ pub fn binary_search1(arr: Vec<isize>, target: isize) -> Option<usize> {
     binary_search1_inner(arr, 0, len - 1, target)
 }
 
-fn binary_search1_inner(arr: Vec<isize>, left: usize, right: usize, target: isize) -> Option<usize> {
+fn binary_search1_inner(
+    arr: Vec<isize>,
+    left: usize,
+    right: usize,
+    target: isize,
+) -> Option<usize> {
     if left <= right {
         let mid = (left + right) / 2;
         if arr[mid] < target {
