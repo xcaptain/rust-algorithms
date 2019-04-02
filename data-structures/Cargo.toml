@@ -6,3 +6,4 @@ authors = ["Joey <joey.xf@gmail.com>"]
 
 [dependencies]
 algorithms = { path = "../algorithms" }
+regex = "1"
