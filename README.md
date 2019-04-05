@@ -44,6 +44,7 @@ referencing [https://github.com/trekhleb/javascript-algorithms](https://github.c
 
 - [tree](data-structures/src/tree/mod.rs)
   - [binary_tree](data-structures/src/tree/binary_tree.rs)
+  - [radix_tree](data-structures/src/tree/radix_tree.rs)
 
 ## project euler
 

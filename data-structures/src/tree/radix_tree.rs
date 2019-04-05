@@ -27,28 +27,34 @@ impl TreeNode {
     }
 
     pub fn insert(&mut self, word: &'static str) {
-        if word.contains('{') && word.contains('}') {
-            // insert regex part
-            self.insert_regex(word);
+        if word.is_empty() {
+            return;
+        } else if &word[..1] == "{" {
+            self.insert_start_with_regex(word);
         } else {
-            // insert static part
-            self.insert_static(word);
+            self.insert_not_start_with_regex(word);
         }
     }
 
-    // TODO: 目前只处理了整个wordy用花括号包裹的正则表达式的情况
-    fn insert_regex(&mut self, word: &'static str) {
-        let word = &word[1..word.len()-1];
-        let new_node = TreeNode {
-            prefix: word,
+    fn insert_start_with_regex(&mut self, word: &'static str) {
+        let right_braket_pos = word.find("}").unwrap();
+        let regex_word = &word[1..right_braket_pos];
+        let mut new_node = TreeNode {
+            prefix: regex_word,
             edges: vec![],
-            is_word: true,
+            is_word: false,
             kind: NodeKind::Regex,
         };
+        let word = &word[right_braket_pos + 1..];
+        if word.is_empty() {
+            new_node.is_word = true;
+        } else {
+            new_node.insert(word);
+        }
         self.edges.push(Box::new(new_node));
     }
 
-    fn insert_static(&mut self, word: &'static str) {
+    fn insert_not_start_with_regex(&mut self, word: &'static str) {
         let mut word = word;
         for edge in self.edges.iter_mut() {
             let longest_prefix_len = common_prefix_len(&edge.prefix, &word);
@@ -61,7 +67,7 @@ impl TreeNode {
             word = &word[longest_prefix_len..];
             if old_node_prefix.is_empty() {
                 // 新的子节点插入到这个节点下
-                edge.insert_static(word);
+                edge.insert(word);
             } else {
                 (*edge).prefix = old_node_prefix; // 更新原结点字符串
                 let mut new_parent_node = TreeNode {
@@ -72,18 +78,44 @@ impl TreeNode {
                 };
                 if word.is_empty() {
                     new_parent_node.is_word = true;
+                } else {
+                    new_parent_node.insert(word);
                 }
-                new_parent_node.insert_static(word);
                 *edge = Box::new(new_parent_node);
             }
         }
-        let new_node = TreeNode {
-            prefix: word,
-            edges: vec![],
-            is_word: true,
-            kind: NodeKind::Static,
-        };
-        self.edges.push(Box::new(new_node));
+
+        let left_bracket = word.find("{");
+        if let Some(left_bracket_pos) = left_bracket {
+            if left_bracket_pos == 0 {
+                // 不可能走这个分支，因为这个方法只处理第一个字符不为`{`的字符串
+                self.insert_start_with_regex(word);
+            } else {
+                // 把纯字符串部分插入，然后把剩下的`{`的部分递归插入，因为目前节点为空所以直接push就行
+                let static_word = &word[..left_bracket_pos];
+                let mut static_node = TreeNode {
+                    prefix: static_word,
+                    edges: vec![],
+                    is_word: false,
+                    kind: NodeKind::Static,
+                };
+                word = &word[left_bracket_pos..];
+                if word.is_empty() {
+                    static_node.is_word = true;
+                } else {
+                    static_node.insert_start_with_regex(word);
+                }
+                self.edges.push(Box::new(static_node));
+            }
+        } else {
+            let static_node = TreeNode {
+                prefix: word,
+                edges: vec![],
+                is_word: true,
+                kind: NodeKind::Static,
+            };
+            self.edges.push(Box::new(static_node));
+        }
     }
 
     pub fn contains(&self, word: &str) -> bool {
@@ -141,9 +173,13 @@ pub fn common_prefix_len(s1: &str, s2: &str) -> usize {
     let mut start = 0;
     let s1_arr = s1.as_bytes();
     let s2_arr = s2.as_bytes();
+    let left_bracket = "{".as_bytes();
+
     while start < l {
         if s1_arr[start] == s2_arr[start] {
             start += 1;
+        } else if s1_arr[start] == left_bracket[0] || s2_arr[start] == left_bracket[0] {
+            break;
         } else {
             break;
         }
@@ -176,6 +212,8 @@ mod tests {
         t.insert("ape");
         t.insert("app");
         t.insert("{[0-9]+}");
+        t.insert("app{[0-9]+}");
+        t.insert("/books/{[0-9]+}/comments/");
 
         assert!(t.contains("apple"));
         assert!(t.contains("ape"));
@@ -183,11 +221,14 @@ mod tests {
         assert_eq!(false, t.contains("apb"));
         assert_eq!(false, t.contains("ap"));
         assert!(t.contains("1234"));
+        assert!(t.contains("app12345"));
+        assert!(t.contains("/books/12/comments/"));
     }
 
     #[test]
     fn test_common_prefix_len() {
         assert_eq!(3, common_prefix_len("apple", "app"));
         assert_eq!(2, common_prefix_len("apple", "ape"));
+        assert_eq!(2, common_prefix_len("ap{[1-9]+}", "ap123"));
     }
 }
