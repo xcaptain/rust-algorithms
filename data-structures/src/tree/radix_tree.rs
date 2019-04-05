@@ -5,7 +5,7 @@ use std::str::FromStr;
 #[derive(Clone)]
 pub enum NodeKind {
     Static, // pure string
-    Regex,  // contains regex
+    Regex,  // string contains regular expressions like: abc{[a-z]+}def
 }
 
 #[derive(Clone)]
@@ -26,6 +26,7 @@ impl TreeNode {
         }
     }
 
+    /// insert a string into the radix tree
     pub fn insert(&mut self, word: &'static str) {
         if word.is_empty() {
             return;
@@ -37,6 +38,7 @@ impl TreeNode {
     }
 
     fn insert_start_with_regex(&mut self, word: &'static str) {
+        assert!(&word[..1] == "{"); // ensure word starts with `{`
         let right_braket_pos = word.find("}").unwrap();
         let regex_word = &word[1..right_braket_pos];
         let mut new_node = TreeNode {
@@ -61,15 +63,18 @@ impl TreeNode {
             if longest_prefix_len == 0 {
                 continue;
             }
-            // 拆分新插入的字符串
+            // split the prefix
             let old_node_prefix = &edge.prefix[longest_prefix_len..];
             let common_prefix = &edge.prefix[..longest_prefix_len];
             word = &word[longest_prefix_len..];
+            // old node prefix is totally matched, like app matched by apple
+            // keep `app` and insert `le` into `app`
             if old_node_prefix.is_empty() {
-                // 新的子节点插入到这个节点下
                 edge.insert(word);
             } else {
-                (*edge).prefix = old_node_prefix; // 更新原结点字符串
+                // the original node must be split into 2, like
+                // `app` and `ape` becomes `ap` `p` and `e`
+                (*edge).prefix = old_node_prefix;
                 let mut new_parent_node = TreeNode {
                     prefix: common_prefix,
                     edges: vec![edge.clone()],
@@ -88,10 +93,9 @@ impl TreeNode {
         let left_bracket = word.find("{");
         if let Some(left_bracket_pos) = left_bracket {
             if left_bracket_pos == 0 {
-                // 不可能走这个分支，因为这个方法只处理第一个字符不为`{`的字符串
                 self.insert_start_with_regex(word);
             } else {
-                // 把纯字符串部分插入，然后把剩下的`{`的部分递归插入，因为目前节点为空所以直接push就行
+                // first create a node with pure string and then recursively insert the rest part
                 let static_word = &word[..left_bracket_pos];
                 let mut static_node = TreeNode {
                     prefix: static_word,
@@ -118,6 +122,7 @@ impl TreeNode {
         }
     }
 
+    /// check if a word is in the radix tree
     pub fn contains(&self, word: &str) -> bool {
         let mut search = word;
         for edge in &self.edges {
@@ -125,7 +130,7 @@ impl TreeNode {
                 NodeKind::Static => {
                     match search.find(&edge.prefix) {
                         Some(0) => {
-                            // 如果匹配上了当前节点则继续往下匹配
+                            // current node is matched, recursively go down the tree
                             search = &search[edge.prefix.len()..];
                             if search.is_empty() {
                                 return edge.is_word;
@@ -133,7 +138,7 @@ impl TreeNode {
                             return edge.contains(search);
                         }
                         _ => {
-                            // 否则跳过当前边匹配下一条
+                            // current node is not matched, skip to next node
                             continue;
                         }
                     }
@@ -168,7 +173,7 @@ impl TreeNode {
 }
 
 // return longest consequence substring of s1 and s2
-pub fn common_prefix_len(s1: &str, s2: &str) -> usize {
+fn common_prefix_len(s1: &str, s2: &str) -> usize {
     let l = min(s1.len(), s2.len());
     let mut start = 0;
     let s1_arr = s1.as_bytes();
