@@ -8,15 +8,10 @@ addons:
 cache: cargo
 rust:
   - stable
-  - beta
   - nightly
 matrix:
   allow_failures:
     - rust: nightly
-before_cache: |
-  if [[ "$TRAVIS_RUST_VERSION" == stable ]]; then
-    cargo install cargo-tarpaulin -f
-  fi
 script:
 - cargo clean
 - cargo build
@@ -24,10 +19,7 @@ script:
 
 after_success: |
   if [[ "$TRAVIS_RUST_VERSION" == stable ]]; then
-    # upload report to coveralls
-    cargo tarpaulin --ciserver travis-ci --coveralls $TRAVIS_JOB_ID
-
     # upload report to codecov
-    cargo tarpaulin --out Xml
+    docker run --security-opt seccomp=unconfined -v "$PWD:/volume" -e "CODECOV_TOKEN=$CODECOV_TOKEN" xd009642/tarpaulin sh -c "cargo tarpaulin --out Xml"
     bash <(curl -s https://codecov.io/bash)
   fi

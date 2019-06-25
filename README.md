@@ -1,6 +1,5 @@
 # rust algorithms and data structures
 
-[![Coverage Status](https://coveralls.io/repos/github/xcaptain/rust-algorithms/badge.svg?branch=master)](https://coveralls.io/github/xcaptain/rust-algorithms?branch=master)
 [![Build Status](https://travis-ci.com/xcaptain/rust-algorithms.svg?branch=master)](https://travis-ci.com/xcaptain/rust-algorithms)
 [![codecov](https://codecov.io/gh/xcaptain/rust-algorithms/branch/master/graph/badge.svg)](https://codecov.io/gh/xcaptain/rust-algorithms)
 
