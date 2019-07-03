@@ -14,7 +14,7 @@ mod tests {
 
     #[test]
     fn test_basic() {
-        let mut a1 = vec![0,1,2,2,3,0,4,2];
+        let mut a1 = vec![0, 1, 2, 2, 3, 0, 4, 2];
         let l = remove_element(&mut a1, 2);
         assert_eq!(l, 5);
         assert_eq!(vec![0, 1, 3, 0, 4], a1);
