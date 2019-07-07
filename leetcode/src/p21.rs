@@ -7,6 +7,7 @@ pub struct ListNode {
     pub next: Option<Box<ListNode>>,
 }
 
+#[allow(dead_code)]
 impl ListNode {
     #[inline]
     fn new(val: i32) -> Self {

@@ -19,6 +19,7 @@ fn part1(n: usize) -> usize {
 
 // dynamic programming, using p_cache to store some computed values
 // which can reduce needless recursion
+#[allow(dead_code)]
 fn part2(n: usize) -> usize {
     let mut s = 0;
     let mut p_cache = HashMap::new();
