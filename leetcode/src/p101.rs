@@ -35,7 +35,10 @@ pub fn is_symmetric(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
 }
 
 // test 2 sub tree are symmetric
-fn are_symmetric(left: Option<Rc<RefCell<TreeNode>>>, right: Option<Rc<RefCell<TreeNode>>>) -> bool {
+fn are_symmetric(
+    left: Option<Rc<RefCell<TreeNode>>>,
+    right: Option<Rc<RefCell<TreeNode>>>,
+) -> bool {
     if left.is_none() {
         return right.is_none();
     }
