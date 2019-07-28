@@ -3,71 +3,36 @@
 [![Build Status](https://travis-ci.com/xcaptain/rust-algorithms.svg?branch=master)](https://travis-ci.com/xcaptain/rust-algorithms)
 [![codecov](https://codecov.io/gh/xcaptain/rust-algorithms/branch/master/graph/badge.svg)](https://codecov.io/gh/xcaptain/rust-algorithms)
 
-referencing [https://github.com/trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms)
+This project is about my journey on algorithm study, practice makes a better programmer, keep going!
 
-## algorithms
+## project structure
 
-- [sort](algorithms/src/sort/mod.rs)
+### algorithms
 
-  - [bubble_sort](algorithms/src/sort/bubble_sort.rs)
-  - [insertion_sort](algorithms/src/sort/insertion_sort.rs)
-  - [selection_sort](algorithms/src/sort/selection_sort.rs)
-  - [quick_sort](algorithms/src/sort/quick_sort.rs)
-  - [merge_sort](algorithms/src/sort/merge_sort.rs)
+Basic algorithms
 
-- [search](algorithms/src/search/mod.rs)
+### data structures
 
-  - [binary_search](algorithms/src/search/binary_search.rs)
+Basic data structures
 
-- [math](algorithms/src/math/mod.rs)
+### project euler
 
-  - [gcd](algorithms/src/math/gcd.rs)
-  - [lcm](algorithms/src/math/lcm.rs)
-  - [is_prime](algorithms/src/math/is_prime.rs)
+Solutions for [project euler](https://projecteuler.net/)
 
-- [misc](algorithms/src/misc/mod.rs)
-  - [shortest_seq](algorithms/src/misc/shortest_seq.rs)
-  - [two_sum](algorithms/src/misc/two_sum.rs)
+### leetcode
 
-## data structures
+Solutions for [leetcode](https://leetcode-cn.com/)
 
-- [linkedlist](data-structures/src/linkedlist/mod.rs)
+### codeforces
 
-  - [simple_list](data-structures/src/linkedlist/SimpleList.rs)
-
-- [stack](data-structures/src/stack/mod.rs)
-  - [simple_stack](data-structures/src/stack/simple_stack.rs)
-
-- [queue](data-structures/src/queue/mod.rs)
-  - [mpsc_queue](data-structures/src/queue/mpsc_queue.rs)
-  - [priority queue](data-structures/src/queue/priority_queue.rs)
-
-- [tree](data-structures/src/tree/mod.rs)
-  - [binary_tree](data-structures/src/tree/binary_tree.rs)
-  - [radix_tree](data-structures/src/tree/radix_tree.rs)
-
-## project euler
-
-This directory contains my solutions of the [https://projecteuler.net/](https://projecteuler.net/)
+Solutions for [codeforces](https://codeforces.com/)
 
 ## how to build
 
-### build the whole workspace
-
-`cargo build`
-
-### build per workspace
-
-`cargo build -p algorithms`
-
-`cargo build -p data-structures`
+using `cargo build` to build the whole project or `cargo build -p data-structures` build a workspace
 
 ## how to test
 
-### run all test cases
-
 `cargo test`
 
-### run specific test case
-
-`cargo test two_sum_test`
+I use `vscode` and `rust-analyzer` and `lldb` to write these code.

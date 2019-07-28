@@ -5,4 +5,5 @@ members = [
     "data-structures",
     "project-euler",
     "leetcode",
+    "codeforces",
 ]
