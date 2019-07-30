@@ -1,7 +1,7 @@
 // https://codeforces.com/contest/71/problem/A
 
 use crate::Scanner;
-use std::io::{Read, Write};
+use std::io::{BufRead, Write};
 
 pub fn abbr(s: String) -> String {
     let l = s.len();
@@ -16,7 +16,7 @@ pub fn abbr(s: String) -> String {
     return s;
 }
 
-pub fn solution_of_p71a(input: &mut Read, out: &mut Write) {
+pub fn solution_of_p71a(input: &mut BufRead, out: &mut Write) {
     let mut scan = Scanner::new(input);
 
     let n = scan.next();

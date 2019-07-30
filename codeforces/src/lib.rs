@@ -1,8 +1,8 @@
+pub mod p158a;
 pub mod p71a;
 
 use std::io::Read;
 
-#[derive(Default)]
 pub struct Scanner<U: Sized + Read> {
     pub buffer: Vec<String>,
     pub reader: U,
@@ -15,7 +15,7 @@ impl<U: Sized + Read> Scanner<U> {
             }
             let mut input = String::new();
             self.reader.read_to_string(&mut input).expect("Failed read");
-            self.buffer = input.split_whitespace().rev().map(String::from).collect();
+            self.buffer = input.lines().rev().map(String::from).collect();
         }
     }
 
