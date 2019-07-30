@@ -35,7 +35,7 @@ pub fn solution_of_p158a(input: &mut Read, out: &mut Write) {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::io::{BufReader, BufWriter};
+    use crate::test_helper;
 
     #[test]
     fn test_solution_of_p158a() {
@@ -60,17 +60,6 @@ mod tests {
             ],
         ];
 
-        for case in &cases {
-            let mut input_file = BufReader::new(case[0].as_bytes());
-            let mut out_file = BufWriter::new(Vec::new());
-            solution_of_p158a(&mut input_file, &mut out_file);
-            assert_eq!(
-                case[1],
-                String::from_utf8(out_file.into_inner().unwrap())
-                    .unwrap()
-                    .as_str()
-                    .trim()
-            );
-        }
+        test_helper(cases, solution_of_p158a);
     }
 }

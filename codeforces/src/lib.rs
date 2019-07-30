@@ -1,7 +1,9 @@
+pub mod p118a;
 pub mod p158a;
+pub mod p231a;
 pub mod p71a;
 
-use std::io::Read;
+use std::io::{BufReader, BufWriter, Read, Write};
 
 pub struct Scanner<U: Sized + Read> {
     pub buffer: Vec<String>,
@@ -24,5 +26,21 @@ impl<U: Sized + Read> Scanner<U> {
             buffer: vec![],
             reader,
         };
+    }
+}
+
+type Solution = fn(&mut Read, &mut Write);
+pub fn test_helper(cases: Vec<Vec<&str>>, solution: Solution) {
+    for case in &cases {
+        let mut input_file = BufReader::new(case[0].as_bytes());
+        let mut out_file = BufWriter::new(Vec::new());
+        solution(&mut input_file, &mut out_file);
+        assert_eq!(
+            case[1],
+            String::from_utf8(out_file.into_inner().unwrap())
+                .unwrap()
+                .as_str()
+                .trim()
+        );
     }
 }
