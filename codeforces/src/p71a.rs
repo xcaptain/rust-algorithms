@@ -3,7 +3,7 @@
 use crate::Scanner;
 use std::io::{Read, Write};
 
-pub fn abbr(s: String) -> String {
+fn abbr(s: String) -> String {
     let l = s.len();
     if l > 10 {
         return format!(
@@ -42,7 +42,7 @@ mod tests {
 
     #[test]
     fn test_solution_of_p71a() {
-        let cases = vec![vec![
+        let cases = vec![[
             "4
 word
 localization

@@ -36,14 +36,14 @@ mod tests {
     #[test]
     fn test_solution_of_p231a() {
         let cases = vec![
-            vec![
+            [
                 "3
 1 1 0
 1 1 1
 1 0 0",
                 "2",
             ],
-            vec![
+            [
                 "2
 1 0 0
 0 1 1",

@@ -28,11 +28,11 @@ mod tests {
     #[test]
     fn test_solution_of_p282a() {
         let cases = vec![
-            vec![
+            [
                 "1
 ++X", "1",
             ],
-            vec![
+            [
                 "2
 X++
 --X",

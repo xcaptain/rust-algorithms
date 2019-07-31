@@ -20,7 +20,7 @@ pub fn solution_of_p112a(input: &mut Read, out: &mut Write) {
     write!(out, "{}\n", res).ok();
 }
 
-pub fn lexicographical_order(arr1: Vec<char>, arr2: Vec<char>) -> i32 {
+fn lexicographical_order(arr1: Vec<char>, arr2: Vec<char>) -> i32 {
     let l = arr1.len(); // assume the 2 string has the same length
     for i in 0..l {
         let u1 = arr1[i] as u8;
@@ -42,18 +42,18 @@ mod tests {
     #[test]
     fn test_solution_of_p112a() {
         let cases = vec![
-            vec![
+            [
                 "aaaa
 aaaA
 ",
                 "0",
             ],
-            vec![
+            [
                 "abs
 Abz
 ", "-1",
             ],
-            vec![
+            [
                 "abcdefg
 AbCdEfF
 ",

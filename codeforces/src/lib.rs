@@ -2,9 +2,12 @@ pub mod p112a;
 pub mod p118a;
 pub mod p158a;
 pub mod p231a;
+pub mod p281a;
 pub mod p282a;
+pub mod p339a;
 pub mod p50a;
 pub mod p71a;
+pub mod p96a;
 
 use std::io::{BufReader, BufWriter, Read, Write};
 
@@ -33,7 +36,7 @@ impl<U: Sized + Read> Scanner<U> {
 }
 
 type Solution = fn(&mut Read, &mut Write);
-pub fn test_helper(cases: Vec<Vec<&str>>, solution: Solution) {
+pub fn test_helper(cases: Vec<[&str; 2]>, solution: Solution) {
     for case in &cases {
         let mut input_file = BufReader::new(case[0].as_bytes());
         let mut out_file = BufWriter::new(Vec::new());

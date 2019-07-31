@@ -5,7 +5,7 @@ use std::cmp::{max, min};
 use std::io::{Read, Write};
 
 // the maxium ways to cover a mxn rectangle using 1x2 bricks
-pub fn get_cover_num(m: usize, n: usize) -> usize {
+fn get_cover_num(m: usize, n: usize) -> usize {
     let smaller = min(m, n);
     let bigger = max(m, n);
     if smaller == 0 {
@@ -43,12 +43,7 @@ mod tests {
 
     #[test]
     fn test_solution_of_p50a() {
-        let cases = vec![
-            vec!["2 4", "4"],
-            vec!["3 3", "4"],
-            vec!["1 5", "2"],
-            vec!["16 16", "128"],
-        ];
+        let cases = vec![["2 4", "4"], ["3 3", "4"], ["1 5", "2"], ["16 16", "128"]];
         test_helper(cases, solution_of_p50a);
     }
 }

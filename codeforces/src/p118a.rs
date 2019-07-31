@@ -43,9 +43,9 @@ mod tests {
     #[test]
     fn test_solution_of_p118a() {
         let cases = vec![
-            vec!["tour", ".t.r"],
-            vec!["Codeforces", ".c.d.f.r.c.s"],
-            vec!["aBAcAba", ".b.c.b"],
+            ["tour", ".t.r"],
+            ["Codeforces", ".c.d.f.r.c.s"],
+            ["aBAcAba", ".b.c.b"],
         ];
         test_helper(cases, solution_of_p118a);
     }

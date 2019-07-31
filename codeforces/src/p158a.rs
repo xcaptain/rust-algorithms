@@ -40,19 +40,19 @@ mod tests {
     #[test]
     fn test_solution_of_p158a() {
         let cases = vec![
-            vec![
+            [
                 "8 5
 10 9 8 7 7 7 5 5
 ",
                 "6",
             ],
-            vec![
+            [
                 "4 2
 0 0 0 0
 ",
                 "0",
             ],
-            vec![
+            [
                 "5 5
 1 1 1 1 1
 ",
