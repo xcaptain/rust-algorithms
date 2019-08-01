@@ -1,0 +1,115 @@
+// https://codeforces.com/problemset/problem/158/B
+
+use crate::Scanner;
+use std::collections::HashMap;
+use std::io::{Read, Write};
+
+pub fn solution_of_p158b(input: &mut Read, out: &mut Write) {
+    let mut scanner = Scanner::new(input);
+    let _n = scanner.next::<String>().parse::<usize>().unwrap();
+    let arr: Vec<usize> = scanner
+        .next::<String>()
+        .split(' ')
+        .map(|e| {
+            return e.parse::<usize>().unwrap();
+        })
+        .collect();
+
+    let mut groups: HashMap<usize, usize> = HashMap::new();
+    groups.insert(4, 0);
+    groups.insert(3, 0);
+    groups.insert(2, 0);
+    groups.insert(1, 0);
+    let mut res = 0;
+    for i in 0..arr.len() {
+        let v = arr[i];
+        if let Some(n) = groups.get_mut(&v) {
+            (*n) += 1;
+        }
+    }
+    let mut one_num = *(groups.get(&1).unwrap());
+    let two_num = *(groups.get(&2).unwrap());
+    let mut three_num = *(groups.get(&3).unwrap());
+    let four_num = *(groups.get(&4).unwrap());
+    res += four_num + two_num / 2;
+    // 尽量把3和1凑一起
+    if three_num > 0 && one_num > 0 {
+        if three_num > one_num {
+            res += one_num;
+            three_num -= one_num;
+            one_num = 0;
+        } else {
+            res += three_num;
+            one_num -= three_num;
+            three_num = 0;
+        }
+    }
+    if two_num % 2 == 0 {
+        // two has been matched
+        if one_num > 0 {
+            // this group only contains 1
+            res += one_num / 4;
+            let r = one_num % 4;
+            if r > 0 {
+                res += 1;
+            }
+        } else if three_num > 0 {
+            // this group only contains 3
+            res += three_num;
+        }
+    } else {
+        if three_num > 0 {
+            // this group only contains 3
+            res += three_num;
+            res += 1;
+        } else if one_num > 0 {
+            // this group only contains 1
+            res += one_num / 4;
+            let r = one_num % 4;
+            if r > 0 {
+                if r <= 2 {
+                    res += 1;
+                } else {
+                    res += 2; // the remaining 2 must be a group
+                }
+            } else {
+                res += 1;
+            }
+        } else {
+            res += 1;
+        }
+    }
+    write!(out, "{}\n", res).ok();
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::test_helper;
+
+    #[test]
+    fn test_solution_of_p158b() {
+        let cases = vec![
+            [
+                "5
+1 2 4 3 3",
+                "4",
+            ],
+            [
+                "8
+2 3 4 4 2 1 3 1",
+                "5",
+            ],
+            [
+                "4
+2 4 1 3",
+                "3",
+            ],
+            [
+                "2
+1 1", "1",
+            ],
+        ];
+        test_helper(cases, solution_of_p158b);
+    }
+}
