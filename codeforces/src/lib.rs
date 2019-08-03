@@ -1,8 +1,12 @@
 pub mod p112a;
 pub mod p116a;
 pub mod p118a;
+pub mod p122a;
+pub mod p131a;
+pub mod p133a;
 pub mod p158a;
 pub mod p158b;
+pub mod p160a;
 pub mod p231a;
 pub mod p236a;
 pub mod p263a;
@@ -11,6 +15,9 @@ pub mod p281a;
 pub mod p282a;
 pub mod p339a;
 pub mod p50a;
+pub mod p546a;
+pub mod p58a;
+pub mod p69a;
 pub mod p71a;
 pub mod p96a;
 
