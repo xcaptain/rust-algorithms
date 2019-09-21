@@ -21,7 +21,7 @@ fn get_right_triangles(p: usize) -> usize {
             }
         }
     }
-    return sum;
+    sum
 }
 
 #[cfg(test)]

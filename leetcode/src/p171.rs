@@ -5,16 +5,16 @@ use std::collections::HashMap;
 pub fn title_to_number(s: String) -> i32 {
     let table = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let mut v_map: HashMap<char, i32> = HashMap::new();
-    for (index, c) in table.chars().into_iter().enumerate() {
+    for (index, c) in table.chars().enumerate() {
         v_map.insert(c, (index as i32) + 1);
     }
     let mut res: i32 = 0;
-    for (index, c) in s.as_str().chars().into_iter().enumerate() {
+    for (index, c) in s.as_str().chars().enumerate() {
         let val = v_map.get(&c).unwrap();
         let e: u32 = (s.len() - index - 1) as u32;
         res += *val * 26i32.pow(e);
     }
-    return res;
+    res
 }
 
 #[cfg(test)]

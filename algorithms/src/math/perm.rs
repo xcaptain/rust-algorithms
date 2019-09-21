@@ -9,7 +9,7 @@ pub fn perm1(n: usize, k: usize) -> usize {
         nn -= 1;
         i += 1;
     }
-    return r;
+    r
 }
 
 #[cfg(test)]

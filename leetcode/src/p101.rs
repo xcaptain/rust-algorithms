@@ -23,13 +23,11 @@ impl TreeNode {
 
 pub fn is_symmetric(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
     match root {
-        None => {
-            return true;
-        }
+        None => true,
         Some(cur_node) => {
             let ref_node = Rc::try_unwrap(cur_node).unwrap();
             let tree_node = ref_node.into_inner();
-            return are_symmetric(tree_node.left, tree_node.right);
+            are_symmetric(tree_node.left, tree_node.right)
         }
     }
 }
@@ -51,9 +49,9 @@ fn are_symmetric(
     let right_ref_node = Rc::try_unwrap(right.unwrap()).unwrap();
     let right_tree_node = right_ref_node.into_inner();
 
-    return left_tree_node.val == right_tree_node.val
+    left_tree_node.val == right_tree_node.val
         && are_symmetric(left_tree_node.left, right_tree_node.right)
-        && are_symmetric(left_tree_node.right, right_tree_node.left);
+        && are_symmetric(left_tree_node.right, right_tree_node.left)
 }
 
 #[cfg(test)]

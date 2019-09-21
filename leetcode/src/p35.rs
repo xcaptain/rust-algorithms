@@ -18,7 +18,7 @@ pub fn search_insert(nums: Vec<i32>, target: i32) -> i32 {
             return (i + 1) as i32;
         }
     }
-    return 0;
+    0
 }
 
 #[cfg(test)]

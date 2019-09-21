@@ -4,20 +4,18 @@ use crate::Scanner;
 use std::io::{Read, Write};
 
 // the input string only contains "+" and 1 2 3, so can sort the array
-pub fn solution_of_p339a(input: &mut Read, out: &mut Write) {
+pub fn solution_of_p339a(input: &mut dyn Read, out: &mut dyn Write) {
     let mut scanner = Scanner::new(input);
-    let line1 = scanner.next::<String>();
+    let line1 = scanner.next_line::<String>();
     let mut arr: Vec<usize> = line1
         .split('+')
-        .map(|e| {
-            return e.parse::<usize>().unwrap();
-        })
+        .map(|e| e.parse::<usize>().unwrap())
         .collect();
     arr.sort(); // asc
 
     let arr2: Vec<String> = arr.into_iter().map(|e: usize| e.to_string()).collect();
     let res = arr2.join("+");
-    write!(out, "{}\n", res).ok();
+    write!(out, "{}", res).ok();
 }
 
 #[cfg(test)]

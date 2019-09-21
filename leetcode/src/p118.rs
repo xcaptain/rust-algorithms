@@ -4,7 +4,7 @@
 // better iteration solution
 
 pub fn generate(num_rows: i32) -> Vec<Vec<i32>> {
-    return generate_rec(num_rows);
+    generate_rec(num_rows)
 }
 
 fn generate_rec(num_rows: i32) -> Vec<Vec<i32>> {
@@ -23,7 +23,7 @@ fn generate_rec(num_rows: i32) -> Vec<Vec<i32>> {
         }
         next_row.push(1);
         previous.push(next_row);
-        return previous;
+        previous
     }
 }
 

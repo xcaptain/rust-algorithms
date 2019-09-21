@@ -1,19 +1,17 @@
 pub fn solution_of_p44() -> usize {
     let len = 3000;
     let pentagon_arr = gen_pentagon(len);
-    let mut min_distance = 999999999;
+    let mut min_distance = 999_999_999;
     for i in 1..len - 1 {
         for j in i + 1..len {
             let add_value = pentagon_arr[j] + pentagon_arr[i];
             let sub_value = pentagon_arr[j] - pentagon_arr[i];
-            if is_pentagon(sub_value) && is_pentagon(add_value) {
-                if sub_value < min_distance {
-                    min_distance = sub_value;
-                }
+            if is_pentagon(sub_value) && is_pentagon(add_value) && sub_value < min_distance {
+                min_distance = sub_value;
             }
         }
     }
-    return min_distance;
+    min_distance
 }
 
 fn gen_pentagon(n: usize) -> Vec<usize> {
@@ -27,8 +25,7 @@ fn gen_pentagon(n: usize) -> Vec<usize> {
 /// p(i) = i * (3 * i - 1) / 2 ==> 3*i^2 - i -2n = 0
 /// 1 + (1+24n) / 6
 fn pentagon(i: usize) -> usize {
-    let v = i * (3 * i - 1) / 2;
-    v
+    i * (3 * i - 1) / 2
 }
 
 fn is_pentagon(num: usize) -> bool {

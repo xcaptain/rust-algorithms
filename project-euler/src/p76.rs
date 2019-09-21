@@ -5,7 +5,7 @@
 use std::collections::HashMap;
 
 pub fn solution_of_p76() -> usize {
-    return part1(100);
+    part1(100)
 }
 
 // simple recursion solution
@@ -14,7 +14,7 @@ fn part1(n: usize) -> usize {
     for k in 1..n {
         s += p1(n, k);
     }
-    return s;
+    s
 }
 
 // dynamic programming, using p_cache to store some computed values
@@ -32,7 +32,7 @@ fn part2(n: usize) -> usize {
             p_cache.insert((n, k), n_val);
         }
     }
-    return s;
+    s
 }
 
 fn p1(n: usize, k: usize) -> usize {
@@ -42,7 +42,7 @@ fn p1(n: usize, k: usize) -> usize {
     if k > n {
         return 0;
     }
-    return p1(n - 1, k - 1) + p1(n - k, k);
+    p1(n - 1, k - 1) + p1(n - k, k)
 }
 
 #[cfg(test)]

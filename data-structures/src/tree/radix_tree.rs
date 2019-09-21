@@ -8,10 +8,16 @@ pub enum NodeKind {
     Regex,  // string contains regular expressions like: abc{[a-z]+}def
 }
 
-#[derive(Clone)]
+impl Default for NodeKind {
+    fn default() -> Self {
+        NodeKind::Static
+    }
+}
+
+#[derive(Default, Clone)]
 pub struct TreeNode {
     prefix: &'static str,
-    edges: Vec<Box<TreeNode>>,
+    edges: Vec<TreeNode>,
     is_word: bool,
     kind: NodeKind,
 }
@@ -28,9 +34,7 @@ impl TreeNode {
 
     /// insert a string into the radix tree
     pub fn insert(&mut self, word: &'static str) {
-        if word.is_empty() {
-            return;
-        } else if &word[..1] == "{" {
+        if &word[..1] == "{" {
             self.insert_start_with_regex(word);
         } else {
             self.insert_not_start_with_regex(word);
@@ -38,8 +42,8 @@ impl TreeNode {
     }
 
     fn insert_start_with_regex(&mut self, word: &'static str) {
-        assert!(&word[..1] == "{"); // ensure word starts with `{`
-        let right_braket_pos = word.find("}").unwrap();
+        assert!(word.chars().nth(0).unwrap() == '{'); // ensure word starts with `{`
+        let right_braket_pos = word.find('}').unwrap();
         let regex_word = &word[1..right_braket_pos];
         let mut new_node = TreeNode::new(regex_word, NodeKind::Regex);
         let word = &word[right_braket_pos + 1..];
@@ -48,7 +52,7 @@ impl TreeNode {
         } else {
             new_node.insert(word);
         }
-        self.edges.push(Box::new(new_node));
+        self.edges.push(new_node);
     }
 
     fn insert_not_start_with_regex(&mut self, word: &'static str) {
@@ -77,11 +81,11 @@ impl TreeNode {
                 } else {
                     new_parent_node.insert(word);
                 }
-                *edge = Box::new(new_parent_node);
+                *edge = new_parent_node;
             }
         }
 
-        let left_bracket = word.find("{");
+        let left_bracket = word.find('{');
         if let Some(left_bracket_pos) = left_bracket {
             if left_bracket_pos == 0 {
                 self.insert_start_with_regex(word);
@@ -95,12 +99,12 @@ impl TreeNode {
                 } else {
                     static_node.insert_start_with_regex(word);
                 }
-                self.edges.push(Box::new(static_node));
+                self.edges.push(static_node);
             }
         } else {
             let mut static_node = TreeNode::new(word, NodeKind::Static);
             static_node.is_word = true;
-            self.edges.push(Box::new(static_node));
+            self.edges.push(static_node);
         }
     }
 
@@ -150,10 +154,11 @@ impl TreeNode {
                 }
             }
         }
-        return false;
+        false
     }
 }
 
+#[derive(Default)]
 pub struct Set {
     root: Box<TreeNode>,
 }
@@ -174,10 +179,10 @@ impl Set {
     }
 }
 
-#[derive(Clone)]
+#[derive(Default, Clone)]
 struct TreeHashNode<T: Clone> {
     prefix: &'static str,
-    edges: Vec<Box<TreeHashNode<T>>>,
+    edges: Vec<TreeHashNode<T>>,
     is_word: bool,
     kind: NodeKind,
     value: Option<T>,
@@ -195,9 +200,7 @@ impl<T: Clone> TreeHashNode<T> {
     }
 
     pub fn insert(&mut self, k: &'static str, v: T) {
-        if k.is_empty() {
-            return;
-        } else if &k[..1] == "{" {
+        if &k[..1] == "{" {
             self.insert_start_with_regex(k, v);
         } else {
             self.insert_not_start_with_regex(k, v);
@@ -205,8 +208,8 @@ impl<T: Clone> TreeHashNode<T> {
     }
 
     fn insert_start_with_regex(&mut self, word: &'static str, v: T) {
-        assert!(&word[..1] == "{"); // ensure word starts with `{`
-        let right_braket_pos = word.find("}").unwrap();
+        assert!(word.chars().nth(0).unwrap() == '{'); // ensure word starts with `{`
+        let right_braket_pos = word.find('}').unwrap();
         let regex_word = &word[1..right_braket_pos];
         let mut new_node = TreeHashNode::new(regex_word, NodeKind::Regex);
         let word = &word[right_braket_pos + 1..];
@@ -216,7 +219,7 @@ impl<T: Clone> TreeHashNode<T> {
         } else {
             new_node.insert(word, v);
         }
-        self.edges.push(Box::new(new_node));
+        self.edges.push(new_node);
     }
 
     fn insert_not_start_with_regex(&mut self, word: &'static str, v: T) {
@@ -246,11 +249,11 @@ impl<T: Clone> TreeHashNode<T> {
                 } else {
                     new_parent_node.insert(word, v.clone());
                 }
-                *edge = Box::new(new_parent_node);
+                *edge = new_parent_node;
             }
         }
 
-        let left_bracket = word.find("{");
+        let left_bracket = word.find('{');
         if let Some(left_bracket_pos) = left_bracket {
             if left_bracket_pos == 0 {
                 self.insert_start_with_regex(word, v);
@@ -265,13 +268,13 @@ impl<T: Clone> TreeHashNode<T> {
                 } else {
                     static_node.insert_start_with_regex(word, v);
                 }
-                self.edges.push(Box::new(static_node));
+                self.edges.push(static_node);
             }
         } else {
             let mut static_node = TreeHashNode::new(word, NodeKind::Static);
             static_node.is_word = true;
             static_node.value = Some(v);
-            self.edges.push(Box::new(static_node));
+            self.edges.push(static_node);
         }
     }
 
@@ -320,10 +323,11 @@ impl<T: Clone> TreeHashNode<T> {
                 }
             }
         }
-        return None;
+        None
     }
 }
 
+#[derive(Default)]
 pub struct Map<T: Clone> {
     root: Box<TreeHashNode<T>>,
 }
@@ -350,18 +354,15 @@ fn common_prefix_len(s1: &str, s2: &str) -> usize {
     let mut start = 0;
     let s1_arr = s1.as_bytes();
     let s2_arr = s2.as_bytes();
-    let left_bracket = "{".as_bytes();
 
     while start < l {
         if s1_arr[start] == s2_arr[start] {
             start += 1;
-        } else if s1_arr[start] == left_bracket[0] || s2_arr[start] == left_bracket[0] {
-            break;
         } else {
             break;
         }
     }
-    return start;
+    start
 }
 #[cfg(test)]
 mod tests {

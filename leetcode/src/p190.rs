@@ -16,7 +16,7 @@ pub fn reverse_bits(n: u32) -> u32 {
         let t = *bit * 2u32.pow((31 - k) as u32);
         res += t;
     }
-    return res;
+    res
 }
 
 #[cfg(test)]

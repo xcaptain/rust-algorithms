@@ -3,9 +3,9 @@
 use crate::Scanner;
 use std::io::{Read, Write};
 
-pub fn solution_of_p122a(input: &mut Read, out: &mut Write) {
+pub fn solution_of_p122a(input: &mut dyn Read, out: &mut dyn Write) {
     let mut scanner = Scanner::new(input);
-    let num = scanner.next::<String>().parse::<usize>().unwrap();
+    let num = scanner.next_line::<String>().parse::<usize>().unwrap();
     // because the input is between 1 and 1000, so we can list all the lucky numbers
     let lucky_nums = vec![4, 7, 44, 47, 74, 77, 444, 447, 474, 477, 744, 747, 774, 777];
     if is_almose_lucky(num, lucky_nums) {
@@ -24,7 +24,7 @@ fn is_almose_lucky(num: usize, arr: Vec<usize>) -> bool {
             return true;
         }
     }
-    return false;
+    false
 }
 
 #[cfg(test)]

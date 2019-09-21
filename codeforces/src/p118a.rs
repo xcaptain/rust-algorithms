@@ -3,9 +3,9 @@
 use crate::Scanner;
 use std::io::{Read, Write};
 
-pub fn solution_of_p118a(input: &mut Read, out: &mut Write) {
+pub fn solution_of_p118a(input: &mut dyn Read, out: &mut dyn Write) {
     let mut scanner = Scanner::new(input);
-    let s1 = scanner.next::<String>();
+    let s1 = scanner.next_line::<String>();
     let mut arr1: Vec<char> = vec![];
     for c in s1.chars() {
         if c == 'a'
@@ -32,7 +32,7 @@ pub fn solution_of_p118a(input: &mut Read, out: &mut Write) {
         }
     }
     let res = arr1.iter().collect::<String>();
-    write!(out, "{}\n", res).ok();
+    writeln!(out, "{}", res).ok();
 }
 
 #[cfg(test)]

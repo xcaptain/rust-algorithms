@@ -17,23 +17,21 @@ fn get_cover_num(m: usize, n: usize) -> usize {
     }
     let q = smaller / 2;
     let r = smaller % 2;
-    return q * bigger + r * (bigger / 2);
+    q * bigger + r * (bigger / 2)
 }
 
-pub fn solution_of_p50a(input: &mut Read, out: &mut Write) {
+pub fn solution_of_p50a(input: &mut dyn Read, out: &mut dyn Write) {
     let mut scanner = Scanner::new(input);
     let arr: Vec<usize> = scanner
-        .next::<String>()
+        .next_line::<String>()
         .split(' ')
-        .map(|e| {
-            return e.parse::<usize>().unwrap();
-        })
+        .map(|e| e.parse::<usize>().unwrap())
         .collect();
     let m = arr[0];
     let n = arr[1];
 
     let res = get_cover_num(m, n);
-    writeln!(out, "{}\n", res).ok();
+    write!(out, "{}", res).ok();
 }
 
 #[cfg(test)]

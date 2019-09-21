@@ -8,9 +8,9 @@ pub fn is_palindrome(x: i32) -> bool {
     while n > 0 {
         let last_digit = n % 10;
         result = result * 10 + last_digit;
-        n = n / 10;
+        n /= 10;
     }
-    return result == x;
+    result == x
 }
 
 #[cfg(test)]

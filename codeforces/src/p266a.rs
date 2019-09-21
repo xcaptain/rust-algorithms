@@ -3,12 +3,12 @@
 use crate::Scanner;
 use std::io::{Read, Write};
 
-pub fn solution_of_p266a(input: &mut Read, out: &mut Write) {
+pub fn solution_of_p266a(input: &mut dyn Read, out: &mut dyn Write) {
     let mut scanner = Scanner::new(input);
-    let _n = scanner.next::<String>().parse::<usize>().unwrap();
-    let arr: Vec<char> = scanner.next::<String>().chars().collect();
+    let _n = scanner.next_line::<String>().parse::<usize>().unwrap();
+    let arr: Vec<char> = scanner.next_line::<String>().chars().collect();
     let res = min_move_ways(arr);
-    write!(out, "{}\n", res).ok();
+    write!(out, "{}", res).ok();
 }
 
 fn min_move_ways(mut arr: Vec<char>) -> usize {
@@ -38,7 +38,7 @@ fn min_move_ways(mut arr: Vec<char>) -> usize {
         }
         return res;
     }
-    return res;
+    res
 }
 
 #[cfg(test)]

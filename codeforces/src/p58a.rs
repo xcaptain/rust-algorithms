@@ -3,9 +3,9 @@
 use crate::Scanner;
 use std::io::{Read, Write};
 
-pub fn solution_of_p58a(input: &mut Read, out: &mut Write) {
+pub fn solution_of_p58a(input: &mut dyn Read, out: &mut dyn Write) {
     let mut scanner = Scanner::new(input);
-    let line1 = scanner.next::<String>();
+    let line1 = scanner.next_line::<String>();
     if contains_hello(line1) {
         write!(out, "YES").ok();
     } else {
@@ -23,7 +23,7 @@ fn contains_hello(s: String) -> bool {
             return false;
         }
     }
-    return true;
+    true
 }
 
 #[cfg(test)]

@@ -36,7 +36,7 @@ pub fn solution_of_p49() -> Vec<String> {
     }
     result.sort();
     result.dedup();
-    return result;
+    result
 }
 
 #[cfg(test)]

@@ -18,13 +18,13 @@ pub fn str_str(haystack: String, needle: String) -> i32 {
                 window_match = false;
             }
         }
-        if window_match == true {
+        if window_match {
             // the whole window matched, stop and return res
             res = i as i32;
             break;
         }
     }
-    return res;
+    res
 }
 
 #[cfg(test)]

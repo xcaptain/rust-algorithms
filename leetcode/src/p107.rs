@@ -40,13 +40,13 @@ pub fn level_order_bottom(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> 
         for _i in 0..size {
             let node = queue.pop_front().unwrap();
             temp.push(node.val);
-            if !node.left.is_none() {
+            if node.left.is_some() {
                 let left_node_rc = node.left.unwrap();
                 let left_node_ref = Rc::try_unwrap(left_node_rc).unwrap();
                 let left_node = left_node_ref.into_inner();
                 queue.push_back(left_node);
             }
-            if !node.right.is_none() {
+            if node.right.is_some() {
                 let right_node_rc = node.right.unwrap();
                 let right_node_ref = Rc::try_unwrap(right_node_rc).unwrap();
                 let right_node = right_node_ref.into_inner();
@@ -57,7 +57,7 @@ pub fn level_order_bottom(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> 
     }
     res.reverse();
 
-    return res;
+    res
 }
 
 #[cfg(test)]

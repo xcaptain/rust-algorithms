@@ -45,7 +45,7 @@ pub fn add_two_numbers(
     let mut l3_num = l1_num + l2_num;
     let mut l3_vals = vec![];
     if l3_num == 0 {
-        l3_vals = vec![0];
+        l3_vals.push(0);
     } else {
         while l3_num > 0 {
             let r = l3_num % 10;
@@ -61,7 +61,7 @@ pub fn add_two_numbers(
         }));
     }
 
-    return l3;
+    l3
 }
 
 #[cfg(test)]

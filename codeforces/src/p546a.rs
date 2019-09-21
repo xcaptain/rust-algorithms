@@ -3,10 +3,10 @@
 use crate::Scanner;
 use std::io::{Read, Write};
 
-pub fn solution_of_p546a(input: &mut Read, out: &mut Write) {
+pub fn solution_of_p546a(input: &mut dyn Read, out: &mut dyn Write) {
     let mut scanner = Scanner::new(input);
     let arr: Vec<usize> = scanner
-        .next::<String>()
+        .next_line::<String>()
         .split(' ')
         .map(|e| e.parse::<usize>().unwrap())
         .collect();
@@ -20,7 +20,7 @@ pub fn solution_of_p546a(input: &mut Read, out: &mut Write) {
     if s > n {
         write!(out, "{}", s - n).ok();
     } else {
-        write!(out, "{}", 0).ok();
+        write!(out, "0").ok();
     }
 }
 

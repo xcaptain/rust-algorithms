@@ -3,9 +3,9 @@
 use crate::Scanner;
 use std::io::{Read, Write};
 
-pub fn solution_of_p133a(input: &mut Read, out: &mut Write) {
+pub fn solution_of_p133a(input: &mut dyn Read, out: &mut dyn Write) {
     let mut scanner = Scanner::new(input);
-    let line = scanner.next::<String>();
+    let line = scanner.next_line::<String>();
     if line.contains('H') || line.contains('Q') || line.contains('9') {
         write!(out, "YES").ok();
     } else {

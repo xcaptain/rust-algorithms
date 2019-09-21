@@ -3,11 +3,11 @@
 use crate::Scanner;
 use std::io::{Read, Write};
 
-pub fn solution_of_p160a(input: &mut Read, out: &mut Write) {
+pub fn solution_of_p160a(input: &mut dyn Read, out: &mut dyn Write) {
     let mut scanner = Scanner::new(input);
-    let mut _n = scanner.next::<String>().parse::<usize>().unwrap();
+    let mut _n = scanner.next_line::<String>().parse::<usize>().unwrap();
     let mut arr: Vec<usize> = scanner
-        .next::<String>()
+        .next_line::<String>()
         .split(' ')
         .map(|e| e.parse::<usize>().unwrap())
         .collect();
@@ -20,14 +20,14 @@ fn minium_take(arr: Vec<usize>) -> usize {
     let total: usize = arr.iter().sum();
     let mut take_num = 0;
     let l = arr.len();
-    for i in 0..l {
+    for (i, item) in arr.iter().enumerate() {
         let rest = total - take_num;
         if take_num > rest {
             return i;
         }
-        take_num += arr[i];
+        take_num += item;
     }
-    return l;
+    l
 }
 
 #[cfg(test)]

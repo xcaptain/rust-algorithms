@@ -4,18 +4,16 @@ use crate::Scanner;
 use std::cmp::max;
 use std::io::{Read, Write};
 
-pub fn solution_of_p116a(input: &mut Read, out: &mut Write) {
+pub fn solution_of_p116a(input: &mut dyn Read, out: &mut dyn Write) {
     let mut scanner = Scanner::new(input);
-    let n = scanner.next::<String>().parse::<usize>().unwrap();
+    let n = scanner.next_line::<String>().parse::<usize>().unwrap();
     let mut res = 0;
     let mut current_num = 0;
     for _i in 0..n {
         let arr: Vec<usize> = scanner
-            .next::<String>()
+            .next_line::<String>()
             .split(' ')
-            .map(|e| {
-                return e.parse::<usize>().unwrap();
-            })
+            .map(|e| e.parse::<usize>().unwrap())
             .collect();
         let a = arr[0]; // people leave the train
         current_num -= a;
@@ -23,7 +21,7 @@ pub fn solution_of_p116a(input: &mut Read, out: &mut Write) {
         current_num += b;
         res = max(res, current_num);
     }
-    write!(out, "{}\n", res).ok();
+    writeln!(out, "{}", res).ok();
 }
 
 #[cfg(test)]

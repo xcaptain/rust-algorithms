@@ -4,14 +4,14 @@
 // but should be better algorithms that doesn't require guess to be i64
 pub fn my_sqrt(x: i32) -> i32 {
     let mut guess: i64 = 1;
-    let xx = x as i64;
+    let xx = i64::from(x);
     loop {
         if guess * guess <= xx && (guess + 1) * (guess + 1) > xx {
             break;
         }
         guess = (guess + xx / guess) / 2;
     }
-    return guess as i32;
+    guess as i32
 }
 
 #[cfg(test)]

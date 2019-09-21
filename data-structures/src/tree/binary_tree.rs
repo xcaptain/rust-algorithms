@@ -11,6 +11,7 @@ struct Node<T: PartialOrd + Debug> {
 
 type Link<T> = Option<Box<Node<T>>>;
 
+#[derive(Default)]
 pub struct Tree<T: PartialOrd + Debug> {
     root: Link<T>,
 }

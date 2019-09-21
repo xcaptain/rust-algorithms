@@ -12,7 +12,7 @@ pub fn comb1(n: usize, k: usize) -> usize {
         nn -= 1;
         r /= d;
     }
-    return r;
+    r
 }
 
 #[cfg(test)]

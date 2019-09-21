@@ -41,7 +41,7 @@ pub fn delete_duplicates(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
             next: l3.take(),
         }));
     }
-    return l3;
+    l3
 }
 
 #[cfg(test)]

@@ -65,7 +65,7 @@ pub fn roman_to_int(s: String) -> i32 {
             i += 1;
         }
     }
-    return result;
+    result
 }
 
 #[cfg(test)]

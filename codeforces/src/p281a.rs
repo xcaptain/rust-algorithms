@@ -3,11 +3,11 @@
 use crate::Scanner;
 use std::io::{Read, Write};
 
-pub fn solution_of_p281a(input: &mut Read, out: &mut Write) {
+pub fn solution_of_p281a(input: &mut dyn Read, out: &mut dyn Write) {
     let mut scanner = Scanner::new(input);
-    let line1 = scanner.next::<String>();
+    let line1 = scanner.next_line::<String>();
     let res = capitalize_first_character(line1);
-    write!(out, "{}\n", res).ok();
+    write!(out, "{}", res).ok();
 }
 
 fn capitalize_first_character(s: String) -> String {
@@ -18,7 +18,7 @@ fn capitalize_first_character(s: String) -> String {
     let head = &ss[0..1];
     let head_upper = head.to_uppercase();
     let rest_part = &ss[1..];
-    return format!("{}{}", head_upper, rest_part);
+    format!("{}{}", head_upper, rest_part)
 }
 
 #[cfg(test)]

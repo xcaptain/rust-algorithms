@@ -6,7 +6,7 @@ pub fn length_of_last_word(s: String) -> i32 {
     for word in s.split_ascii_whitespace() {
         res = word.len();
     }
-    return res as i32;
+    res as i32
 }
 
 #[cfg(test)]

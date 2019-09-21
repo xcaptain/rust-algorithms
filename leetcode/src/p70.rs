@@ -12,7 +12,7 @@ pub fn climb_stairs(n: i32) -> i32 {
             }
         }
     }
-    return res;
+    res
 }
 
 // calculate combinator is not so easy...
@@ -24,11 +24,11 @@ fn comb(n: i32, k: i32) -> i32 {
     let mut r: i64 = 1;
     let mut nn = n;
     for d in 1..=k {
-        r *= nn as i64;
+        r *= i64::from(nn);
         nn -= 1;
-        r /= d as i64;
+        r /= i64::from(d);
     }
-    return r as i32;
+    r as i32
 }
 
 #[cfg(test)]

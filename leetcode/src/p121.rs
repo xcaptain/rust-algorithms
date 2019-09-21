@@ -16,7 +16,7 @@ pub fn max_profit(prices: Vec<i32>) -> i32 {
             }
         }
     }
-    return profit;
+    profit
 }
 
 pub fn max_profit_v2(prices: Vec<i32>) -> i32 {
@@ -32,7 +32,7 @@ pub fn max_profit_v2(prices: Vec<i32>) -> i32 {
             in_pos = i;
         }
     }
-    return profit;
+    profit
 }
 
 #[cfg(test)]

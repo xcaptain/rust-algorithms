@@ -3,9 +3,9 @@
 use crate::Scanner;
 use std::io::{Read, Write};
 
-pub fn solution_of_p131a(input: &mut Read, out: &mut Write) {
+pub fn solution_of_p131a(input: &mut dyn Read, out: &mut dyn Write) {
     let mut scanner = Scanner::new(input);
-    let line = scanner.next::<String>();
+    let line = scanner.next_line::<String>();
     if line.len() == 1 {
         let c = line.chars().nth(0).unwrap();
         if c.is_ascii_uppercase() {
@@ -34,7 +34,7 @@ fn only_uppercase(s: &str) -> bool {
             return false;
         }
     }
-    return true;
+    true
 }
 
 fn uppercase_except_first(s: &str) -> bool {
@@ -47,7 +47,7 @@ fn uppercase_except_first(s: &str) -> bool {
             return false;
         }
     }
-    return true;
+    true
 }
 
 #[cfg(test)]

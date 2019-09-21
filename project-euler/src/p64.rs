@@ -6,7 +6,7 @@ pub fn solution_of_p64() -> usize {
             num += 1;
         }
     }
-    return num;
+    num
 }
 
 /// 参考：https://en.wikipedia.org/wiki/Methods_of_computing_square_roots#Continued_fraction_expansion
@@ -44,7 +44,7 @@ pub fn continue_fraction_seq(s: usize) -> Vec<usize> {
         m_arr.push(m);
         d_arr.push(d);
     }
-    return arr;
+    arr
 }
 
 #[cfg(test)]

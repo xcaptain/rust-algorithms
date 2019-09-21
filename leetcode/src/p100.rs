@@ -34,7 +34,7 @@ pub fn is_same_tree(p: Option<Rc<RefCell<TreeNode>>>, q: Option<Rc<RefCell<TreeN
             return false;
         }
     }
-    return true;
+    true
 }
 
 fn traverse_val(t: Option<Rc<RefCell<TreeNode>>>, arr: &mut Vec<Option<i32>>) {

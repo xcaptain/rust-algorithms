@@ -3,13 +3,13 @@
 use crate::Scanner;
 use std::io::{Read, Write};
 
-pub fn solution_of_p96a(input: &mut Read, out: &mut Write) {
+pub fn solution_of_p96a(input: &mut dyn Read, out: &mut dyn Write) {
     let mut scanner = Scanner::new(input);
-    let s = scanner.next::<String>();
+    let s = scanner.next_line::<String>();
     if s.contains("0000000") || s.contains("1111111") {
-        write!(out, "YES\n").ok();
+        write!(out, "YES").ok();
     } else {
-        write!(out, "NO\n").ok();
+        write!(out, "NO").ok();
     }
 }
 

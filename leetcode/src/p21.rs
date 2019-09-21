@@ -42,7 +42,7 @@ pub fn merge_two_lists(
             next: l3.take(),
         }));
     }
-    return l3;
+    l3
 }
 
 fn merge(left: Vec<i32>, right: Vec<i32>) -> Vec<i32> {

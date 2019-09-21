@@ -11,7 +11,7 @@ pub fn trailing_zeroes(n: i32) -> i32 {
         num += n / 5;
         n /= 5;
     }
-    return num;
+    num
 }
 
 #[cfg(test)]

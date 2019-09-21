@@ -17,7 +17,7 @@ pub fn plus_one(digits: Vec<i32>) -> Vec<i32> {
     if adder == 1 {
         res.insert(0, adder);
     }
-    return res;
+    res
 }
 
 #[cfg(test)]

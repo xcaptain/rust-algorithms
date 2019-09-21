@@ -1,7 +1,7 @@
 // https://leetcode-cn.com/problems/pascals-triangle-ii/
 
 pub fn get_row(row_index: i32) -> Vec<i32> {
-    return get_row_rec(row_index);
+    get_row_rec(row_index)
 }
 
 fn get_row_rec(row_index: i32) -> Vec<i32> {
@@ -16,7 +16,7 @@ fn get_row_rec(row_index: i32) -> Vec<i32> {
             next_row.push(previous_row[i] + previous_row[i + 1]);
         }
         next_row.push(1);
-        return next_row;
+        next_row
     }
 }
 

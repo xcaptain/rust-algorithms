@@ -3,21 +3,21 @@
 use crate::Scanner;
 use std::io::{Read, Write};
 
-pub fn solution_of_p112a(input: &mut Read, out: &mut Write) {
+pub fn solution_of_p112a(input: &mut dyn Read, out: &mut dyn Write) {
     let mut scanner = Scanner::new(input);
     let arr1: Vec<char> = scanner
-        .next::<String>()
+        .next_line::<String>()
         .to_ascii_lowercase()
         .chars()
         .collect();
     let arr2: Vec<char> = scanner
-        .next::<String>()
+        .next_line::<String>()
         .to_ascii_lowercase()
         .chars()
         .collect();
 
     let res = lexicographical_order(arr1, arr2);
-    write!(out, "{}\n", res).ok();
+    writeln!(out, "{}", res).ok();
 }
 
 fn lexicographical_order(arr1: Vec<char>, arr2: Vec<char>) -> i32 {
@@ -31,7 +31,7 @@ fn lexicographical_order(arr1: Vec<char>, arr2: Vec<char>) -> i32 {
             return 1;
         }
     }
-    return 0;
+    0
 }
 
 #[cfg(test)]

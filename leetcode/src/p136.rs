@@ -12,7 +12,7 @@ pub fn single_number(nums: Vec<i32>) -> i32 {
     for x in nums.iter() {
         s2 += x;
     }
-    return 2 * s1 - s2;
+    2 * s1 - s2
 }
 
 #[cfg(test)]

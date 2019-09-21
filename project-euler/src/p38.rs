@@ -22,7 +22,7 @@ pub fn solution_of_p38() -> usize {
         num += 1;
     }
 
-    return largest_pandigital;
+    largest_pandigital
 }
 
 fn is_pandigital(s: &str) -> bool {

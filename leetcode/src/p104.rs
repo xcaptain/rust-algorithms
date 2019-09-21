@@ -23,7 +23,7 @@ impl TreeNode {
 }
 
 pub fn max_depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
-    return depth(root);
+    depth(root)
 }
 
 fn depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
@@ -44,7 +44,7 @@ fn depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
             let left_depth = depth(left) + 1;
             let right_depth = depth(right) + 1;
 
-            return max(left_depth, right_depth);
+            max(left_depth, right_depth)
         }
     }
 }

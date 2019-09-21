@@ -9,6 +9,7 @@ struct Node<T> {
 
 type Link<T> = Option<Box<Node<T>>>;
 
+#[derive(Default)]
 pub struct Stack<T> {
     sp: Link<T>,
     length: usize,

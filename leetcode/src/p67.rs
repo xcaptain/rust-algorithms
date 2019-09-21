@@ -11,8 +11,8 @@ pub fn add_binary(a: String, b: String) -> String {
     let aa = format!("{:0>width$}", a, width = m_len);
     let bb = format!("{:0>width$}", b, width = m_len);
     for i in (0..m_len).rev() {
-        let av = (aa.chars().nth(i).unwrap() as u8) - ('0' as u8);
-        let bv = (bb.chars().nth(i).unwrap() as u8) - ('0' as u8);
+        let av = (aa.chars().nth(i).unwrap() as u8) - b'0';
+        let bv = (bb.chars().nth(i).unwrap() as u8) - b'0';
         let t = av + bv + adder;
         if t >= 2 {
             res.insert(0, (t - 2).to_string().chars().nth(0).unwrap());
@@ -25,8 +25,7 @@ pub fn add_binary(a: String, b: String) -> String {
     if adder == 1 {
         res.insert(0, adder.to_string().chars().nth(0).unwrap());
     }
-
-    return res;
+    res
 }
 
 #[cfg(test)]

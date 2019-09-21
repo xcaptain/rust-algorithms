@@ -1,7 +1,7 @@
 pub fn longest_common_prefix(strs: Vec<String>) -> String {
     let mut pre = String::from("");
     let mut i = 0;
-    if strs.len() == 0 {
+    if strs.is_empty() {
         return pre;
     }
     loop {

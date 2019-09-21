@@ -3,12 +3,12 @@
 use crate::Scanner;
 use std::io::{Read, Write};
 
-pub fn solution_of_p282a(input: &mut Read, out: &mut Write) {
+pub fn solution_of_p282a(input: &mut dyn Read, out: &mut dyn Write) {
     let mut scanner = Scanner::new(input);
-    let n = scanner.next::<String>().parse::<usize>().unwrap();
+    let n = scanner.next_line::<String>().parse::<usize>().unwrap();
     let mut val = 0;
     for _i in 0..n {
-        let statement = scanner.next::<String>();
+        let statement = scanner.next_line::<String>();
         if statement.contains("++") {
             val += 1;
         } else if statement.contains("--") {
@@ -17,7 +17,7 @@ pub fn solution_of_p282a(input: &mut Read, out: &mut Write) {
             panic!("unimplemented statement");
         }
     }
-    write!(out, "{}\n", val).ok();
+    write!(out, "{}", val).ok();
 }
 
 #[cfg(test)]

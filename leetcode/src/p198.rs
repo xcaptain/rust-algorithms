@@ -5,12 +5,12 @@ use std::cmp::max;
 pub fn rob(nums: Vec<i32>) -> i32 {
     let mut pre_max = 0;
     let mut cur_max = 0;
-    for i in 0..nums.len() {
+    for (i, _val) in nums.iter().enumerate() {
         let temp = cur_max;
         cur_max = max(pre_max + nums[i], cur_max);
         pre_max = temp;
     }
-    return cur_max;
+    cur_max
 }
 
 #[cfg(test)]

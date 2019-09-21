@@ -23,7 +23,7 @@ pub fn is_palindrome(s: String) -> bool {
         i += 1;
         j -= 1;
     }
-    return true;
+    true
 }
 
 #[cfg(test)]

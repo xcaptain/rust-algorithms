@@ -4,15 +4,13 @@ use crate::Scanner;
 use std::collections::HashMap;
 use std::io::{Read, Write};
 
-pub fn solution_of_p158b(input: &mut Read, out: &mut Write) {
+pub fn solution_of_p158b(input: &mut dyn Read, out: &mut dyn Write) {
     let mut scanner = Scanner::new(input);
-    let _n = scanner.next::<String>().parse::<usize>().unwrap();
+    let _n = scanner.next_line::<String>().parse::<usize>().unwrap();
     let arr: Vec<usize> = scanner
-        .next::<String>()
+        .next_line::<String>()
         .split(' ')
-        .map(|e| {
-            return e.parse::<usize>().unwrap();
-        })
+        .map(|e| e.parse::<usize>().unwrap())
         .collect();
 
     let mut groups: HashMap<usize, usize> = HashMap::new();
@@ -21,9 +19,8 @@ pub fn solution_of_p158b(input: &mut Read, out: &mut Write) {
     groups.insert(2, 0);
     groups.insert(1, 0);
     let mut res = 0;
-    for i in 0..arr.len() {
-        let v = arr[i];
-        if let Some(n) = groups.get_mut(&v) {
+    for (_i, item) in arr.iter().enumerate() {
+        if let Some(n) = groups.get_mut(item) {
             (*n) += 1;
         }
     }
@@ -57,29 +54,26 @@ pub fn solution_of_p158b(input: &mut Read, out: &mut Write) {
             // this group only contains 3
             res += three_num;
         }
-    } else {
-        if three_num > 0 {
-            // this group only contains 3
-            res += three_num;
-            res += 1;
-        } else if one_num > 0 {
-            // this group only contains 1
-            res += one_num / 4;
-            let r = one_num % 4;
-            if r > 0 {
-                if r <= 2 {
-                    res += 1;
-                } else {
-                    res += 2; // the remaining 2 must be a group
-                }
-            } else {
+    } else if three_num > 0 {
+        res += three_num;
+        res += 1;
+    } else if one_num > 0 {
+        // this group only contains 1
+        res += one_num / 4;
+        let r = one_num % 4;
+        if r > 0 {
+            if r <= 2 {
                 res += 1;
+            } else {
+                res += 2; // the remaining 2 must be a group
             }
         } else {
             res += 1;
         }
+    } else {
+        res += 1;
     }
-    write!(out, "{}\n", res).ok();
+    write!(out, "{}", res).ok();
 }
 
 #[cfg(test)]

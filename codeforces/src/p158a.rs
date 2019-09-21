@@ -2,34 +2,30 @@
 use crate::Scanner;
 use std::io::{Read, Write};
 
-pub fn solution_of_p158a(input: &mut Read, out: &mut Write) {
+pub fn solution_of_p158a(input: &mut dyn Read, out: &mut dyn Write) {
     let mut scanner = Scanner::new(input);
 
-    let line1 = scanner.next::<String>();
+    let line1 = scanner.next_line::<String>();
     let line1_arr: Vec<usize> = line1
-        .split(" ")
-        .map(|s| {
-            return s.parse::<usize>().unwrap();
-        })
+        .split(' ')
+        .map(|s| s.parse::<usize>().unwrap())
         .collect();
     let k = line1_arr[1];
 
-    let line2 = scanner.next::<String>();
+    let line2 = scanner.next_line::<String>();
     let line2_arr: Vec<usize> = line2
-        .split(" ")
-        .map(|s| {
-            return s.parse::<usize>().unwrap();
-        })
+        .split(' ')
+        .map(|s| s.parse::<usize>().unwrap())
         .collect();
 
     let mut res = 0;
-    for item in &line2_arr {
-        if item >= &line2_arr[k - 1] && item > &0 {
+    for item in line2_arr.iter() {
+        if *item >= line2_arr[k - 1] && *item > 0 {
             res += 1;
         }
     }
 
-    write!(out, "{}\n", res).ok();
+    write!(out, "{}", res).ok();
 }
 
 #[cfg(test)]

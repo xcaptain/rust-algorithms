@@ -3,13 +3,13 @@
 use crate::Scanner;
 use std::io::{Read, Write};
 
-pub fn solution_of_p69a(input: &mut Read, out: &mut Write) {
+pub fn solution_of_p69a(input: &mut dyn Read, out: &mut dyn Write) {
     let mut scanner = Scanner::new(input);
-    let n = scanner.next::<String>().parse::<usize>().unwrap();
+    let n = scanner.next_line::<String>().parse::<usize>().unwrap();
     let mut mat: Vec<Vec<isize>> = vec![];
     for _i in 0..n {
         let arr = scanner
-            .next::<String>()
+            .next_line::<String>()
             .split(' ')
             .map(|e| e.parse::<isize>().unwrap())
             .collect();
@@ -22,6 +22,7 @@ pub fn solution_of_p69a(input: &mut Read, out: &mut Write) {
     }
 }
 
+#[allow(clippy::needless_range_loop)]
 fn check_is_equilibrium(mat: Vec<Vec<isize>>) -> bool {
     let n = mat.len();
     for j in 0..3 {
@@ -33,7 +34,7 @@ fn check_is_equilibrium(mat: Vec<Vec<isize>>) -> bool {
             return false;
         }
     }
-    return true;
+    true
 }
 
 #[cfg(test)]

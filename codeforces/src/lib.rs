@@ -14,6 +14,7 @@ pub mod p266a;
 pub mod p281a;
 pub mod p282a;
 pub mod p339a;
+pub mod p467a;
 pub mod p50a;
 pub mod p546a;
 pub mod p58a;
@@ -28,26 +29,37 @@ pub struct Scanner<U: Sized + Read> {
     pub reader: U,
 }
 impl<U: Sized + Read> Scanner<U> {
-    pub fn next<T: std::str::FromStr>(&mut self) -> T {
-        loop {
-            if let Some(token) = self.buffer.pop() {
-                return token.parse().ok().expect("Failed parse");
-            }
+    pub fn next_line<T: std::str::FromStr>(&mut self) -> T {
+        // loop {
+        //     if let Some(token) = self.buffer.pop() {
+        //         return token.parse().ok().expect("Failed parse");
+        //     }
+        //     let mut input = String::new();
+        //     self.reader.read_to_string(&mut input).expect("Failed read");
+        //     self.buffer = input.lines().rev().map(String::from).collect();
+        // }
+        if self.buffer.is_empty() {
             let mut input = String::new();
             self.reader.read_to_string(&mut input).expect("Failed read");
             self.buffer = input.lines().rev().map(String::from).collect();
         }
+        self.buffer
+            .pop()
+            .unwrap()
+            .parse()
+            .ok()
+            .expect("Failed parse")
     }
 
     pub fn new(reader: U) -> Self {
-        return Scanner {
+        Scanner {
             buffer: vec![],
             reader,
-        };
+        }
     }
 }
 
-type Solution = fn(&mut Read, &mut Write);
+type Solution = fn(&mut dyn Read, &mut dyn Write);
 pub fn test_helper(cases: Vec<[&str; 2]>, solution: Solution) {
     for case in &cases {
         let mut input_file = BufReader::new(case[0].as_bytes());

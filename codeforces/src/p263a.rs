@@ -3,16 +3,14 @@
 use crate::Scanner;
 use std::io::{Read, Write};
 
-pub fn solution_of_p263a(input: &mut Read, out: &mut Write) {
+pub fn solution_of_p263a(input: &mut dyn Read, out: &mut dyn Write) {
     let mut scanner = Scanner::new(input);
     let mut mat: Vec<Vec<usize>> = vec![];
     for _i in 0..5 {
         let arr: Vec<usize> = scanner
-            .next::<String>()
-            .split(" ")
-            .map(|e| {
-                return e.parse::<usize>().unwrap();
-            })
+            .next_line::<String>()
+            .split(' ')
+            .map(|e| e.parse::<usize>().unwrap())
             .collect();
         mat.push(arr);
     }
@@ -20,11 +18,9 @@ pub fn solution_of_p263a(input: &mut Read, out: &mut Write) {
     // find the cordinate of the 1 in the matrix
     let mut x = 0;
     let mut y = 0;
-    for i in 0..5 {
-        let row: &Vec<usize> = &mat[i];
-        for j in 0..5 {
-            let elem = row[j];
-            if elem == 1 {
+    for (i, mat_item) in mat.iter().enumerate().take(5) {
+        for (j, elem) in mat_item.iter().enumerate().take(5) {
+            if elem == &1 {
                 x = i;
                 y = j;
             }
@@ -41,7 +37,7 @@ pub fn solution_of_p263a(input: &mut Read, out: &mut Write) {
     } else {
         res += 2 - y;
     }
-    write!(out, "{}\n", res).ok();
+    write!(out, "{}", res).ok();
 }
 
 #[cfg(test)]

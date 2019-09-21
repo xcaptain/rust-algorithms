@@ -10,14 +10,14 @@ pub fn reverse(x: i32) -> i32 {
     }
 
     while num != 0 {
-        let rem = (num % base) as i64;
+        let rem = i64::from(num % base);
         r = (r * 10) + rem;
-        num = num / base;
+        num /= base;
     }
-    if r > (i32::max_value() as i64) || r < (i32::min_value() as i64) {
+    if r > i64::from(i32::max_value()) || r < i64::from(i32::min_value()) {
         return 0;
     }
-    return r as i32;
+    r as i32
 }
 
 #[cfg(test)]

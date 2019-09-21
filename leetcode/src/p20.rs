@@ -10,11 +10,10 @@ pub fn is_valid(s: String) -> bool {
                 return false;
             }
             let last_char = st[l - 1];
-            if last_char == '(' && *c == ')' {
-                st.pop();
-            } else if last_char == '[' && *c == ']' {
-                st.pop();
-            } else if last_char == '{' && *c == '}' {
+            if (last_char == '(' && *c == ')')
+                || (last_char == '[' && *c == ']')
+                || (last_char == '{' && *c == '}')
+            {
                 st.pop();
             } else {
                 st.push(*c);
@@ -24,7 +23,7 @@ pub fn is_valid(s: String) -> bool {
     if st.is_empty() {
         return true;
     }
-    return false;
+    false
 }
 
 #[cfg(test)]

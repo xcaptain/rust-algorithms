@@ -4,6 +4,8 @@ use std::cell::UnsafeCell;
 use std::ptr;
 use std::sync::atomic::{AtomicPtr, Ordering};
 
+#[warn(clippy::new_without_default)]
+
 struct Node<T> {
     next: AtomicPtr<Node<T>>,
     value: Option<T>,
@@ -72,6 +74,12 @@ impl<T> Queue<T> {
                 PopResult::Inconsistent
             }
         }
+    }
+}
+
+impl<T> Default for Queue<T> {
+    fn default() -> Self {
+        Self::new()
     }
 }
 

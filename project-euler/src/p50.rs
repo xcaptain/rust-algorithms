@@ -8,20 +8,18 @@ pub fn solution_of_p50(uplimit: usize) -> usize {
 
     for i in 0..l - 1 {
         let mut sum = primes[i];
-        for j in i + 1..l {
-            sum += primes[j];
+        for (j, item) in primes.iter().enumerate().take(l).skip(i + 1) {
+            sum += item;
             if sum > uplimit {
                 break;
             }
-            if is_prime(sum) {
-                if longest_seq < j - i {
-                    longest_seq = j - i;
-                    longest_seq_sum = sum;
-                }
+            if is_prime(sum) && longest_seq < j - i {
+                longest_seq = j - i;
+                longest_seq_sum = sum;
             }
         }
     }
-    return longest_seq_sum;
+    longest_seq_sum
 }
 
 #[cfg(test)]

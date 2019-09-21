@@ -1,5 +1,5 @@
 pub fn solution_of_p52() -> usize {
-    for i in 1..1000000 {
+    for i in 1..1_000_000 {
         let p2 = 2 * i;
         let p3 = 3 * i;
         let p4 = 4 * i;
@@ -14,7 +14,7 @@ pub fn solution_of_p52() -> usize {
             return i;
         }
     }
-    return 0;
+    0
 }
 
 pub fn is_contains_same_digits(n1: usize, n2: usize) -> bool {

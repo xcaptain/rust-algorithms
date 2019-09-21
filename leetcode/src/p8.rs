@@ -1,5 +1,6 @@
 // https://leetcode-cn.com/problems/string-to-integer-atoi/
 
+#[allow(clippy::never_loop)]
 pub fn my_atoi(s: String) -> i32 {
     // check sign, positivs or negtive or invalid
     let mut sign = 1;
@@ -26,18 +27,18 @@ pub fn my_atoi(s: String) -> i32 {
         if c < '0' || c > '9' {
             break;
         } else {
-            let d = ((c as u8) - ('0' as u8)) as i32 * sign;
-            result = 10 * result + d as i64;
-            if result <= (i32::min_value() as i64) {
+            let d = i32::from((c as u8) - b'0') * sign;
+            result = 10 * result + i64::from(d);
+            if result <= i64::from(i32::min_value()) {
                 return i32::min_value();
             }
-            if result >= (i32::max_value() as i64) {
+            if result >= i64::from(i32::max_value()) {
                 return i32::max_value();
             };
             i += 1;
         }
     }
-    return result as i32;
+    result as i32
 }
 
 #[cfg(test)]

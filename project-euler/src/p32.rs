@@ -14,7 +14,7 @@ pub fn solution_of_p32() -> usize {
     for item in &v {
         sum += item;
     }
-    return sum;
+    sum
 }
 
 fn is_pandigital_product(n1: usize, n2: usize) -> bool {

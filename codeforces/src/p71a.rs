@@ -13,17 +13,17 @@ fn abbr(s: String) -> String {
             s.chars().nth(l - 1).unwrap()
         );
     }
-    return s;
+    s
 }
 
-pub fn solution_of_p71a(input: &mut Read, out: &mut Write) {
+pub fn solution_of_p71a(input: &mut dyn Read, out: &mut dyn Write) {
     let mut scan = Scanner::new(input);
 
-    let n = scan.next();
+    let n = scan.next_line();
     for _i in 0..n {
-        let line = scan.next::<String>();
+        let line = scan.next_line::<String>();
         let r = abbr(line);
-        write!(out, "{}\n", r).ok();
+        writeln!(out, "{}", r).ok();
     }
 }
 
