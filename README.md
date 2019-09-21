@@ -1,6 +1,6 @@
 # rust algorithms and data structures
 
-[![Build Status](https://travis-ci.com/xcaptain/rust-algorithms.svg?branch=master)](https://travis-ci.com/xcaptain/rust-algorithms)
+[![github actions](https://github.com/xcaptain/rust-algorithms/workflows/Rust/badge.svg)](https://github.com/xcaptain/rust-algorithms/actions)
 [![codecov](https://codecov.io/gh/xcaptain/rust-algorithms/branch/master/graph/badge.svg)](https://codecov.io/gh/xcaptain/rust-algorithms)
 
 This project is about my journey on algorithm study, practice makes a better programmer, keep going!
