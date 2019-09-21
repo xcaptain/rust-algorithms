@@ -36,3 +36,8 @@ using `cargo build` to build the whole project or `cargo build -p data-structure
 `cargo test`
 
 I use `vscode` and `rust-analyzer` and `lldb` to write these code.
+
+## To be optimized
+
+- [ ] p32.rs
+- [ ] p43.rs
