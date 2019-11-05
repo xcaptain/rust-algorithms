@@ -89,8 +89,10 @@ mod tests {
         s.push(1);
         s.push(2);
 
-        // TODO: figure out how to modify the stack top element
-        let t = s.top_mut();
-        assert_eq!(Some(&mut 2), t);
+        // 使用take来获取所有权，并且修改所指向内容的值
+        let mut t = s.top_mut();
+        t.take().map(|v| *v = 3);
+        let t1 = s.top();
+        assert_eq!(Some(&3), t1);
     }
 }
