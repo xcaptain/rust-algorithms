@@ -1,9 +1,10 @@
-use algorithms::misc::leap_year::is_leap_year;
-use std::cmp::Ordering;
 /// https://projecteuler.net/problem=19
 /// 1 Jan 1900 was a Monday.
 /// You are given the following information, but you may prefer to do some research for yourself.
 /// How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
+use algorithms::misc::leap_year::is_leap_year;
+use std::cmp::Ordering;
+use std::fmt;
 
 pub struct SimpleDate {
     pub year: usize,
@@ -11,13 +12,16 @@ pub struct SimpleDate {
     pub day: usize,
 }
 
+impl fmt::Display for SimpleDate {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        // write!(f, "({}, {})", self.x, self.y)
+        write!(f, "{}-{}-{}", self.year, self.month, self.day)
+    }
+}
+
 impl SimpleDate {
     pub fn new(year: usize, month: usize, day: usize) -> Self {
         SimpleDate { year, month, day }
-    }
-
-    pub fn to_string(&self) -> String {
-        return format!("{}-{}-{}", self.year, self.month, self.day);
     }
 
     /// get the day in week, Sunday -> 0, Monday -> 1 ... Sat -> 6
