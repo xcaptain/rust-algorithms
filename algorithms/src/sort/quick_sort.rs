@@ -1,6 +1,6 @@
 // quick sort
 pub fn quick_sort(arr: Vec<usize>) -> Vec<usize> {
-    let mut sorted = arr.clone();
+    let mut sorted = arr;
     let len = sorted.len();
     quick_sort_help(&mut sorted, 0, len - 1);
 

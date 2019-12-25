@@ -42,15 +42,20 @@ pub fn max_seq_sum_v2(arr: Vec<isize>) -> isize {
 /// i=1  max(a1, prev_sum)  max(sum, prev_best)   largest sequence sum when array length is 1
 /// i=2  max(a2, prev_sum)  max(sum, prev_best)   largest sequence sum when array length is 2
 pub fn max_seq_sum_v3(arr: Vec<isize>) -> isize {
-    let l = arr.len();
-    let mut largest = MIN_VALUE;
-    let mut sum = 0;
+    let mut max_sum = MIN_VALUE;
+    let mut this_sum = 0;
 
-    for i in arr.iter().take(l) {
-        sum = max(*i, sum + *i);
-        largest = max(largest, sum);
+    for i in arr {
+        // this_sum = max(i, this_sum + i);
+        // max_sum = max(max_sum, this_sum);
+        this_sum += i;
+        if this_sum > max_sum {
+            max_sum = this_sum;
+        } else if this_sum < 0 {
+            this_sum = 0;
+        }
     }
-    largest
+    max_sum
 }
 
 #[cfg(test)]

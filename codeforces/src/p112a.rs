@@ -1,6 +1,7 @@
 // https://codeforces.com/problemset/problem/112/A
 
 use crate::Scanner;
+use std::cmp::Ordering;
 use std::io::{Read, Write};
 
 pub fn solution_of_p112a(input: &mut dyn Read, out: &mut dyn Write) {
@@ -25,11 +26,11 @@ fn lexicographical_order(arr1: Vec<char>, arr2: Vec<char>) -> i32 {
     for i in 0..l {
         let u1 = arr1[i] as u8;
         let u2 = arr2[i] as u8;
-        if u1 < u2 {
-            return -1;
-        } else if u1 > u2 {
-            return 1;
-        }
+        return match u1.cmp(&u2) {
+            Ordering::Less => -1,
+            Ordering::Greater => 1,
+            Ordering::Equal => continue,
+        };
     }
     0
 }

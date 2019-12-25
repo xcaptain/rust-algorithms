@@ -1,3 +1,5 @@
+use std::cmp::Ordering;
+
 /// search target in array, if found then return some index
 /// else return None
 pub fn binary_search1(arr: Vec<isize>, target: isize) -> Option<usize> {
@@ -13,13 +15,11 @@ fn binary_search1_inner(
 ) -> Option<usize> {
     if left <= right {
         let mid = (left + right) / 2;
-        if arr[mid] < target {
-            return binary_search1_inner(arr, mid + 1, right, target);
-        } else if arr[mid] > target {
-            return binary_search1_inner(arr, left, mid - 1, target);
-        } else {
-            return Some(mid);
-        }
+        return match arr[mid].cmp(&target) {
+            Ordering::Less => binary_search1_inner(arr, mid + 1, right, target),
+            Ordering::Greater => binary_search1_inner(arr, left, mid - 1, target),
+            Ordering::Equal => Some(mid),
+        };
     }
     None
 }
@@ -31,13 +31,15 @@ pub fn binary_search2(arr: Vec<isize>, target: isize) -> Option<usize> {
 
     while left <= right {
         let mid = (left + right) / 2;
-        if arr[mid] < target {
-            left = mid + 1;
-        } else if arr[mid] > target {
-            right = mid - 1;
-        } else {
-            return Some(mid);
-        }
+        match arr[mid].cmp(&target) {
+            Ordering::Less => {
+                left = mid + 1;
+            }
+            Ordering::Greater => {
+                right = mid - 1;
+            }
+            Ordering::Equal => return Some(mid),
+        };
     }
     None
 }
