@@ -1,5 +1,5 @@
 pub fn reverse_vowels(s: String) -> String {
-    if s.len() == 0 {
+    if s.is_empty() {
         return s;
     }
     let arr: Vec<char> = vec!['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
@@ -9,22 +9,17 @@ pub fn reverse_vowels(s: String) -> String {
     while i < j {
         if arr.contains(&cs[i]) {
             if arr.contains(&cs[j]) {
-                // 交换二者
-                let t = cs[i];
-                cs[i] = cs[j];
-                cs[j] = t;
+                cs.swap(i, j);
                 i += 1;
                 j -= 1;
             } else {
                 j -= 1;
             }
+        } else if arr.contains(&cs[j]) {
+            i += 1;
         } else {
-            if arr.contains(&cs[j]) {
-                i += 1;
-            } else {
-                i += 1;
-                j -= 1;
-            }
+            i += 1;
+            j -= 1;
         }
     }
     cs.into_iter().collect()

@@ -1,5 +1,7 @@
 // https://leetcode-cn.com/problems/4sum/
 
+use std::cmp::Ordering;
+
 pub fn four_sum(nums: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
     if nums.len() < 4 {
         return vec![];
@@ -22,20 +24,26 @@ pub fn four_sum(nums: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
                 continue;
             }
             while l < r {
-                if nums[j] + nums[l] + nums[r] == target - nums[i] {
-                    res.push(vec![nums[i], nums[j], nums[l], nums[r]]);
-                    while l < r && nums[l] == nums[l + 1] {
+                let s = nums[j] + nums[l] + nums[r];
+                let exp_target = target - nums[i];
+                match s.cmp(&exp_target) {
+                    Ordering::Equal => {
+                        res.push(vec![nums[i], nums[j], nums[l], nums[r]]);
+                        while l < r && nums[l] == nums[l + 1] {
+                            l += 1;
+                        }
+                        while l < r && nums[r] == nums[r - 1] {
+                            r -= 1;
+                        }
                         l += 1;
-                    }
-                    while l < r && nums[r] == nums[r - 1] {
                         r -= 1;
                     }
-                    l += 1;
-                    r -= 1;
-                } else if nums[j] + nums[l] + nums[r] > target - nums[i] {
-                    r -= 1;
-                } else {
-                    l += 1;
+                    Ordering::Less => {
+                        l += 1;
+                    }
+                    Ordering::Greater => {
+                        r -= 1;
+                    }
                 }
             }
         }

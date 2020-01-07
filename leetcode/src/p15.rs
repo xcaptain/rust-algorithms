@@ -1,5 +1,7 @@
 // https://leetcode-cn.com/problems/3sum/
 
+use std::cmp::Ordering;
+
 pub fn three_sum(nums: Vec<i32>) -> Vec<Vec<i32>> {
     if nums.len() < 3 {
         return vec![];
@@ -19,20 +21,25 @@ pub fn three_sum(nums: Vec<i32>) -> Vec<Vec<i32>> {
         }
 
         while l < r {
-            if nums[i] + nums[l] + nums[r] == 0 {
-                res.push(vec![nums[i], nums[l], nums[r]]);
-                while l < r && nums[l] == nums[l + 1] {
+            let s: i32 = nums[i] + nums[l] + nums[r];
+            match s.cmp(&0_i32) {
+                Ordering::Equal => {
+                    res.push(vec![nums[i], nums[l], nums[r]]);
+                    while l < r && nums[l] == nums[l + 1] {
+                        l += 1;
+                    }
+                    while l < r && nums[r] == nums[r - 1] {
+                        r -= 1;
+                    }
                     l += 1;
-                }
-                while l < r && nums[r] == nums[r - 1] {
                     r -= 1;
                 }
-                l += 1;
-                r -= 1;
-            } else if nums[i] + nums[l] + nums[r] > 0 {
-                r -= 1;
-            } else {
-                l += 1;
+                Ordering::Less => {
+                    l += 1;
+                }
+                Ordering::Greater => {
+                    r -= 1;
+                }
             }
         }
     }

@@ -7,7 +7,7 @@ pub fn mask_pii(s: String) -> String {
 
 fn mask_email(s: String) -> String {
     let s = s.to_ascii_lowercase(); // 小写
-    let names: Vec<String> = s.split('@').map(|e| String::from(e)).collect();
+    let names: Vec<String> = s.split('@').map(String::from).collect();
     let name1 = names[0].clone();
     let new_name1 = format!(
         "{}*****{}",

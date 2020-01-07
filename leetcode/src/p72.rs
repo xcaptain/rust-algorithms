@@ -9,8 +9,11 @@ pub fn min_distance(word1: String, word2: String) -> i32 {
     let n = word2.len();
     let row: Vec<i32> = vec![0; n + 1];
     let mut dp: Vec<Vec<i32>> = vec![row; m + 1];
-    for i in 0..=m {
-        dp[i][0] = i as i32;
+    // for i in 0..=m {
+    //     dp[i][0] = i as i32;
+    // }
+    for (i, row) in dp.iter_mut().enumerate().take(m + 1) {
+        row[0] = i as i32;
     }
     for j in 0..=n {
         dp[0][j] = j as i32;
@@ -18,7 +21,7 @@ pub fn min_distance(word1: String, word2: String) -> i32 {
 
     for i in 1..=m {
         for j in 1..=n {
-            if &word1[i - 1..i] == &word2[j - 1..j] {
+            if word1[i - 1..i] == word2[j - 1..j] {
                 dp[i][j] = min(min(dp[i - 1][j] + 1, dp[i][j - 1] + 1), dp[i - 1][j - 1]);
             } else {
                 dp[i][j] = min(

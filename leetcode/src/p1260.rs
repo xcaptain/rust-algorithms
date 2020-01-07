@@ -2,7 +2,7 @@
 // have faster solution for this problem
 
 pub fn shift_grid(grid: Vec<Vec<i32>>, k: i32) -> Vec<Vec<i32>> {
-    let mut res = grid.clone();
+    let mut res = grid;
     for _i in 0..k {
         res = shift_once(res);
     }
@@ -13,8 +13,8 @@ fn shift_once(grid: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     let n = grid.len(); // 行数
     let m = grid[0].len(); // 列数
     let mut res = grid.clone();
-    for i in 0..=n - 1 {
-        for j in 0..=m - 1 {
+    for i in 0..n {
+        for j in 0..m {
             if i == n - 1 && j == m - 1 {
                 res[0][0] = grid[i][j];
             } else if j == m - 1 && i < n - 1 {

@@ -12,7 +12,7 @@ jobs:
     - name: clean
       run: cargo clean
     - name: clippy lint
-      run: cargo clippy
+      run: cargo clippy -- -D warnings
     - name: Build
       run: cargo build --verbose
     - name: Run tests

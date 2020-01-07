@@ -5,7 +5,7 @@ pub fn hamming_weight(n: u32) -> i32 {
         if n & mask != 0 {
             ans += 1;
         }
-        mask = mask << 1;
+        mask <<= 1;
     }
     ans
 }

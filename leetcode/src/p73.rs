@@ -5,9 +5,9 @@ pub fn set_zeroes(matrix: &mut Vec<Vec<i32>>) {
     let n = matrix[0].len();
     let mut cords: Vec<[i32; 2]> = vec![]; // 0点坐标列表
 
-    for i in 0..m {
-        for j in 0..n {
-            if matrix[i][j] == 0 {
+    for (i, row) in matrix.iter().enumerate().take(m).skip(0) {
+        for (j, val) in row.iter().enumerate().take(n).skip(0) {
+            if val == &0 {
                 cords.push([i as i32, j as i32]);
             }
         }
@@ -16,8 +16,11 @@ pub fn set_zeroes(matrix: &mut Vec<Vec<i32>>) {
         let a = cord[0];
         let b = cord[1];
 
-        for i in 0..m {
-            matrix[i][b as usize] = 0;
+        // for i in 0..m {
+        //     matrix[i][b as usize] = 0;
+        // }
+        for row in matrix.iter_mut().take(m) {
+            row[b as usize] = 0;
         }
         for j in 0..n {
             matrix[a as usize][j] = 0;

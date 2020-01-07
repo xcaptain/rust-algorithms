@@ -87,22 +87,15 @@ impl PartialEq for SimpleDate {
 
 impl PartialOrd for SimpleDate {
     fn partial_cmp(&self, other: &SimpleDate) -> Option<Ordering> {
-        if self.year < other.year {
-            return Some(Ordering::Less);
-        } else if self.year == other.year {
-            if self.month < other.month {
-                return Some(Ordering::Less);
-            } else if self.month == other.month {
-                if self.day < other.day {
-                    return Some(Ordering::Less);
-                } else if self.day == other.day {
-                    return Some(Ordering::Equal);
-                }
-                return Some(Ordering::Greater);
-            }
-            return Some(Ordering::Greater);
+        match self.year.cmp(&other.year) {
+            Ordering::Less => Some(Ordering::Less),
+            Ordering::Equal => match self.month.cmp(&other.month) {
+                Ordering::Less => Some(Ordering::Less),
+                Ordering::Greater => Some(Ordering::Greater),
+                Ordering::Equal => Some(self.day.cmp(&other.day)),
+            },
+            Ordering::Greater => Some(Ordering::Greater),
         }
-        Some(Ordering::Greater)
     }
 }
 

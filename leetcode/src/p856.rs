@@ -6,8 +6,9 @@ fn helper(s: &str, i: usize, j: usize) -> usize {
     let mut bal = 0;
     let mut ans = 0;
     let mut i = i;
-    for k in i..j {
-        if &s[k..k + 1] == "(" {
+    let mut k = i;
+    while k < j {
+        if &s[k..=k] == "(" {
             bal += 1;
         } else {
             bal += -1;
@@ -20,6 +21,7 @@ fn helper(s: &str, i: usize, j: usize) -> usize {
             }
             i = k + 1;
         }
+        k += 1;
     }
     ans
 }

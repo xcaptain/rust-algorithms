@@ -1,9 +1,9 @@
 // binary search tree
 // define tree node first, and then define link rules
-use std::cmp::PartialOrd;
+use std::cmp::{Ord, Ordering};
 use std::fmt::Debug;
 
-struct Node<T: PartialOrd + Debug> {
+struct Node<T: Ord + Debug> {
     elem: T,
     left: Link<T>,
     right: Link<T>,
@@ -12,11 +12,11 @@ struct Node<T: PartialOrd + Debug> {
 type Link<T> = Option<Box<Node<T>>>;
 
 #[derive(Default)]
-pub struct Tree<T: PartialOrd + Debug> {
+pub struct Tree<T: Ord + Debug> {
     root: Link<T>,
 }
 
-impl<T: PartialOrd + Debug> Node<T> {
+impl<T: Ord + Debug> Node<T> {
     pub fn new(t: T) -> Self {
         Node {
             elem: t,
@@ -52,7 +52,7 @@ impl<T: PartialOrd + Debug> Node<T> {
     }
 }
 
-impl<T: PartialOrd + Debug + Copy> Tree<T> {
+impl<T: Ord + Debug + Copy> Tree<T> {
     pub fn new() -> Self {
         Tree { root: None }
     }
@@ -83,29 +83,33 @@ impl<T: PartialOrd + Debug + Copy> Tree<T> {
     pub fn find(&self, t: T) -> bool {
         let mut cur = self.root.as_ref();
         while let Some(cur_node) = cur {
-            if cur_node.elem == t {
-                return true;
-            } else if cur_node.elem > t {
-                let left_node = &cur_node.left;
-                match left_node {
-                    None => {
-                        return false;
-                    }
-                    Some(left_node_ptr) => {
-                        cur = Some(left_node_ptr);
+            match cur_node.elem.cmp(&t) {
+                Ordering::Equal => {
+                    return true;
+                }
+                Ordering::Greater => {
+                    let left_node = &cur_node.left;
+                    match left_node {
+                        None => {
+                            return false;
+                        }
+                        Some(left_node_ptr) => {
+                            cur = Some(left_node_ptr);
+                        }
                     }
                 }
-            } else {
-                let right_node = &cur_node.right;
-                match right_node {
-                    None => {
-                        return false;
-                    }
-                    Some(right_node_ptr) => {
-                        cur = Some(right_node_ptr);
+                Ordering::Less => {
+                    let right_node = &cur_node.right;
+                    match right_node {
+                        None => {
+                            return false;
+                        }
+                        Some(right_node_ptr) => {
+                            cur = Some(right_node_ptr);
+                        }
                     }
                 }
-            }
+            };
         }
         false
     }

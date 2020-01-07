@@ -5,7 +5,7 @@ pub fn integer_break(n: i32) -> i32 {
     dp[1] = 1;
     dp[2] = 1;
     for i in 3..=n {
-        for j in 1..=i - 1 {
+        for j in 1..i {
             dp[i as usize] = max(dp[i as usize], max(j * (i - j), j * dp[(i - j) as usize]));
         }
     }
