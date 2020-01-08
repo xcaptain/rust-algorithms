@@ -13,6 +13,10 @@ name = "algorithms"
 version = "0.1.0"
 
 [[package]]
+name = "cc150"
+version = "0.1.0"
+
+[[package]]
 name = "codeforces"
 version = "0.1.0"
 

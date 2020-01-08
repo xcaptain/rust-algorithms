@@ -14,6 +14,7 @@ pub mod p266a;
 pub mod p281a;
 pub mod p282a;
 pub mod p339a;
+pub mod p41a;
 pub mod p467a;
 pub mod p50a;
 pub mod p546a;
@@ -60,6 +61,9 @@ impl<U: Sized + Read> Scanner<U> {
 }
 
 type Solution = fn(&mut dyn Read, &mut dyn Write);
+
+/// cases is the test cases of the problem, the first item is input, second
+/// is output, just copy from the website
 pub fn test_helper(cases: Vec<[&str; 2]>, solution: Solution) {
     for case in &cases {
         let mut input_file = BufReader::new(case[0].as_bytes());

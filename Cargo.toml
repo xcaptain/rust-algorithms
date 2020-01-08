@@ -6,4 +6,5 @@ members = [
     "project-euler",
     "leetcode",
     "codeforces",
+    "cc150"
 ]

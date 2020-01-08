@@ -1,8 +1,15 @@
+pub fn nqueen(n: usize) -> Vec<Vec<u128>> {
+    let mut board = vec![0; n];
+    let mut result = vec![];
+    backtrack(&mut board, 0, &mut result);
+    result
+}
+
 /// algorithms from: http://jeffe.cs.illinois.edu/teaching/algorithms/book/02-backtracking.pdf
 /// board: contains an available placement for current board
 /// r: the current placement row, starting from 0 to n-1
 /// result: the available placement array
-fn place_queens(board: &mut Vec<u128>, r: usize, result: &mut Vec<Vec<u128>>) {
+fn backtrack(board: &mut Vec<u128>, r: usize, result: &mut Vec<Vec<u128>>) {
     let n = board.len();
     if r == n {
         result.push(board.clone());
@@ -19,17 +26,10 @@ fn place_queens(board: &mut Vec<u128>, r: usize, result: &mut Vec<Vec<u128>>) {
             }
             if legal {
                 board[r] = j as u128;
-                place_queens(board, r + 1, result);
+                backtrack(board, r + 1, result);
             }
         }
     }
-}
-
-pub fn nqueen(n: usize) -> Vec<Vec<u128>> {
-    let mut board = vec![0; n];
-    let mut result = vec![];
-    place_queens(&mut board, 0, &mut result);
-    result
 }
 
 #[cfg(test)]
