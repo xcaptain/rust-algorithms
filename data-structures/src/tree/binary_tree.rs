@@ -107,7 +107,7 @@ impl<T: Ord + Debug + Clone> Tree<T> {
     }
 
     /// 二叉树中序遍历，也就是 左 -> 中 -> 右
-    /// 
+    ///
     /// TODO: 先序，后序遍历也是同样的思路，不过是否能用循环而不是递归呢?
     pub fn inorder_traverse(&self) -> Vec<T> {
         let mut res = vec![];
@@ -156,6 +156,45 @@ impl<T: Ord + Debug + Clone> Tree<T> {
         res
     }
 
+    /// 深度遍历二叉树，也就是说如果某个结点有子结点则往下遍历
+    /// 
+    ///     1
+    ///       2
+    ///         3
+    ///       2   4
+    ///  
+    /// Examples:
+    /// 
+    /// ```
+    /// use data_structures::tree::binary_tree::Tree;
+    /// let tree = Tree::from_vec(vec![1, 2, 3, 4, 2]);
+    /// assert_eq!(
+    ///     vec![vec![1, 2, 3, 2], vec![1, 2, 3, 4]],
+    ///     tree.dfs_traverse()
+    /// );
+    /// ```
+    pub fn dfs_traverse(&self) -> Vec<Vec<T>> {
+        let mut res = vec![];
+        Self::dfs_traverse_helper(self.root.as_ref(), vec![], &mut res);
+        res
+    }
+
+    fn dfs_traverse_helper(
+        root: Option<&Rc<RefCell<TreeNode<T>>>>,
+        mut cur: Vec<T>,
+        res: &mut Vec<Vec<T>>,
+    ) {
+        if let Some(root_node) = root {
+            cur.push(root_node.borrow().elem.clone());
+            if root_node.borrow().left.is_none() && root_node.borrow().right.is_none() {
+                res.push(cur); // reached the end, stop recursive
+            } else {
+                Self::dfs_traverse_helper(root_node.borrow().left.as_ref(), cur.clone(), res);
+                Self::dfs_traverse_helper(root_node.borrow().right.as_ref(), cur, res);
+            }
+        }
+    }
+
     /// pick the root node of a tree, return a reference to the pointer
     pub fn peek(&self) -> Option<&Rc<RefCell<TreeNode<T>>>> {
         // self.root.as_ref().map(|node| node.borrow().elem.clone())
@@ -199,9 +238,13 @@ mod tests {
     #[test]
     fn test_peek() {
         let tree1 = Tree::from_vec(vec![2, 1, 3, 2]);
-        let root = tree1.peek();
-        let root_elem = root.map(|node| node.borrow().elem);
-        assert_eq!(Some(2), root_elem);
+        assert_eq!(Some(2), tree1.peek().map(|node| node.borrow().elem));
+
+        // modify the root node element, before is 2 now is 3
+        tree1.peek().map(|node| {
+            node.borrow_mut().elem = 3;
+        });
+        assert_eq!(Some(3), tree1.peek().map(|node| node.borrow().elem));
     }
 
     #[test]
@@ -229,6 +272,19 @@ mod tests {
         let mut tree3 = Tree::from_vec(vec![1, 2, 3, 2, 4]);
         tree3.insert(0);
         assert_eq!(vec![1, 0, 2, 3, 2, 4], tree3.level_traverse());
+    }
+
+    //    1
+    //      2
+    //        3
+    //      2   4
+    #[test]
+    fn test_dfs_traverse() {
+        let tree1 = Tree::from_vec(vec![1, 2, 3, 4, 2]);
+        assert_eq!(
+            vec![vec![1, 2, 3, 2], vec![1, 2, 3, 4]],
+            tree1.dfs_traverse()
+        );
     }
 
     #[test]
