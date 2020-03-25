@@ -1,5 +1,6 @@
 use std::cell::RefCell;
 use std::cmp::Ord;
+use std::collections::VecDeque;
 use std::fmt::Debug;
 use std::rc::Rc;
 
@@ -106,9 +107,9 @@ impl<T: Ord + Debug + Clone> Tree<T> {
     }
 
     /// 二叉树中序遍历，也就是 左 -> 中 -> 右
+    /// 
+    /// TODO: 先序，后序遍历也是同样的思路，不过是否能用循环而不是递归呢?
     pub fn inorder_traverse(&self) -> Vec<T> {
-        // TODO: use &Option<Rc<RefCell<TreeNode<T>>>> or Option<&Rc<RefCell<TreeNode<T>>>>?
-        // what's the difference?
         let mut res = vec![];
         Self::inorder_traverse_helper(self.root.as_ref(), &mut res);
         res
@@ -128,12 +129,42 @@ impl<T: Ord + Debug + Clone> Tree<T> {
         }
     }
 
+    /// 层次遍历二叉树，基本思路是 BFS
+    pub fn level_traverse(&self) -> Vec<T> {
+        let mut res = vec![];
+
+        let mut q = VecDeque::new();
+        if let Some(root_node) = self.root.as_ref() {
+            q.push_back(Rc::clone(root_node));
+        }
+
+        while !q.is_empty() {
+            let cur_node = q.pop_front().unwrap();
+            res.push(cur_node.borrow().elem.clone());
+
+            // if the current node has children, then push these children into
+            // the queue, so we can continue traverse down the tree.
+            // note: using map here is simpler than using match
+            cur_node.borrow().left.as_ref().map(|v| {
+                q.push_back(Rc::clone(v));
+            });
+
+            cur_node.borrow().right.as_ref().map(|v| {
+                q.push_back(Rc::clone(v));
+            });
+        }
+        res
+    }
+
     /// pick the root node of a tree, return a reference to the pointer
     pub fn peek(&self) -> Option<&Rc<RefCell<TreeNode<T>>>> {
         // self.root.as_ref().map(|node| node.borrow().elem.clone())
         self.root.as_ref()
     }
 
+    /// find an element in the tree, if not exists then return false else true
+    /// TODO: a better version would return Option<Rc<...>> so we can do some
+    /// mutation in the future
     pub fn find(&self, t: T) -> bool {
         if let Some(cur_node) = self.root.as_ref() {
             return cur_node.borrow().find(t);
@@ -181,6 +212,23 @@ mod tests {
         let mut tree2 = Tree::from_vec(vec![2, 1, 3, 2]);
         tree2.insert(4);
         assert_eq!(vec![1, 2, 2, 3, 4], tree2.inorder_traverse());
+    }
+
+    //    1
+    //      2
+    //        3
+    //      2   4
+    #[test]
+    fn test_level_traverse() {
+        let tree1 = Tree::from_vec(vec![1, 2, 3, 4, 2]);
+        assert_eq!(vec![1, 2, 3, 2, 4], tree1.level_traverse());
+
+        let tree2 = Tree::from_vec(vec![1, 2, 3, 2, 4]);
+        assert_eq!(vec![1, 2, 3, 2, 4], tree2.level_traverse());
+
+        let mut tree3 = Tree::from_vec(vec![1, 2, 3, 2, 4]);
+        tree3.insert(0);
+        assert_eq!(vec![1, 0, 2, 3, 2, 4], tree3.level_traverse());
     }
 
     #[test]
