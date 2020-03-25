@@ -49,7 +49,7 @@ mod tests {
     fn test_p94() {
         let mut n1 = TreeNode::new(1);
         let mut n2 = TreeNode::new(2);
-        let mut n3 = TreeNode::new(3);
+        let n3 = TreeNode::new(3);
         n2.left = Some(Rc::new(RefCell::new(n3)));
         n1.right = Some(Rc::new(RefCell::new(n2)));
 
