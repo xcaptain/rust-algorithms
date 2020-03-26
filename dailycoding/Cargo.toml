@@ -1,0 +1,8 @@
+[package]
+name = "dailycoding"
+edition = "2018"
+version = "0.1.0"
+authors = ["Joey <joey.xf@gmail.com>"]
+
+[dependencies]
+data-structures = { path = "../data-structures" }

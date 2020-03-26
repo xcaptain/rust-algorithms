@@ -21,6 +21,13 @@ name = "codeforces"
 version = "0.1.0"
 
 [[package]]
+name = "dailycoding"
+version = "0.1.0"
+dependencies = [
+ "data-structures 0.1.0",
+]
+
+[[package]]
 name = "data-structures"
 version = "0.1.0"
 dependencies = [

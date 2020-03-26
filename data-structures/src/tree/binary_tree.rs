@@ -6,16 +6,16 @@ use std::rc::Rc;
 
 #[derive(Debug)]
 pub struct TreeNode<T: Ord + Debug + Clone> {
-    elem: T,
-    left: Link<T>,
-    right: Link<T>,
+    pub elem: T,
+    pub left: Link<T>,
+    pub right: Link<T>,
 }
 
 type Link<T> = Option<Rc<RefCell<TreeNode<T>>>>;
 
 pub struct Tree<T: Ord + Debug + Clone> {
-    root: Link<T>,
-    total_nodes: i32,
+    pub root: Link<T>,
+    pub total_nodes: i32,
 }
 
 impl<T: Ord + Debug + Clone> TreeNode<T> {
@@ -139,6 +139,7 @@ impl<T: Ord + Debug + Clone> Tree<T> {
         }
 
         while !q.is_empty() {
+            // iterate from 0 to q.len() if we need to know the depth of each node
             let cur_node = q.pop_front().unwrap();
             res.push(cur_node.borrow().elem.clone());
 
