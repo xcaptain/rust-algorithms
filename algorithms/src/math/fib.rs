@@ -47,6 +47,20 @@ pub fn fib3(n: usize) -> usize {
     f[n]
 }
 
+/// recursive fib with memoization
+pub fn fib4(n: usize) -> usize {
+    if n == 0 {
+        return 0;
+    } else if n == 1 {
+        return 1;
+    }
+    let mut f = vec![0; n + 1];
+    if f[n] == 0 {
+        f[n] = fib4(n - 1) + fib4(n - 2);
+    }
+    f[n]
+}
+
 /// get the nth fabonacci number using matrix multiply
 /// {{1, 1}, {1, 0}}^n = {{f(n+1), f(n)}, {f(n), f(n-1)}}
 /// todo in the future
@@ -75,5 +89,12 @@ mod tests {
         assert_eq!(0, fib3(0));
         assert_eq!(3, fib3(4));
         assert_eq!(34, fib3(9));
+    }
+
+    #[test]
+    fn test_fib4() {
+        assert_eq!(0, fib4(0));
+        assert_eq!(3, fib4(4));
+        assert_eq!(34, fib4(9));
     }
 }

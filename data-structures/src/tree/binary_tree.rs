@@ -157,14 +157,14 @@ impl<T: Ord + Debug + Clone> Tree<T> {
     }
 
     /// 深度遍历二叉树，也就是说如果某个结点有子结点则往下遍历
-    /// 
+    ///
     ///     1
     ///       2
     ///         3
     ///       2   4
     ///  
     /// Examples:
-    /// 
+    ///
     /// ```
     /// use data_structures::tree::binary_tree::Tree;
     /// let tree = Tree::from_vec(vec![1, 2, 3, 4, 2]);
