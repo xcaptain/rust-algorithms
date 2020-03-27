@@ -211,6 +211,26 @@ impl<T: Ord + Debug + Clone> Tree<T> {
         }
         false
     }
+
+    pub fn largest(&self) -> Option<T> {
+        let arr = self.inorder_traverse();
+        if arr.is_empty() {
+            return None;
+        }
+        Some(arr.last().unwrap().clone())
+    }
+
+    /// find the kth largest element in the binary tree
+    /// k starts from 1, which means when k == 1 it returns the largest
+    pub fn k_largest(&self, k: usize) -> Option<T> {
+        let arr = self.inorder_traverse();
+        let l = arr.len();
+
+        if l < k {
+            return None;
+        }
+        return Some(arr[l - k].clone());
+    }
 }
 
 #[cfg(test)]
@@ -297,5 +317,13 @@ mod tests {
 
         tree1.insert(4);
         assert_eq!(true, tree1.find(4));
+    }
+
+    #[test]
+    fn test_largest() {
+        let tree1 = Tree::from_vec(vec![2, 1, 3, 2, 4]);
+        assert_eq!(Some(4), tree1.largest());
+        assert_eq!(Some(4), tree1.k_largest(1));
+        assert_eq!(Some(3), tree1.k_largest(2));
     }
 }
