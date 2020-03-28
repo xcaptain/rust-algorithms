@@ -1,6 +1,7 @@
 pub mod array_permutation; // #479
 pub mod at_most_distinct; // #485
 pub mod construct_sentence; // #480
+pub mod find_a_dup; // #476
 pub mod find_celebrity; // #486
 pub mod find_cousins; // #487
 pub mod horizontal_distance; // #490
