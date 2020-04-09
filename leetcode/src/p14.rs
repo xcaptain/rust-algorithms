@@ -1,22 +1,21 @@
 pub fn longest_common_prefix(strs: Vec<String>) -> String {
-    let mut pre = String::from("");
+    let mut pre = String::new();
     let mut i = 0;
     if strs.is_empty() {
         return pre;
     }
     loop {
-        let first_s: Vec<char> = strs[0].chars().collect();
-        if first_s.len() <= i {
+        if strs[0].len() <= i {
             return pre;
         }
-        let ic = first_s[i];
+        let ic = &strs[0][i..=i]; // choose one string as base
         for s in &strs {
-            let vs: Vec<char> = s.chars().collect();
-            if vs.len() <= i || ic != vs[i] {
+            // compare others with the base string
+            if s.len() <= i || ic != &s[i..=i] {
                 return pre;
             }
         }
-        pre = format!("{}{}", pre, ic);
+        pre.push_str(ic);
         i += 1;
     }
 }

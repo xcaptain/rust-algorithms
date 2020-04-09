@@ -46,6 +46,26 @@ pub fn three_sum(nums: Vec<i32>) -> Vec<Vec<i32>> {
     res
 }
 
+// the brute force, very slow, will time out
+pub fn three_sum_v2(nums: Vec<i32>) -> Vec<Vec<i32>> {
+    let l = nums.len();
+    let mut res = vec![];
+    for i in 0..l - 2 {
+        for j in i + 1..l - 1 {
+            for k in j + 1..l {
+                if nums[i] + nums[j] + nums[k] == 0 {
+                    let mut t = vec![nums[i], nums[j], nums[k]];
+                    t.sort();
+                    if !res.contains(&t) {
+                        res.push(t);
+                    }
+                }
+            }
+        }
+    }
+    res
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -69,6 +89,28 @@ mod tests {
                 vec![-2, 0, 2]
             ],
             three_sum(vec![-4, -2, -2, -2, 0, 1, 2, 2, 2, 3, 3, 4, 4, 6, 6])
+        );
+    }
+
+    #[test]
+    fn test_p15_v2() {
+        assert_eq!(
+            vec![vec![-1, 0, 1], vec![-1, -1, 2]],
+            three_sum_v2(vec![-1, 0, 1, 2, -1, -4])
+        );
+
+        assert_eq!(vec![vec![0, 0, 0]], three_sum_v2(vec![0, 0, 0]));
+
+        assert_eq!(
+            vec![
+                vec![-4, -2, 6],
+                vec![-4, 0, 4],
+                vec![-4, 1, 3],
+                vec![-4, 2, 2],
+                vec![-2, -2, 4],
+                vec![-2, 0, 2]
+            ],
+            three_sum_v2(vec![-4, -2, -2, -2, 0, 1, 2, 2, 2, 3, 3, 4, 4, 6, 6])
         );
     }
 }

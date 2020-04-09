@@ -14,6 +14,7 @@ pub fn four_sum(nums: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
             return res;
         }
         if i > 0 && nums[i] == nums[i - 1] {
+            // skip consequent nums[i]
             continue;
         }
         for j in i + 1..nums.len() - 2 {
@@ -24,9 +25,8 @@ pub fn four_sum(nums: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
                 continue;
             }
             while l < r {
-                let s = nums[j] + nums[l] + nums[r];
-                let exp_target = target - nums[i];
-                match s.cmp(&exp_target) {
+                let s = nums[i] + nums[j] + nums[l] + nums[r];
+                match s.cmp(&target) {
                     Ordering::Equal => {
                         res.push(vec![nums[i], nums[j], nums[l], nums[r]]);
                         while l < r && nums[l] == nums[l + 1] {

@@ -68,12 +68,61 @@ pub fn roman_to_int(s: String) -> i32 {
     result
 }
 
+pub fn roman_to_int_v2(s: String) -> i32 {
+    let l = s.len();
+    let mut res = 0;
+    let mut i = 0;
+    while i < l {
+        if &s[i..=i] == "M" {
+            res += 1000;
+            i += 1;
+        } else if i + 1 < l && &s[i..=i + 1] == "CM" {
+            res += 900;
+            i += 2;
+        } else if &s[i..=i] == "D" {
+            res += 500;
+            i += 1;
+        } else if i + 1 < l && &s[i..=i + 1] == "CD" {
+            res += 400;
+            i += 2;
+        } else if &s[i..=i] == "C" {
+            res += 100;
+            i += 1;
+        } else if i + 1 < l && &s[i..=i + 1] == "XC" {
+            res += 90;
+            i += 2;
+        } else if &s[i..=i] == "L" {
+            res += 50;
+            i += 1;
+        } else if i + 1 < l && &s[i..=i + 1] == "XL" {
+            res += 40;
+            i += 2;
+        } else if &s[i..=i] == "X" {
+            res += 10;
+            i += 1;
+        } else if i + 1 < l && &s[i..=i + 1] == "IX" {
+            res += 9;
+            i += 2;
+        } else if &s[i..=i] == "V" {
+            res += 5;
+            i += 1;
+        } else if i + 1 < l && &s[i..=i + 1] == "IV" {
+            res += 4;
+            i += 2;
+        } else {
+            res += 1;
+            i += 1;
+        }
+    }
+
+    res
+}
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
-    fn test_basic() {
+    fn test_p13() {
         assert_eq!(1, roman_to_int(String::from("I")));
         assert_eq!(3, roman_to_int(String::from("III")));
         assert_eq!(4, roman_to_int(String::from("IV")));
@@ -82,5 +131,17 @@ mod tests {
         assert_eq!(10, roman_to_int(String::from("X")));
         assert_eq!(58, roman_to_int(String::from("LVIII")));
         assert_eq!(1994, roman_to_int(String::from("MCMXCIV")));
+
+        assert_eq!(1, roman_to_int_v2(String::from("I")));
+        assert_eq!(3, roman_to_int_v2(String::from("III")));
+        assert_eq!(4, roman_to_int_v2(String::from("IV")));
+        assert_eq!(8, roman_to_int_v2(String::from("VIII")));
+        assert_eq!(9, roman_to_int_v2(String::from("IX")));
+        assert_eq!(10, roman_to_int_v2(String::from("X")));
+        assert_eq!(58, roman_to_int_v2(String::from("LVIII")));
+        assert_eq!(1994, roman_to_int_v2(String::from("MCMXCIV")));
+        assert_eq!(1995, roman_to_int_v2(String::from("MCMXCV")));
+        assert_eq!(1996, roman_to_int_v2(String::from("MCMXCVI")));
+        assert_eq!(1999, roman_to_int_v2(String::from("MCMXCIX")));
     }
 }

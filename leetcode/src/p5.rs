@@ -1,7 +1,5 @@
 // https://leetcode-cn.com/problems/longest-palindromic-substring/
 
-use std::cmp::max;
-
 pub fn longest_palindrome(s: String) -> String {
     if s.len() <= 1 {
         return s;
@@ -10,10 +8,10 @@ pub fn longest_palindrome(s: String) -> String {
     let mut end = 0_usize;
     let l = s.len();
     for i in 0..l {
-        // 查找中心
+        // iterate over the string, the current element is the center of the substring
         let len1 = expand_around_center(&s, i, i);
         let len2 = expand_around_center(&s, i, i + 1);
-        let len = max(len1, len2);
+        let len = len1.max(len2);
         if len > end - start {
             end = i + len / 2;
             start = i - (len - 1) / 2;
@@ -33,6 +31,37 @@ fn expand_around_center(s: &str, left: usize, right: usize) -> usize {
     (r - l - 1) as usize
 }
 
+/// expand from left, works but not very efficient, will out of time
+pub fn longest_palindrome_v2(s: String) -> String {
+    let mut res = String::new();
+    let l = s.len();
+    if l == 0 {
+        return res;
+    }
+
+    for i in 0..l - 1 {
+        for j in i..l {
+            let sub_l = j - i + 1;
+            if sub_l > res.len() && s[i..=i] == s[j..=j] && is_palindrome(&s[i..=j]) {
+                res = s[i..=j].to_owned();
+            }
+        }
+    }
+
+    res
+}
+
+fn is_palindrome(s: &str) -> bool {
+    let l = s.len();
+    for i in 0..l / 2 {
+        let j = l - i - 1;
+        if s[i..=i] != s[j..=j] {
+            return false;
+        }
+    }
+    true
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -42,6 +71,16 @@ mod tests {
         assert_eq!(
             String::from("aba"),
             longest_palindrome(String::from("babad"))
+        );
+
+        assert_eq!(
+            String::from("bab"),
+            longest_palindrome_v2(String::from("babad"))
+        );
+        assert_eq!(String::from(""), longest_palindrome_v2(String::from("")));
+        assert_eq!(
+            String::from("bb"),
+            longest_palindrome_v2(String::from("cbbd"))
         );
     }
 }
