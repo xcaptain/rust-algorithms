@@ -1,4 +1,7 @@
-use std::char;
+//! Implement a method to perform basic string compression using the counts
+//! of repeated characters. For example, the string aabcccccaaa would become a2blc5a3. If the
+//! "compressed" string would not become smaller than the original string, your method should return
+//! the original string. You can assume the string has only uppercase and lowercase letters (a - z).
 
 pub fn compress(s1: String) -> String {
     let mut res = String::new();
@@ -15,16 +18,16 @@ pub fn compress(s1: String) -> String {
             curr_num += 1;
         } else {
             if curr_num > 0 {
-                res.push(curr_char);
-                res.push(char::from_digit(curr_num, 10).unwrap());
+                res.push_str(format!("{}", curr_char).as_str());
+                res.push_str(format!("{}", curr_num).as_str());
             }
             curr_char = c;
             curr_num = 1;
         }
     }
     if curr_num > 0 && curr_char != '0' {
-        res.push(curr_char);
-        res.push(char::from_digit(curr_num, 10).unwrap());
+        res.push_str(format!("{}", curr_char).as_str());
+        res.push_str(format!("{}", curr_num).as_str());
     }
 
     if res.len() >= s1.len() {
@@ -39,7 +42,32 @@ mod tests {
 
     #[test]
     fn test_compress() {
-        assert_eq!("a2b1c5a3", compress(String::from("aabcccccaaa")));
-        assert_eq!("abcdef", compress(String::from("abcdef")));
+        struct Args {
+            s: String,
+        }
+        struct Test {
+            name: String,
+            args: Args,
+            want: String,
+        }
+        let tests = vec![
+            Test {
+                name: String::from("case1"),
+                args: Args {
+                    s: String::from("aabcccccaaa"),
+                },
+                want: String::from("a2b1c5a3"),
+            },
+            Test {
+                name: String::from("case2"),
+                args: Args {
+                    s: String::from("abcdef"),
+                },
+                want: String::from("abcdef"),
+            },
+        ];
+        for test in tests {
+            assert_eq!(test.want, compress(test.args.s), "{} fails", test.name);
+        }
     }
 }

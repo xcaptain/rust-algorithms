@@ -1,3 +1,10 @@
+//! Given a string, write a function to check if it is a permutation of a palindrome.
+//! A palindrome is a word or phrase that is the same forwards and backwards. A permutation
+//! is a rearrangement of letters. The palindrome does not need to be limited to just dictionary words.
+//! EXAMPLE
+//! Input: Tact Coa
+//! Output: True (permutations: "taco cat", "atco eta", etc.)
+
 use std::collections::HashMap;
 
 /// 校验这个字符串是否是一个回文串的排列
@@ -41,22 +48,63 @@ mod tests {
 
     #[test]
     fn test_is_palindrome_permutation() {
-        assert_eq!(true, is_palindrome_permutation(String::from("T a c t Coa")));
-        assert_eq!(
-            true,
-            is_palindrome_permutation(String::from("jhsabckuj ahjsbckj"))
-        );
-        assert_eq!(
-            true,
-            is_palindrome_permutation(String::from("Able was I ere I saw Elba"))
-        );
-        assert_eq!(
-            false,
-            is_palindrome_permutation(String::from("So patient a nurse to nurse a patient so"))
-        );
-        assert_eq!(
-            false,
-            is_palindrome_permutation(String::from("Random Words"))
-        );
+        #[derive(Debug, Clone)]
+        struct Args {
+            s: String,
+        }
+        #[derive(Debug, Clone)]
+        struct Test {
+            name: String,
+            args: Args,
+            want: bool,
+        }
+        let tests: Vec<Test> = vec![
+            Test {
+                name: String::from("case1"),
+                args: Args {
+                    s: String::from("T a c t Coa"),
+                },
+                want: true,
+            },
+            Test {
+                name: String::from("case2"),
+                args: Args {
+                    s: String::from("jhsabckuj ahjsbckj"),
+                },
+                want: true,
+            },
+            Test {
+                name: String::from("case3"),
+                args: Args {
+                    s: String::from("Able was I ere I saw Elba"),
+                },
+                want: true,
+            },
+            Test {
+                name: String::from("case4"),
+                args: Args {
+                    s: String::from("Random Words"),
+                },
+                want: false,
+            },
+            Test {
+                name: String::from("case5"),
+                args: Args {
+                    s: String::from("So patient a nurse to nurse a patient so"),
+                },
+                want: false,
+            },
+        ];
+
+        {
+            for test in tests {
+                assert_eq!(
+                    test.want,
+                    is_palindrome_permutation(test.args.s),
+                    "{} fails",
+                    test.name
+                );
+            }
+        }
     }
 }
