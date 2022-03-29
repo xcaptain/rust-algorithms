@@ -8,4 +8,5 @@ members = [
     "codeforces",
     "cc150",
     "dailycoding",
+    "cses",
 ]
