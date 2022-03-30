@@ -18,10 +18,10 @@ mod tests {
 
     #[test]
     fn test_p633() {
-        assert_eq!(true, judge_square_sum(8));
-        assert_eq!(true, judge_square_sum(5));
-        assert_eq!(true, judge_square_sum(4));
+        assert!(judge_square_sum(8));
+        assert!(judge_square_sum(5));
+        assert!(judge_square_sum(4));
         assert_eq!(false, judge_square_sum(3));
-        assert_eq!(true, judge_square_sum(1));
+        assert!(judge_square_sum(1));
     }
 }

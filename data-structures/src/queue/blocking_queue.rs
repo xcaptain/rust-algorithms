@@ -1,18 +1,13 @@
 //! rust blocking queue, a better implementation can be found at
 //! https://github.com/crossbeam-rs/crossbeam/blob/master/crossbeam-queue/src/array_queue.rs
+
+#[derive(Default)]
 pub struct BlockingQueue<T> {
     pub data: Vec<T>,
     pub is_blocking: bool,
 }
 
 impl<T> BlockingQueue<T> {
-    pub fn new() -> Self {
-        BlockingQueue {
-            data: Vec::new(),
-            is_blocking: false,
-        }
-    }
-
     /// push element into the queue, if the queue is blocked, then return error
     /// if not we can do the push and set status to blocked
     pub fn push(&mut self, t: T) -> Result<(), &str> {
@@ -43,7 +38,7 @@ mod tests {
 
     #[test]
     fn test_blocking_queue() {
-        let q = Arc::new(Mutex::new(BlockingQueue::new()));
+        let q = Arc::new(Mutex::new(BlockingQueue::default()));
         // create a thread, main thread push and another thread pop
         q.as_ref().lock().unwrap().push(1).unwrap();
         spawn(move || {

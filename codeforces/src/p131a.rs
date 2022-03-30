@@ -7,7 +7,7 @@ pub fn solution_of_p131a(input: &mut dyn Read, out: &mut dyn Write) {
     let mut scanner = Scanner::new(input);
     let line = scanner.next_line::<String>();
     if line.len() == 1 {
-        let c = line.chars().nth(0).unwrap();
+        let c = line.chars().next().unwrap();
         if c.is_ascii_uppercase() {
             write!(out, "{}", line.to_ascii_lowercase()).ok();
         } else {
@@ -38,7 +38,7 @@ fn only_uppercase(s: &str) -> bool {
 }
 
 fn uppercase_except_first(s: &str) -> bool {
-    let first_c = s.chars().nth(0).unwrap();
+    let first_c = s.chars().next().unwrap();
     if first_c.is_ascii_uppercase() {
         return false;
     }

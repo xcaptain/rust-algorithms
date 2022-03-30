@@ -25,7 +25,7 @@ mod tests {
 
     #[test]
     fn test_p365() {
-        assert_eq!(true, can_measure_water(3, 5, 4));
+        assert!(can_measure_water(3, 5, 4));
         assert_eq!(false, can_measure_water(2, 6, 5));
     }
 }

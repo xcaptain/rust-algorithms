@@ -14,7 +14,7 @@ pub fn my_atoi(s: String) -> i32 {
         } else if c == '+' {
             i += 1;
             break;
-        } else if c >= '0' && c <= '9' {
+        } else if ('0'..='9').contains(&c) {
             // start with number, valid
             break;
         } else {
@@ -24,7 +24,7 @@ pub fn my_atoi(s: String) -> i32 {
     let mut result: i64 = 0;
     while i < s.len() {
         let c = s.chars().nth(i).unwrap();
-        if c < '0' || c > '9' {
+        if !('0'..='9').contains(&c) {
             break;
         } else {
             let d = i32::from((c as u8) - b'0') * sign;

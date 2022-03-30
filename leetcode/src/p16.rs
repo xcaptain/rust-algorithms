@@ -5,7 +5,7 @@ use std::cmp::{Ord, Ordering};
 pub fn three_sum_closest(nums: Vec<i32>, target: i32) -> i32 {
     let mut ans = nums[0] + nums[1] + nums[2];
     let mut nums = nums;
-    nums.sort(); // asc order
+    nums.sort_unstable(); // asc order
     let l = nums.len();
     for i in 0..l {
         let mut left = i + 1;

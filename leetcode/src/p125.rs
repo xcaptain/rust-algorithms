@@ -37,6 +37,6 @@ mod tests {
             is_palindrome(String::from("A man, a plan, a canal: Panama"))
         );
         assert_eq!(false, is_palindrome(String::from("race a car")));
-        assert_eq!(true, is_palindrome(String::from("")));
+        assert!(is_palindrome(String::from("")));
     }
 }

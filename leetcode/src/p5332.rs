@@ -23,9 +23,9 @@ mod tests {
 
     #[test]
     fn test_p5332() {
-        assert_eq!(true, check_if_exist(vec![10, 2, 5, 3]));
-        assert_eq!(true, check_if_exist(vec![7, 1, 14, 11]));
-        assert_eq!(true, check_if_exist(vec![0, 0]));
+        assert!(check_if_exist(vec![10, 2, 5, 3]));
+        assert!(check_if_exist(vec![7, 1, 14, 11]));
+        assert!(check_if_exist(vec![0, 0]));
         assert_eq!(false, check_if_exist(vec![0]));
         assert_eq!(false, check_if_exist(vec![3, 1, 7, 11]));
         assert_eq!(false, check_if_exist(vec![-2, 0, 10, -19, 4, 6, -8]));

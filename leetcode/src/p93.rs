@@ -12,7 +12,7 @@ pub fn restore_ip_addresses(s: String) -> Vec<String> {
     res.iter().map(|row| row.join(".")).collect::<Vec<String>>()
 }
 
-fn backtrack(ip: &String, start: usize, end: usize, cur: Vec<String>, res: &mut Vec<Vec<String>>) {
+fn backtrack(ip: &str, start: usize, end: usize, cur: Vec<String>, res: &mut Vec<Vec<String>>) {
     if end == start {
         // println!("cur: {:?}", cur);
         if cur.len() == 4 {
@@ -31,7 +31,7 @@ fn backtrack(ip: &String, start: usize, end: usize, cur: Vec<String>, res: &mut 
         backtrack(ip, start + 2, end, new_cur, res);
     }
     if start + 2 < end && is_ip_seg(&ip[start..=start + 2]) {
-        let mut new_cur = cur.clone();
+        let mut new_cur = cur;
         new_cur.push(ip[start..=start + 2].to_owned());
         backtrack(ip, start + 3, end, new_cur, res);
     }

@@ -14,6 +14,6 @@ mod tests {
 
     #[test]
     fn test_is_leap_year() {
-        assert_eq!(true, is_leap_year(2004));
+        assert!(is_leap_year(2004));
     }
 }

@@ -1,5 +1,7 @@
 // https://leetcode-cn.com/problems/third-maximum-number/
 
+use std::cmp::Ordering;
+
 pub fn third_max(nums: Vec<i32>) -> i32 {
     let mut nums = nums;
     nums.sort_by(|a, b| b.cmp(a)); // 降序
@@ -17,17 +19,23 @@ pub fn third_max_v2(nums: Vec<i32>) -> i32 {
 
     for num in nums {
         if num > third {
-            if num < second {
-                third = num;
-            } else if num > second {
-                if num < first {
-                    third = second;
-                    second = num;
-                } else if num > first {
-                    third = second;
-                    second = first;
-                    first = num;
+            match num.cmp(&second) {
+                Ordering::Less => {
+                    third = num;
                 }
+                Ordering::Greater => match num.cmp(&first) {
+                    Ordering::Less => {
+                        third = second;
+                        second = num;
+                    }
+                    Ordering::Greater => {
+                        third = second;
+                        second = first;
+                        first = num;
+                    }
+                    Ordering::Equal => {}
+                },
+                Ordering::Equal => {}
             }
         }
     }

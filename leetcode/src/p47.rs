@@ -7,7 +7,7 @@ pub fn permute_unique(nums: Vec<i32>) -> Vec<Vec<i32>> {
 }
 
 fn backtrack(prefix: Vec<i32>, cur: Vec<i32>, res: &mut Vec<Vec<i32>>) {
-    if cur.len() == 0 {
+    if cur.is_empty() {
         if !res.contains(&prefix) {
             res.push(prefix);
         }

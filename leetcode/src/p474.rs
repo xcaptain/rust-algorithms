@@ -23,7 +23,7 @@ pub fn find_max_form(strs: Vec<String>, m: i32, n: i32) -> i32 {
 fn zeroandones(s: String) -> [i32; 2] {
     let mut zeros: i32 = 0;
     let mut ones: i32 = 0;
-    for c in s.chars().into_iter() {
+    for c in s.chars() {
         if c == '0' {
             zeros += 1;
         } else {

@@ -35,12 +35,13 @@ pub fn level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
             for _i in 0..l {
                 let node = q.pop_front().unwrap();
                 t.push(node.borrow().val);
-                node.borrow().left.as_ref().map(|v| {
+                let borrowed_node = node.borrow();
+                if let Some(v) = borrowed_node.left.as_ref() {
                     q.push_back(Rc::clone(v));
-                });
-                node.borrow().right.as_ref().map(|v| {
+                }
+                if let Some(v) = borrowed_node.right.as_ref() {
                     q.push_back(Rc::clone(v));
-                });
+                }
             }
             res.push(t);
         }

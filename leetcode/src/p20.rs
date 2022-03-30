@@ -33,11 +33,11 @@ mod tests {
 
     #[test]
     fn test_is_valid() {
-        assert_eq!(true, is_valid("()".to_string()));
-        assert_eq!(true, is_valid("()[]{}".to_string()));
+        assert!(is_valid("()".to_string()));
+        assert!(is_valid("()[]{}".to_string()));
         assert_eq!(false, is_valid("(]".to_string()));
         assert_eq!(false, is_valid("([)]".to_string()));
-        assert_eq!(true, is_valid("{[]}".to_string()));
+        assert!(is_valid("{[]}".to_string()));
         assert_eq!(false, is_valid("([]".to_string()));
         assert_eq!(false, is_valid("(])".to_string()));
     }

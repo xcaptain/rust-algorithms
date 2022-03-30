@@ -6,9 +6,9 @@ pub fn rotate_matrix(mat: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     let mut res = mat.clone();
     let size = mat.len();
 
-    for i in 0..size {
-        for j in 0..size {
-            res[j][size - i - 1] = mat[i][j];
+    for (i, row) in mat.iter().enumerate().take(size) {
+        for (j, col) in res.iter_mut().enumerate().take(size) {
+            col[size - i - 1] = row[j];
         }
     }
     res

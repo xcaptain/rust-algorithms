@@ -31,11 +31,11 @@ fn traversal(root: Option<Rc<RefCell<TreeNode>>>, res: &mut Vec<i32>) {
     if let Some(cur_node) = root {
         let ref_node = Rc::try_unwrap(cur_node).unwrap();
         let tree_node = ref_node.into_inner();
-        if !tree_node.left.is_none() {
+        if tree_node.left.is_some() {
             traversal(tree_node.left, res);
         }
         res.push(tree_node.val);
-        if !tree_node.right.is_none() {
+        if tree_node.right.is_some() {
             traversal(tree_node.right, res);
         }
     }

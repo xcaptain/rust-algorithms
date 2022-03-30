@@ -11,7 +11,7 @@ pub fn subsets_with_dup(nums: Vec<i32>) -> Vec<Vec<i32>> {
     res
 }
 
-fn subsets_with_length(nums: &Vec<i32>, k: usize) -> Vec<Vec<i32>> {
+fn subsets_with_length(nums: &[i32], k: usize) -> Vec<Vec<i32>> {
     let l = nums.len();
     let mut res = vec![];
     backtrack(nums, &mut res, vec![], 0, l, k);
@@ -19,7 +19,7 @@ fn subsets_with_length(nums: &Vec<i32>, k: usize) -> Vec<Vec<i32>> {
 }
 
 fn backtrack(
-    nums: &Vec<i32>,
+    nums: &[i32],
     res: &mut Vec<Vec<i32>>,
     cur: Vec<i32>,
     start: usize,
@@ -28,7 +28,7 @@ fn backtrack(
 ) {
     if cur.len() == k {
         let mut cur = cur;
-        cur.sort();
+        cur.sort_unstable();
         if !res.contains(&cur) {
             res.push(cur);
         }

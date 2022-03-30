@@ -2,7 +2,7 @@
 
 pub fn min_increment_for_unique(a: Vec<i32>) -> i32 {
     let mut a = a;
-    a.sort(); // 升序排列
+    a.sort_unstable(); // 升序排列
     let l = a.len();
     if l <= 1 {
         return 0;

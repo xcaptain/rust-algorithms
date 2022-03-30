@@ -35,7 +35,7 @@ mod tests {
 
     #[test]
     fn test_is_no_zero_integer() {
-        assert_eq!(true, is_no_zero_integer(9));
+        assert!(is_no_zero_integer(9));
         assert_eq!(false, is_no_zero_integer(1010));
     }
 }

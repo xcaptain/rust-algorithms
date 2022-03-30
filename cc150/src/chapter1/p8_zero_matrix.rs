@@ -5,19 +5,19 @@ pub fn zero_matrix(matrix: &mut Vec<Vec<i32>>) {
     let m = matrix.len(); // mxn matrix, row len
     let n = matrix[0].len(); // col len
 
-    for i in 0..m {
-        for j in 0..n {
-            if matrix[i][j] == 0 {
+    for (i, row) in matrix.iter().enumerate().take(m) {
+        for (j, val) in row.iter().enumerate().take(n) {
+            if val == &0 {
                 zero_x.push(i);
                 zero_y.push(j);
             }
         }
     }
 
-    for i in 0..m {
-        for j in 0..n {
+    for (i, row) in matrix.iter_mut().enumerate().take(m) {
+        for (j, val) in row.iter_mut().enumerate().take(n) {
             if zero_x.contains(&i) || zero_y.contains(&j) {
-                matrix[i][j] = 0;
+                *val = 0;
             }
         }
     }

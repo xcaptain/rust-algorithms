@@ -32,19 +32,19 @@ fn bfs_traverse(t: Tree<i32>) -> Vec<(usize, Option<i32>, i32)> {
         let l = q.len();
         for _i in 0..l {
             let (cur_node, parent_val) = q.pop_front().unwrap();
-            let cur_val = cur_node.borrow().elem.clone();
+            let cur_val = cur_node.borrow().elem;
             res.push((depth, parent_val, cur_val));
 
             // if the current node has children, then push these children into
             // the queue, so we can continue traverse down the tree.
             // note: using map here is simpler than using match
-            cur_node.borrow().left.as_ref().map(|v| {
+            let borrowed_cur_node = cur_node.borrow();
+            if let Some(v) = borrowed_cur_node.left.as_ref() {
                 q.push_back((Rc::clone(v), Some(cur_val)));
-            });
-
-            cur_node.borrow().right.as_ref().map(|v| {
+            }
+            if let Some(v) = borrowed_cur_node.right.as_ref() {
                 q.push_back((Rc::clone(v), Some(cur_val)));
-            });
+            }
         }
 
         depth += 1;

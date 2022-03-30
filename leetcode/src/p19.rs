@@ -30,12 +30,10 @@ pub fn remove_nth_from_end(head: Option<Box<ListNode>>, n: i32) -> Option<Box<Li
     let mut i = 1;
     while let Some(node) = cur_node.as_mut() {
         if i == l - n {
-            if node.next.is_none() {
-                return None;
-            }
-            node.next.take().map(|next_node| {
+            node.next.as_ref()?;
+            if let Some(next_node) = node.next.take() {
                 node.next = next_node.next;
-            });
+            }
         }
         cur_node = &mut node.next;
         i += 1;

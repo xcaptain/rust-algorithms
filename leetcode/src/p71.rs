@@ -6,7 +6,7 @@ pub fn simplify_path(path: String) -> String {
     for s in arr {
         if !st.is_empty() && s == ".." {
             st.pop();
-        } else if s != "" && s != "." && s != ".." {
+        } else if !s.is_empty() && s != "." && s != ".." {
             st.push(s)
         }
     }

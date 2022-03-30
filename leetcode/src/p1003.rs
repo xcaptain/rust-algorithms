@@ -8,7 +8,7 @@ pub fn is_valid(s: String) -> bool {
             return false;
         }
         s = ns;
-        if s == "" || s == "abc" {
+        if s.is_empty() || s == "abc" {
             return true;
         }
     }
@@ -42,13 +42,13 @@ mod tests {
 
     #[test]
     fn test_p1003() {
-        assert_eq!(true, is_valid(String::from("aabcbc")));
-        assert_eq!(true, is_valid(String::from("abcabcababcc")));
+        assert!(is_valid(String::from("aabcbc")));
+        assert!(is_valid(String::from("abcabcababcc")));
         assert_eq!(false, is_valid(String::from("abccba")));
         assert_eq!(false, is_valid(String::from("cababc")));
 
-        assert_eq!(true, is_valid_v2(String::from("aabcbc")));
-        assert_eq!(true, is_valid_v2(String::from("abcabcababcc")));
+        assert!(is_valid_v2(String::from("aabcbc")));
+        assert!(is_valid_v2(String::from("abcabcababcc")));
         assert_eq!(false, is_valid_v2(String::from("abccba")));
         assert_eq!(false, is_valid_v2(String::from("cababc")));
     }

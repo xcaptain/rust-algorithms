@@ -16,12 +16,10 @@ pub fn number_decode(s: String) -> usize {
             } else {
                 return 0; // 30, 40... illeagle, return 0
             }
+        } else if &s[i - 1..=i - 1] == "1" || (&s[i - 1..=i - 1] == "2" && &s[i..=i] <= "6") {
+            dp[i + 1] = dp[i] + dp[i - 1]; // 1x, 2..6, 2 methods adds up
         } else {
-            if &s[i - 1..=i - 1] == "1" || (&s[i - 1..=i - 1] == "2" && &s[i..=i] <= "6") {
-                dp[i + 1] = dp[i] + dp[i - 1]; // 1x, 2..6, 2 methods adds up
-            } else {
-                dp[i + 1] = dp[i]; // 0x, 27, 28, 29, 3x..
-            }
+            dp[i + 1] = dp[i]; // 0x, 27, 28, 29, 3x..
         }
     }
 

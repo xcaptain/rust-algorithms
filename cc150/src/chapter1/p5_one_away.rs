@@ -28,7 +28,7 @@ fn one_edit_edit(s1: String, s2: String) -> bool {
     let mut edited = false;
     for i in 0..s1.len() {
         if s1[i..=i] != s2[i..=i] {
-            if edited == true {
+            if edited {
                 return false;
             }
             edited = true;
@@ -45,7 +45,7 @@ fn one_edit_insert(shorter: String, longer: String) -> bool {
     let mut j = 0;
     while i < shorter.len() && j < longer.len() {
         if shorter[i..=i] != longer[j..=j] {
-            if edited == true {
+            if edited {
                 return false;
             }
             j += 1;

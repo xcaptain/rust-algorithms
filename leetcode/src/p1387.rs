@@ -4,14 +4,12 @@ use std::collections::HashMap;
 
 pub fn get_kth(lo: i32, hi: i32, k: i32) -> i32 {
     let mut num_and_steps: Vec<(i32, i32)> = vec![(0, 0); (hi - lo + 1) as usize];
-    let mut idx = 0;
     let mut step_and_counts: HashMap<i32, i32> = HashMap::new();
-    for item in lo..=hi {
+    for (idx, item) in (lo..=hi).enumerate() {
         let step = get_steps(item);
         num_and_steps[idx] = (item, step);
         let counter = step_and_counts.entry(step).or_insert(0);
         *counter += 1;
-        idx += 1;
     }
 
     num_and_steps.sort_by(|a, b| a.1.cmp(&b.1));
@@ -33,14 +31,12 @@ pub fn get_kth(lo: i32, hi: i32, k: i32) -> i32 {
 
 pub fn get_kth_1(lo: i32, hi: i32, k: i32) -> i32 {
     let mut num_and_steps: Vec<(i32, i32)> = vec![(0, 0); (hi - lo + 1) as usize];
-    let mut idx = 0;
     let mut step_and_counts: HashMap<i32, i32> = HashMap::new();
-    for item in lo..=hi {
+    for (idx, item) in (lo..=hi).enumerate() {
         let step = get_steps(item);
         num_and_steps[idx] = (item, step);
         let counter = step_and_counts.entry(step).or_insert(0);
         *counter += 1;
-        idx += 1;
     }
 
     num_and_steps.sort_by(|a, b| {

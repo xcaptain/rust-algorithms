@@ -7,7 +7,7 @@ pub fn get_permutation(n: i32, k: i32) -> String {
     backtrack(&mut res, vec![], arr);
 
     // res.iter().map(|e| e.to_string()).collect::<Vec<String>>().join("")
-    res.sort();
+    res.sort_unstable();
     let ans = res[k as usize - 1].clone();
     ans.iter()
         .map(|e| e.to_string())
@@ -16,7 +16,7 @@ pub fn get_permutation(n: i32, k: i32) -> String {
 }
 
 fn backtrack(res: &mut Vec<Vec<i32>>, prefix: Vec<i32>, cur: Vec<i32>) {
-    if cur.len() == 0 {
+    if cur.is_empty() {
         res.push(prefix);
     } else {
         for i in 0..cur.len() {

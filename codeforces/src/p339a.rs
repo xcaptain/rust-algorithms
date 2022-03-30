@@ -11,7 +11,7 @@ pub fn solution_of_p339a(input: &mut dyn Read, out: &mut dyn Write) {
         .split('+')
         .map(|e| e.parse::<usize>().unwrap())
         .collect();
-    arr.sort(); // asc
+    arr.sort_unstable(); // asc
 
     let arr2: Vec<String> = arr.into_iter().map(|e: usize| e.to_string()).collect();
     let res = arr2.join("+");

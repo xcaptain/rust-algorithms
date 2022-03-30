@@ -19,8 +19,8 @@ pub fn exist(board: Vec<Vec<char>>, word: String) -> bool {
 }
 
 fn backtrack(
-    board: &Vec<Vec<char>>,
-    word_arr: &Vec<char>,
+    board: &[Vec<char>],
+    word_arr: &[char],
     marked: &mut Vec<Vec<bool>>,
     start: usize,
     end: usize,
@@ -45,11 +45,10 @@ fn backtrack(
                 && cur_i < rows as i32
                 && cur_j >= 0
                 && cur_j < cols as i32
-                && marked[cur_i as usize][cur_j as usize] == false
+                && !marked[cur_i as usize][cur_j as usize]
+                && backtrack(board, word_arr, marked, start + 1, end, cur_i, cur_j)
             {
-                if backtrack(board, word_arr, marked, start + 1, end, cur_i, cur_j) {
-                    return true;
-                }
+                return true;
             }
         }
         marked[i as usize][j as usize] = false;
@@ -69,8 +68,8 @@ mod tests {
             vec!['S', 'F', 'C', 'S'],
             vec!['A', 'D', 'E', 'E'],
         ];
-        assert_eq!(true, exist(matrix1.clone(), String::from("ABCCED")));
-        assert_eq!(true, exist(matrix1.clone(), String::from("SEE")));
-        assert_eq!(false, exist(matrix1.clone(), String::from("ABCB")));
+        assert!(exist(matrix1.clone(), String::from("ABCCED")));
+        assert!(exist(matrix1.clone(), String::from("SEE")));
+        assert_eq!(false, exist(matrix1, String::from("ABCB")));
     }
 }

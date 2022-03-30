@@ -29,10 +29,10 @@ pub struct Decimal {
 impl Decimal {
     pub fn new(up: i32, down: i32) -> Self {
         let gcd = gcd1(up, down);
-        return Decimal {
+        Decimal {
             up: up / gcd,
             down: down / gcd,
-        };
+        }
     }
 }
 

@@ -27,9 +27,7 @@ fn dfs(grid: &mut Vec<Vec<i32>>, row: i32, col: i32) -> i32 {
     let rows = grid.len() as i32;
     let cols = grid[0].len() as i32;
 
-    if row == rows || row < 0 {
-        return 0;
-    } else if col == cols || col < 0 {
+    if row == rows || row < 0 || col == cols || col < 0 {
         return 0;
     }
     if grid[row as usize][col as usize] == 1 {
@@ -40,7 +38,7 @@ fn dfs(grid: &mut Vec<Vec<i32>>, row: i32, col: i32) -> i32 {
             + dfs(grid, row, col + 1)
             + dfs(grid, row, col - 1);
     }
-    return 0;
+    0
 }
 
 /// bfs using iteration, the common way is to add a `used` array
@@ -86,7 +84,7 @@ fn bfs(grid: &mut Vec<Vec<i32>>, row: i32, col: i32) -> i32 {
     // println!("used: {:?}", used);
 
     // return used.len() as i32;
-    return res;
+    res
 }
 
 // TODO: use bfs to search the graph

@@ -28,7 +28,7 @@ pub fn word_break_backtrack(s: String, word_dict: Vec<String>) -> bool {
 
     backtrack(&s, 0, s.len(), &word_dict, &mut res, vec![]);
 
-    res.len() > 0
+    !res.is_empty()
 }
 
 // OOT
@@ -36,7 +36,7 @@ fn backtrack(
     s: &str,
     start: usize,
     end: usize,
-    word_dict: &Vec<String>,
+    word_dict: &[String],
     res: &mut Vec<Vec<String>>,
     cur: Vec<String>,
 ) {

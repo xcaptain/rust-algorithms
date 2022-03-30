@@ -66,7 +66,7 @@ pub fn get_prime_factors(num: usize) -> Vec<usize> {
 /// get unique prime factors of num
 pub fn get_uniq_prime_factors(num: usize) -> Vec<usize> {
     let mut factors = get_prime_factors(num);
-    factors.sort();
+    factors.sort_unstable();
     factors.dedup();
     factors
 }
@@ -76,10 +76,10 @@ mod tests {
     use super::*;
     #[test]
     fn test_is_prime() {
-        assert_eq!(true, is_prime(2));
-        assert_eq!(true, is_prime(3));
-        assert_eq!(false, is_prime(4));
-        assert_eq!(true, is_prime(5));
+        assert!(is_prime(2));
+        assert!(is_prime(3));
+        assert!(!is_prime(4));
+        assert!(is_prime(5));
     }
 
     #[test]
@@ -112,6 +112,6 @@ mod tests {
 
     // #[test]
     // fn test_very_large_prime() { // 暂时不测试大素数
-    //     assert_eq!(true, is_prime(170141183460469231731687303715884105727));
+    //     assert!(is_prime(170141183460469231731687303715884105727));
     // }
 }

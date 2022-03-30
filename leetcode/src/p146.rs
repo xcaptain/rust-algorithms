@@ -23,7 +23,7 @@ impl LRUCache {
             self.data.push_front(data);
             return data.1;
         }
-        return -1;
+        -1
     }
 
     pub fn put(&mut self, key: i32, value: i32) {

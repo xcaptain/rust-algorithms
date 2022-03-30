@@ -13,16 +13,16 @@ pub fn lis_v1(arr: Vec<i32>) -> usize {
     res
 }
 
-fn backtrack_v1(arr: &Vec<i32>, prev: i32, start: usize, end: usize) -> usize {
+fn backtrack_v1(arr: &[i32], prev: i32, start: usize, end: usize) -> usize {
     if start == end {
         return 1;
     }
     if arr[start] <= prev {
-        return backtrack_v1(arr, prev, start + 1, end);
+        backtrack_v1(arr, prev, start + 1, end)
     } else {
         let skip = backtrack_v1(arr, prev, start + 1, end);
         let take = backtrack_v1(arr, arr[start], start + 1, end) + 1;
-        return skip.max(take);
+        skip.max(take)
     }
 }
 
@@ -37,17 +37,17 @@ pub fn lis_v2(arr: Vec<i32>) -> usize {
     res
 }
 
-fn backtrack_v2(arr: &Vec<i32>, i: usize, j: usize) -> usize {
+fn backtrack_v2(arr: &[i32], i: usize, j: usize) -> usize {
     let n = arr.len();
     if j >= n {
         return 1;
     }
     if arr[i] >= arr[j] {
-        return backtrack_v2(arr, i, j + 1);
+        backtrack_v2(arr, i, j + 1)
     } else {
         let skip = backtrack_v2(arr, i, j + 1);
         let take = backtrack_v2(arr, j, j + 1) + 1;
-        return skip.max(take);
+        skip.max(take)
     }
 }
 
@@ -62,7 +62,7 @@ pub fn lis_v3(arr: Vec<i32>) -> usize {
     res
 }
 
-fn backtrack_v3(arr: &Vec<i32>, i: usize) -> usize {
+fn backtrack_v3(arr: &[i32], i: usize) -> usize {
     let n = arr.len();
     let mut best = 0;
     for j in i + 1..n {

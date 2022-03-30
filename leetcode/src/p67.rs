@@ -15,15 +15,15 @@ pub fn add_binary(a: String, b: String) -> String {
         let bv = (bb.chars().nth(i).unwrap() as u8) - b'0';
         let t = av + bv + adder;
         if t >= 2 {
-            res.insert(0, (t - 2).to_string().chars().nth(0).unwrap());
+            res.insert(0, (t - 2).to_string().chars().next().unwrap());
             adder = 1;
         } else {
-            res.insert(0, t.to_string().chars().nth(0).unwrap());
+            res.insert(0, t.to_string().chars().next().unwrap());
             adder = 0;
         }
     }
     if adder == 1 {
-        res.insert(0, adder.to_string().chars().nth(0).unwrap());
+        res.insert(0, adder.to_string().chars().next().unwrap());
     }
     res
 }

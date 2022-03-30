@@ -19,13 +19,13 @@ fn backtrack(s: String, res: &mut Vec<String>, cur: String, start: usize, end: u
     backtrack(s.clone(), res, new_cur1, start + 1, end);
 
     if c.is_ascii_alphabetic() {
-        let mut new_cur2 = cur.clone();
+        let mut new_cur2 = cur;
         if c.is_ascii_uppercase() {
             new_cur2.push(c.to_ascii_lowercase());
         } else {
             new_cur2.push(c.to_ascii_uppercase());
         }
-        backtrack(s.clone(), res, new_cur2, start + 1, end);
+        backtrack(s, res, new_cur2, start + 1, end);
     }
 }
 

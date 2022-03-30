@@ -32,12 +32,12 @@ mod tests {
 
     #[test]
     fn test_p9() {
-        assert_eq!(true, is_palindrome(0));
-        assert_eq!(true, is_palindrome(121));
+        assert!(is_palindrome(0));
+        assert!(is_palindrome(121));
         assert_eq!(false, is_palindrome(-121));
 
-        assert_eq!(true, is_palindrome_v2(0));
-        assert_eq!(true, is_palindrome_v2(121));
+        assert!(is_palindrome_v2(0));
+        assert!(is_palindrome_v2(121));
         assert_eq!(false, is_palindrome_v2(-121));
     }
 }

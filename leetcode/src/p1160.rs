@@ -2,14 +2,14 @@
 
 pub fn count_characters(words: Vec<String>, chars: String) -> i32 {
     let mut char_arr = chars.chars().collect::<Vec<char>>();
-    char_arr.sort();
+    char_arr.sort_unstable();
     let cl = char_arr.len();
     // let sorted_char = char_arr.iter().map(|x| x.to_string()).collect::<Vec<String>>().join("");
 
     let mut res = 0;
     for word in words {
         let mut word_arr = word.chars().collect::<Vec<char>>();
-        word_arr.sort();
+        word_arr.sort_unstable();
         // let sorted_word = word_arr.iter().map(|x| x.to_string()).collect::<Vec<String>>().join("");
         // println!("sorted_word: {}", sorted_word);
         let wdl = word_arr.len();

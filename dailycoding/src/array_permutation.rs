@@ -11,14 +11,14 @@ pub fn permute(arr: Vec<i32>) -> Vec<Vec<i32>> {
     res
 }
 
-fn backtrack(arr: &Vec<i32>, cur: Vec<i32>, res: &mut Vec<Vec<i32>>) {
-    if arr.len() == 0 {
+fn backtrack(arr: &[i32], cur: Vec<i32>, res: &mut Vec<Vec<i32>>) {
+    if arr.is_empty() {
         // let new_cur = vec![arr[0]];
         res.push(cur);
         return;
     }
     for i in 0..arr.len() {
-        let mut new_arr = arr.clone();
+        let mut new_arr = arr.to_owned();
         new_arr.remove(i);
 
         let mut new_cur = cur.clone();

@@ -27,10 +27,10 @@ mod tests {
 
     #[test]
     fn test_is_palindrome() {
-        assert_eq!(true, is_palindrome(3));
-        assert_eq!(true, is_palindrome(121));
-        assert_eq!(true, is_palindrome(888));
+        assert!(is_palindrome(3));
+        assert!(is_palindrome(121));
+        assert!(is_palindrome(888));
         assert_eq!(false, is_palindrome(678));
-        assert_eq!(true, is_palindrome(67876));
+        assert!(is_palindrome(67876));
     }
 }

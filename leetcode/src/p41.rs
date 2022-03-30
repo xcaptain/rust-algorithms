@@ -2,7 +2,7 @@
 
 pub fn first_missing_positive(nums: Vec<i32>) -> i32 {
     let mut nums = nums;
-    nums.sort();
+    nums.sort_unstable();
     let l = nums.len();
     for i in 0..l {
         while nums[i] != (i + 1) as i32 {

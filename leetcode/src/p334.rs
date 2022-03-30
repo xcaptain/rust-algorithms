@@ -43,12 +43,12 @@ mod tests {
     #[test]
     fn test_p334() {
         assert_eq!(false, increasing_triplet(vec![1]));
-        assert_eq!(true, increasing_triplet(vec![1, 2, 3, 4, 5]));
+        assert!(increasing_triplet(vec![1, 2, 3, 4, 5]));
         assert_eq!(false, increasing_triplet(vec![5, 4, 3, 2, 1]));
         assert_eq!(false, increasing_triplet(vec![1, 1, -2, 6]));
 
         assert_eq!(false, increasing_triplet_one_loop(vec![1]));
-        assert_eq!(true, increasing_triplet_one_loop(vec![1, 2, 3, 4, 5]));
+        assert!(increasing_triplet_one_loop(vec![1, 2, 3, 4, 5]));
         assert_eq!(false, increasing_triplet_one_loop(vec![5, 4, 3, 2, 1]));
         assert_eq!(false, increasing_triplet_one_loop(vec![1, 1, -2, 6]));
     }

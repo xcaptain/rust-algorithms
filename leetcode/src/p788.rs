@@ -48,7 +48,7 @@ fn to_good(mut num: i32) -> i32 {
             return -1;
         }
         num = (num - q) / 10;
-        res = 10_i32.pow(i) * new_q + res;
+        res += 10_i32.pow(i) * new_q;
         i += 1;
     }
     res

@@ -28,7 +28,7 @@ pub fn longest_subarray(arr: Vec<i32>) -> usize {
     res
 }
 
-fn find_dup_pos(arr: &Vec<i32>, start: usize, end: usize) -> Option<usize> {
+fn find_dup_pos(arr: &[i32], start: usize, end: usize) -> Option<usize> {
     for i in start..end {
         if arr[i] == arr[end] {
             return Some(i);

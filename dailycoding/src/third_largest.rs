@@ -1,3 +1,5 @@
+use std::cmp::Ordering;
+
 pub fn third_largest_elem(arr: Vec<i32>) -> i32 {
     let mut first = i32::min_value();
     for num in arr.iter() {
@@ -28,19 +30,21 @@ pub fn third_largest_elem_v2(arr: Vec<i32>) -> i32 {
     let mut third = i32::min_value();
 
     for num in arr {
-        if num > first {
-            third = second;
-            second = first;
-            first = num;
-        } else if num < first {
-            if num > second {
+        match num.cmp(&first) {
+            Ordering::Greater => {
                 third = second;
-                second = num;
-            } else if num < second {
-                if num > third {
+                second = first;
+                first = num;
+            }
+            Ordering::Less => {
+                if num > second {
+                    third = second;
+                    second = num;
+                } else if num < second && num > third {
                     third = num;
                 }
             }
+            _ => {}
         }
     }
     third

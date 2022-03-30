@@ -11,7 +11,7 @@ fn mask_email(s: String) -> String {
     let name1 = names[0].clone();
     let new_name1 = format!(
         "{}*****{}",
-        name1.chars().nth(0).unwrap(),
+        name1.chars().next().unwrap(),
         name1.chars().nth(name1.len() - 1).unwrap()
     );
     format!("{}@{}", new_name1, names[1])

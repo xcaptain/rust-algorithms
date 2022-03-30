@@ -62,13 +62,13 @@ pub fn binary_tree_paths_v2(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<String> 
             }
             if let Some(ref lft) = borrowed_node.left {
                 stack.push((
-                    Rc::clone(&lft),
+                    Rc::clone(lft),
                     path.clone() + "->" + lft.borrow().val.to_string().as_str(),
                 ));
             }
             if let Some(ref rht) = borrowed_node.right {
                 stack.push((
-                    Rc::clone(&rht),
+                    Rc::clone(rht),
                     path + "->" + rht.borrow().val.to_string().as_str(),
                 ));
             }

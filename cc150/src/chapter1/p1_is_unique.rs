@@ -20,7 +20,7 @@ pub fn is_unique_with_map(s: String) -> bool {
 /// 两遍循环判断是否有重复
 pub fn is_unique_no_extra_space(s: String) -> bool {
     let it = s.chars().enumerate();
-    for (i, c1) in it.into_iter() {
+    for (i, c1) in it {
         let it2 = s.chars().skip(i + 1).enumerate();
         for (_, c2) in it2 {
             if c1 == c2 {
@@ -87,7 +87,7 @@ mod tests {
             );
         }
 
-        for test in tests.clone() {
+        for test in tests {
             assert_eq!(
                 test.want,
                 is_unique_no_extra_space(test.args.s),

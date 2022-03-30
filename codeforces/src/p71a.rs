@@ -8,7 +8,7 @@ fn abbr(s: String) -> String {
     if l > 10 {
         return format!(
             "{}{}{}",
-            s.chars().nth(0).unwrap(),
+            s.chars().next().unwrap(),
             l - 2,
             s.chars().nth(l - 1).unwrap()
         );

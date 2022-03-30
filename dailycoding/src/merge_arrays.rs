@@ -1,7 +1,7 @@
 pub fn merge_arrays(arr: Vec<Vec<i32>>) -> Vec<i32> {
     let mut res = vec![];
-    for i in 0..arr.len() {
-        res = merge_2_arrays(res, arr[i].clone());
+    for item in &arr {
+        res = merge_2_arrays(res, item.to_owned());
     }
     res
 }
@@ -19,11 +19,11 @@ fn merge_2_arrays(a: Vec<i32>, b: Vec<i32>) -> Vec<i32> {
             j += 1;
         }
     }
-    for k in i..a.len() {
-        arr.push(a[k]);
+    for item in a.iter().skip(i) {
+        arr.push(item.to_owned());
     }
-    for k in j..b.len() {
-        arr.push(b[k]);
+    for item in b.iter().skip(j) {
+        arr.push(item.to_owned());
     }
     arr
 }

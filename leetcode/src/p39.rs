@@ -3,7 +3,7 @@
 pub fn combination_sum(candidates: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
     let mut res = vec![];
     let mut candidates = candidates;
-    candidates.sort();
+    candidates.sort_unstable();
     backtrack(candidates, target, &mut res, 0, vec![]);
     res
 }

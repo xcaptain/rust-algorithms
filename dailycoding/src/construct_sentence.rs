@@ -16,8 +16,8 @@ pub fn construct_sentence(s: String, words: Vec<String>) -> Vec<Vec<String>> {
 }
 
 fn backtrack(
-    s: &String,
-    words: &Vec<String>,
+    s: &str,
+    words: &[String],
     start: usize,
     cur: Vec<String>,
     res: &mut Vec<Vec<String>>,
@@ -29,7 +29,7 @@ fn backtrack(
     }
     for i in start..end {
         let sub_s = &s[start..=i].to_owned();
-        if words.contains(&sub_s) {
+        if words.contains(sub_s) {
             let mut new_cur = cur.clone();
             new_cur.push(sub_s.clone());
             backtrack(s, words, i + 1, new_cur, res);

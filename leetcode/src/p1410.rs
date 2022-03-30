@@ -9,29 +9,27 @@ pub fn entity_parser(text: String) -> String {
         if &text[i..=i] != "&" {
             res.push_str(&text[i..=i]);
             i += 1;
+        } else if i + 5 < l && &text[i..=i + 5] == "&quot;" {
+            res.push('\"');
+            i += 6;
+        } else if i + 5 < l && &text[i..=i + 5] == "&apos;" {
+            res.push('\'');
+            i += 6;
+        } else if i + 4 < l && &text[i..=i + 4] == "&amp;" {
+            res.push('&');
+            i += 5;
+        } else if i + 3 < l && &text[i..=i + 3] == "&gt;" {
+            res.push('>');
+            i += 4;
+        } else if i + 3 < l && &text[i..=i + 3] == "&lt;" {
+            res.push('<');
+            i += 4;
+        } else if i + 6 < l && &text[i..=i + 6] == "&frasl;" {
+            res.push('/');
+            i += 7;
         } else {
-            if i + 5 < l && &text[i..=i + 5] == "&quot;" {
-                res.push_str("\"");
-                i += 6;
-            } else if i + 5 < l && &text[i..=i + 5] == "&apos;" {
-                res.push_str("'");
-                i += 6;
-            } else if i + 4 < l && &text[i..=i + 4] == "&amp;" {
-                res.push_str("&");
-                i += 5;
-            } else if i + 3 < l && &text[i..=i + 3] == "&gt;" {
-                res.push_str(">");
-                i += 4;
-            } else if i + 3 < l && &text[i..=i + 3] == "&lt;" {
-                res.push_str("<");
-                i += 4;
-            } else if i + 6 < l && &text[i..=i + 6] == "&frasl;" {
-                res.push_str("/");
-                i += 7;
-            } else {
-                res.push_str("&");
-                i += 1;
-            }
+            res.push('&');
+            i += 1;
         }
     }
     res

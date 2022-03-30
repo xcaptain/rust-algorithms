@@ -54,8 +54,8 @@ mod tests {
             gcd_of_strings(String::from("LEET"), String::from("CODE"))
         );
 
-        assert_eq!(true, is_divisor("ABAB", "AB"));
+        assert!(is_divisor("ABAB", "AB"));
         assert_eq!(false, is_divisor("LEET", "CODE"));
-        assert_eq!(true, is_divisor("AAAAAAAAAA", "AAAAAAAAAA"));
+        assert!(is_divisor("AAAAAAAAAA", "AAAAAAAAAA"));
     }
 }

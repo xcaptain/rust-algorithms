@@ -43,7 +43,6 @@ fn dfs(root: Option<&Rc<RefCell<TreeNode>>>, res: &mut Vec<Vec<i32>>, mut cur: V
         cur.push(root_node.borrow().val);
         if root_node.borrow().left.is_none() && root_node.borrow().right.is_none() {
             res.push(cur);
-            return;
         } else {
             dfs(root_node.borrow().left.as_ref(), res, cur.clone());
             dfs(root_node.borrow().right.as_ref(), res, cur);

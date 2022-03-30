@@ -7,7 +7,7 @@ pub fn four_sum(nums: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
         return vec![];
     }
     let mut nums = nums;
-    nums.sort();
+    nums.sort_unstable();
     let mut res = vec![];
     for i in 0..nums.len() - 3 {
         if nums[i] + nums[i + 1] + nums[i + 2] + nums[i + 3] > target {

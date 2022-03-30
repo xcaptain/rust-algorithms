@@ -8,8 +8,7 @@ use std::io::{Read, Write};
 // the trick that convert Vec<char> to HashSet<char> is interesting
 pub fn solution_of_p236a(input: &mut dyn Read, out: &mut dyn Write) {
     let mut scanner = Scanner::new(input);
-    let arr: Vec<char> = scanner.next_line::<String>().chars().collect();
-    let uniq_arr: HashSet<char> = arr.into_iter().collect();
+    let uniq_arr: HashSet<char> = scanner.next_line::<String>().chars().collect();
     let res = uniq_arr.len();
     if res % 2 == 1 {
         write!(out, "IGNORE HIM!").ok();

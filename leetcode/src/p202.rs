@@ -27,8 +27,8 @@ mod tests {
 
     #[test]
     fn test_p202() {
-        assert_eq!(true, is_happy(19));
-        assert_eq!(true, is_happy(7));
+        assert!(is_happy(19));
+        assert!(is_happy(7));
         assert_eq!(false, is_happy(2));
     }
 }

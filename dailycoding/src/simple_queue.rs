@@ -32,19 +32,19 @@ impl<T: Clone + Default> Queue<T> {
 
     pub fn dequeue(&mut self) -> Option<T> {
         if self.end_ptr == 0 {
-            return None;
+            None
         } else {
             let first = self.data[0].clone();
             for i in 0..self.end_ptr - 1 {
                 self.data[i] = self.data[i + 1].clone();
             }
             self.end_ptr -= 1;
-            return Some(first);
+            Some(first)
         }
     }
 
     pub fn get_size(&self) -> usize {
-        return self.end_ptr;
+        self.end_ptr
     }
 }
 

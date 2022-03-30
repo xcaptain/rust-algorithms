@@ -6,7 +6,7 @@ pub fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
     let mut map: HashMap<String, Vec<String>> = HashMap::new();
     for s in strs {
         let mut ss: Vec<char> = s.chars().collect();
-        ss.sort();
+        ss.sort_unstable();
         let skey = ss
             .iter()
             .map(|c| c.to_string())
@@ -21,7 +21,7 @@ pub fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
         // println!("k: {}, v: {:?}", k, v);
         res.push(v);
     }
-    res.sort();
+    res.sort_unstable();
 
     res
 }

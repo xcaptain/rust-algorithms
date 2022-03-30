@@ -1,5 +1,5 @@
 use std::cell::RefCell;
-use std::cmp::Ord;
+use std::cmp::{Ord, Ordering};
 use std::collections::VecDeque;
 use std::fmt::Debug;
 use std::rc::Rc;
@@ -54,18 +54,16 @@ impl<T: Ord + Debug + Clone> TreeNode<T> {
     }
 
     pub fn find(&self, t: T) -> bool {
-        if self.elem == t {
-            return true;
-        } else if self.elem < t {
-            return match self.right.as_ref() {
+        match self.elem.cmp(&t) {
+            Ordering::Equal => true,
+            Ordering::Less => match self.right.as_ref() {
                 None => false,
                 Some(node) => node.borrow().find(t),
-            };
-        } else {
-            return match self.left.as_ref() {
+            },
+            Ordering::Greater => match self.left.as_ref() {
                 None => false,
                 Some(node) => node.borrow().find(t),
-            };
+            },
         }
     }
 }
@@ -118,12 +116,12 @@ impl<T: Ord + Debug + Clone> Tree<T> {
     fn inorder_traverse_helper(root: Option<&Rc<RefCell<TreeNode<T>>>>, res: &mut Vec<T>) {
         if let Some(cur_node) = root {
             let tree_node = cur_node.borrow_mut();
-            if !tree_node.left.is_none() {
+            if tree_node.left.is_some() {
                 Self::inorder_traverse_helper(tree_node.left.as_ref(), res);
             }
             // println!("elem: {:?}", tree_node.elem);
             res.push(tree_node.elem.clone());
-            if !tree_node.right.is_none() {
+            if tree_node.right.is_some() {
                 Self::inorder_traverse_helper(tree_node.right.as_ref(), res);
             }
         }
@@ -146,19 +144,18 @@ impl<T: Ord + Debug + Clone> Tree<T> {
             // if the current node has children, then push these children into
             // the queue, so we can continue traverse down the tree.
             // note: using map here is simpler than using match
-            cur_node.borrow().left.as_ref().map(|v| {
+            let borrowed_cur_node = cur_node.borrow();
+            if let Some(v) = borrowed_cur_node.left.as_ref() {
                 q.push_back(Rc::clone(v));
-            });
-
-            cur_node.borrow().right.as_ref().map(|v| {
+            }
+            if let Some(v) = borrowed_cur_node.right.as_ref() {
                 q.push_back(Rc::clone(v));
-            });
+            }
         }
         res
     }
 
     /// 深度遍历二叉树，也就是说如果某个结点有子结点则往下遍历
-    ///
     ///     1
     ///       2
     ///         3
@@ -229,7 +226,7 @@ impl<T: Ord + Debug + Clone> Tree<T> {
         if l < k {
             return None;
         }
-        return Some(arr[l - k].clone());
+        Some(arr[l - k].clone())
     }
 }
 
@@ -262,9 +259,9 @@ mod tests {
         assert_eq!(Some(2), tree1.peek().map(|node| node.borrow().elem));
 
         // modify the root node element, before is 2 now is 3
-        tree1.peek().map(|node| {
+        if let Some(node) = tree1.peek() {
             node.borrow_mut().elem = 3;
-        });
+        }
         assert_eq!(Some(3), tree1.peek().map(|node| node.borrow().elem));
     }
 
@@ -311,12 +308,12 @@ mod tests {
     #[test]
     fn test_find() {
         let mut tree1 = Tree::from_vec(vec![2, 1, 3, 2]);
-        assert_eq!(true, tree1.find(2));
-        assert_eq!(true, tree1.find(3));
+        assert!(tree1.find(2));
+        assert!(tree1.find(3));
         assert_eq!(false, tree1.find(4));
 
         tree1.insert(4);
-        assert_eq!(true, tree1.find(4));
+        assert!(tree1.find(4));
     }
 
     #[test]

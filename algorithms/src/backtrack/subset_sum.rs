@@ -7,7 +7,7 @@ pub fn subset_sum_v1(arr: Vec<usize>, target: usize) -> Vec<Vec<usize>> {
 }
 
 fn backtrack_v1(
-    arr: &Vec<usize>,
+    arr: &[usize],
     target: usize,
     start: usize,
     end: usize,

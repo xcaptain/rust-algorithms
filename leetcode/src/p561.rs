@@ -2,7 +2,7 @@
 
 pub fn array_pair_sum(nums: Vec<i32>) -> i32 {
     let mut nums = nums;
-    nums.sort();
+    nums.sort_unstable();
     let mut res = 0;
     for (k, v) in nums.iter().enumerate() {
         if k % 2 == 0 {

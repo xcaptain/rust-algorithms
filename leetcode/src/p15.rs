@@ -7,7 +7,7 @@ pub fn three_sum(nums: Vec<i32>) -> Vec<Vec<i32>> {
         return vec![];
     }
     let mut nums = nums;
-    nums.sort();
+    nums.sort_unstable();
     let mut res = vec![];
     for i in 0..nums.len() - 2 {
         let mut l = i + 1;
@@ -55,7 +55,7 @@ pub fn three_sum_v2(nums: Vec<i32>) -> Vec<Vec<i32>> {
             for k in j + 1..l {
                 if nums[i] + nums[j] + nums[k] == 0 {
                     let mut t = vec![nums[i], nums[j], nums[k]];
-                    t.sort();
+                    t.sort_unstable();
                     if !res.contains(&t) {
                         res.push(t);
                     }

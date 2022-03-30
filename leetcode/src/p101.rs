@@ -111,7 +111,7 @@ mod tests {
                 right: None,
             }))),
         })));
-        assert_eq!(true, is_symmetric(t1));
+        assert!(is_symmetric(t1));
         assert_eq!(false, is_symmetric(t2));
     }
 }

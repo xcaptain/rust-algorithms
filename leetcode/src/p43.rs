@@ -73,9 +73,7 @@ fn multiply_digit(num1: String, c: u32, zeros: usize) -> String {
     }
 
     if res[0] != 0 {
-        for _ in 0..zeros {
-            res.push(0);
-        }
+        res.resize(res.len() + zeros, 0);
     }
     res.iter()
         .map(|e| e.to_string())

@@ -48,6 +48,6 @@ mod tests {
             vec!['.', '.', '.', '4', '1', '9', '.', '.', '5'],
             vec!['.', '.', '.', '.', '8', '.', '.', '7', '9'],
         ];
-        assert_eq!(true, is_valid_sudoku(b1));
+        assert!(is_valid_sudoku(b1));
     }
 }

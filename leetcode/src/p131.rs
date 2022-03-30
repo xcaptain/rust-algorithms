@@ -46,9 +46,9 @@ mod tests {
 
     #[test]
     fn test_is_palindrome() {
-        assert_eq!(true, is_palindrome("a"));
-        assert_eq!(true, is_palindrome("aa"));
-        assert_eq!(true, is_palindrome("aba"));
+        assert!(is_palindrome("a"));
+        assert!(is_palindrome("aa"));
+        assert!(is_palindrome("aba"));
         assert_eq!(false, is_palindrome("aab"));
     }
 }

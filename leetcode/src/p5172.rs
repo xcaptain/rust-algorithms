@@ -4,7 +4,7 @@ pub fn largest_multiple_of_three(digits: Vec<i32>) -> String {
     let s = digits.iter().sum::<i32>();
     let r = s % 3;
     let mut digits = digits;
-    digits.sort_by(|a, b| b.cmp(&a)); // 从大到小排列
+    digits.sort_by(|a, b| b.cmp(a)); // 从大到小排列
     if digits[0] == 0 {
         return String::from("0");
     }
@@ -30,20 +30,18 @@ pub fn largest_multiple_of_three(digits: Vec<i32>) -> String {
                 }
             }
         }
+    } else if let Some(pos) = digits.iter().rev().position(|&d| d % 3 == 2) {
+        bo[l - pos - 1] = false;
     } else {
-        if let Some(pos) = digits.iter().rev().position(|&d| d % 3 == 2) {
-            bo[l - pos - 1] = false;
-        } else {
-            // 删除最小的2个余1的
-            let mut cnt = 0;
-            for i in (0..l).rev() {
-                if cnt >= 2 {
-                    break;
-                }
-                if digits[i] % 3 == 1 {
-                    cnt += 1;
-                    bo[i] = false;
-                }
+        // 删除最小的2个余1的
+        let mut cnt = 0;
+        for i in (0..l).rev() {
+            if cnt >= 2 {
+                break;
+            }
+            if digits[i] % 3 == 1 {
+                cnt += 1;
+                bo[i] = false;
             }
         }
     }
