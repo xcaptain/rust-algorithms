@@ -1,8 +1,8 @@
 /// https://leetcode-cn.com/problems/product-of-the-last-k-numbers/
 /// a faster way is to use prefix product, next k product equal to
 /// total product / pre n-k product
-struct ProductOfNumbers {
-    inner: Vec<i32>,
+pub struct ProductOfNumbers {
+    pub inner: Vec<i32>,
 }
 
 /**
@@ -10,15 +10,15 @@ struct ProductOfNumbers {
  * If you need a mutable reference, change it to `&mut self` instead.
  */
 impl ProductOfNumbers {
-    fn new() -> Self {
+    pub fn new() -> Self {
         Self { inner: vec![] }
     }
 
-    fn add(&mut self, num: i32) {
+    pub fn add(&mut self, num: i32) {
         self.inner.push(num);
     }
 
-    fn get_product(&self, k: i32) -> i32 {
+    pub fn get_product(&self, k: i32) -> i32 {
         let l = self.inner.len();
         let kk = k as usize;
         assert!(kk <= l);
