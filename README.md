@@ -1,6 +1,6 @@
 # rust algorithms and data structures
 
-![github actions](https://github.com/xcaptain/rust-algorithms/workflows/Rust/badge.svg)
+![github actions](https://github.com/xcaptain/rust-algorithms/workflows/build/badge.svg)
 [![codecov](https://codecov.io/gh/xcaptain/rust-algorithms/branch/master/graph/badge.svg)](https://codecov.io/gh/xcaptain/rust-algorithms)
 
 This project is about my journey on algorithm study, practice makes a better programmer, keep going!
@@ -14,10 +14,6 @@ Basic algorithms
 ### data structures
 
 Basic data structures
-
-### project euler
-
-Solutions for [project euler](https://projecteuler.net/)
 
 ### leetcode
 

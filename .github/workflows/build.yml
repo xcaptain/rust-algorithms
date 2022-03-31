@@ -1,0 +1,23 @@
+name: build
+
+on: [push]
+
+jobs:
+  check-and-build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Install Rust toolchain
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+
+    - name: format
+      run: cargo fmt --all -- --check
+
+    - name: lint
+      run: cargo clippy -- -D warnings
+
+    - name: Build
+      run: cargo build
