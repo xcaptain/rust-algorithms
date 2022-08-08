@@ -7,7 +7,7 @@ pub fn get_no_zero_integers(n: i32) -> Vec<i32> {
             return vec![i, other];
         }
     }
-    return vec![];
+    vec![]
 }
 
 fn is_no_zero_integer(mut n: i32) -> bool {

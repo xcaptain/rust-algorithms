@@ -7,7 +7,7 @@ pub fn quick_sort(arr: Vec<usize>) -> Vec<usize> {
     sorted
 }
 
-fn partition(arr: &mut Vec<usize>, first: usize, last: usize) -> usize {
+fn partition(arr: &mut [usize], first: usize, last: usize) -> usize {
     let mut wall = first;
     for pos in first..last {
         if arr[pos] < arr[last] {

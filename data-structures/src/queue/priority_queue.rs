@@ -15,7 +15,7 @@ pub fn max_heap_extract(queue: &mut Vec<usize>) -> usize {
 }
 
 // 把第i个位置的值设置为key，只能增加不能减少
-fn heap_increase_key(queue: &mut Vec<usize>, pos: usize, key: usize) {
+fn heap_increase_key(queue: &mut [usize], pos: usize, key: usize) {
     if queue[pos] > key {
         panic!("只能增加不能减少");
     }

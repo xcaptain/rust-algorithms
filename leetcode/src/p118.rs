@@ -9,11 +9,11 @@ pub fn generate(num_rows: i32) -> Vec<Vec<i32>> {
 
 fn generate_rec(num_rows: i32) -> Vec<Vec<i32>> {
     if num_rows == 0 {
-        return vec![];
+        vec![]
     } else if num_rows == 1 {
-        return vec![vec![1]];
+        vec![vec![1]]
     } else if num_rows == 2 {
-        return vec![vec![1], vec![1, 1]];
+        vec![vec![1], vec![1, 1]]
     } else {
         let mut previous = generate_rec(num_rows - 1);
         let previous_last = previous.last().unwrap();

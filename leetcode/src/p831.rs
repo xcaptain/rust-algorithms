@@ -20,7 +20,7 @@ fn mask_email(s: String) -> String {
 fn mask_phone(s: String) -> String {
     let mut numbers: Vec<u32> = vec![];
     for c in s.chars() {
-        if c.is_digit(10) {
+        if c.is_ascii_digit() {
             numbers.push(c.to_digit(10).unwrap());
         }
     }

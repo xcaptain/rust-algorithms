@@ -6,9 +6,9 @@ pub fn get_row(row_index: i32) -> Vec<i32> {
 
 fn get_row_rec(row_index: i32) -> Vec<i32> {
     if row_index == 0 {
-        return vec![1];
+        vec![1]
     } else if row_index == 1 {
-        return vec![1, 1];
+        vec![1, 1]
     } else {
         let previous_row = get_row_rec(row_index - 1);
         let mut next_row = vec![1];
