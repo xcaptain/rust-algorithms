@@ -19,6 +19,7 @@ pub mod p467a;
 pub mod p50a;
 pub mod p546a;
 pub mod p58a;
+pub mod p617a;
 pub mod p69a;
 pub mod p71a;
 pub mod p96a;
