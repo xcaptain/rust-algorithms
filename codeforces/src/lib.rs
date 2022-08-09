@@ -22,6 +22,7 @@ pub mod p58a;
 pub mod p617a;
 pub mod p69a;
 pub mod p71a;
+pub mod p791a;
 pub mod p96a;
 
 use std::io::{BufReader, BufWriter, Read, Write};
