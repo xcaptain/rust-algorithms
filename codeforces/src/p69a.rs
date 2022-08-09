@@ -1,24 +1,29 @@
 // https://codeforces.com/problemset/problem/69/A
 
-use crate::Scanner;
+use crate::{Scanner, Solution};
 use std::io::{Read, Write};
 
-pub fn solution_of_p69a(input: &mut dyn Read, out: &mut dyn Write) {
-    let mut scanner = Scanner::new(input);
-    let n = scanner.next_line::<String>().parse::<usize>().unwrap();
-    let mut mat: Vec<Vec<isize>> = vec![];
-    for _i in 0..n {
-        let arr = scanner
-            .next_line::<String>()
-            .split(' ')
-            .map(|e| e.parse::<isize>().unwrap())
-            .collect();
-        mat.push(arr);
-    }
-    if check_is_equilibrium(mat) {
-        write!(out, "YES").ok();
-    } else {
-        write!(out, "NO").ok();
+#[derive(Default)]
+pub struct Solution1;
+
+impl Solution for Solution1 {
+    fn solve(&self, input: &mut dyn Read, output: &mut dyn Write) {
+        let mut scanner = Scanner::new(input);
+        let n = scanner.next_line::<String>().parse::<usize>().unwrap();
+        let mut mat: Vec<Vec<isize>> = vec![];
+        for _i in 0..n {
+            let arr = scanner
+                .next_line::<String>()
+                .split(' ')
+                .map(|e| e.parse::<isize>().unwrap())
+                .collect();
+            mat.push(arr);
+        }
+        if check_is_equilibrium(mat) {
+            write!(output, "YES").ok();
+        } else {
+            write!(output, "NO").ok();
+        }
     }
 }
 
@@ -61,6 +66,6 @@ mod tests {
             ],
         ];
 
-        test_helper(cases, solution_of_p69a);
+        test_helper(cases, Solution1::default());
     }
 }

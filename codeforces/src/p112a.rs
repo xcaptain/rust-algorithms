@@ -1,24 +1,29 @@
 // https://codeforces.com/problemset/problem/112/A
 
-use crate::Scanner;
+use crate::{Scanner, Solution};
 use std::cmp::Ordering;
 use std::io::{Read, Write};
 
-pub fn solution_of_p112a(input: &mut dyn Read, out: &mut dyn Write) {
-    let mut scanner = Scanner::new(input);
-    let arr1: Vec<char> = scanner
-        .next_line::<String>()
-        .to_ascii_lowercase()
-        .chars()
-        .collect();
-    let arr2: Vec<char> = scanner
-        .next_line::<String>()
-        .to_ascii_lowercase()
-        .chars()
-        .collect();
+#[derive(Default)]
+pub struct Solution1;
 
-    let res = lexicographical_order(arr1, arr2);
-    writeln!(out, "{}", res).ok();
+impl Solution for Solution1 {
+    fn solve(&self, input: &mut dyn Read, output: &mut dyn Write) {
+        let mut scanner = Scanner::new(input);
+        let arr1: Vec<char> = scanner
+            .next_line::<String>()
+            .to_ascii_lowercase()
+            .chars()
+            .collect();
+        let arr2: Vec<char> = scanner
+            .next_line::<String>()
+            .to_ascii_lowercase()
+            .chars()
+            .collect();
+
+        let res = lexicographical_order(arr1, arr2);
+        writeln!(output, "{}", res).ok();
+    }
 }
 
 fn lexicographical_order(arr1: Vec<char>, arr2: Vec<char>) -> i32 {
@@ -41,7 +46,7 @@ mod tests {
     use crate::test_helper;
 
     #[test]
-    fn test_solution_of_p112a() {
+    fn solution() {
         let cases = vec![
             [
                 "aaaa
@@ -62,6 +67,6 @@ AbCdEfF
             ],
         ];
 
-        test_helper(cases, solution_of_p112a);
+        test_helper(cases, Solution1::default());
     }
 }

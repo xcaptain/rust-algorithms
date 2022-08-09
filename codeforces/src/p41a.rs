@@ -1,17 +1,22 @@
 // http://codeforces.com/problemset/problem/41/A
 
-use crate::Scanner;
+use crate::{Scanner, Solution};
 use std::io::{Read, Write};
 
-pub fn solution_of_p41a(input: &mut dyn Read, out: &mut dyn Write) {
-    let mut scanner = Scanner::new(input);
-    let s1 = scanner.next_line::<String>();
-    let s2 = scanner.next_line::<String>();
+#[derive(Default)]
+pub struct Solution1;
 
-    if is_translation(s1, s2) {
-        write!(out, "YES").ok();
-    } else {
-        write!(out, "NO").ok();
+impl Solution for Solution1 {
+    fn solve(&self, input: &mut dyn Read, output: &mut dyn Write) {
+        let mut scanner = Scanner::new(input);
+        let s1 = scanner.next_line::<String>();
+        let s2 = scanner.next_line::<String>();
+
+        if is_translation(s1, s2) {
+            write!(output, "YES").ok();
+        } else {
+            write!(output, "NO").ok();
+        }
     }
 }
 
@@ -34,12 +39,12 @@ mod tests {
     use crate::test_helper;
 
     #[test]
-    fn test_solution_of_p41a() {
+    fn solution1() {
         let cases = vec![[
             "code
 edoc",
             "YES",
         ]];
-        test_helper(cases, solution_of_p41a);
+        test_helper(cases, Solution1::default());
     }
 }

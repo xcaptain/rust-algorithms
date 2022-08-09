@@ -61,15 +61,19 @@ impl<U: Sized + Read> Scanner<U> {
     }
 }
 
-type Solution = fn(&mut dyn Read, &mut dyn Write);
+// type Solution = fn(&mut dyn Read, &mut dyn Write);
+pub trait Solution {
+    fn solve(&self, input: &mut dyn Read, output: &mut dyn Write);
+}
 
 /// cases is the test cases of the problem, the first item is input, second
 /// is output, just copy from the website
-pub fn test_helper(cases: Vec<[&str; 2]>, solution: Solution) {
+pub fn test_helper(cases: Vec<[&str; 2]>, solution: impl Solution) {
     for case in &cases {
         let mut input_file = BufReader::new(case[0].as_bytes());
         let mut out_file = BufWriter::new(Vec::new());
-        solution(&mut input_file, &mut out_file);
+        // solution(&mut input_file, &mut out_file);
+        solution.solve(&mut input_file, &mut out_file);
         assert_eq!(
             case[1],
             String::from_utf8(out_file.into_inner().unwrap())

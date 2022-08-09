@@ -1,13 +1,17 @@
 // https://codeforces.com/problemset/problem/281/A
 
-use crate::Scanner;
+use crate::{Scanner, Solution};
 use std::io::{Read, Write};
 
-pub fn solution_of_p281a(input: &mut dyn Read, out: &mut dyn Write) {
-    let mut scanner = Scanner::new(input);
-    let line1 = scanner.next_line::<String>();
-    let res = capitalize_first_character(line1);
-    write!(out, "{}", res).ok();
+pub struct Solution1;
+
+impl Solution for Solution1 {
+    fn solve(&self, input: &mut dyn Read, output: &mut dyn Write) {
+        let mut scanner = Scanner::new(input);
+        let line1 = scanner.next_line::<String>();
+        let res = capitalize_first_character(line1);
+        write!(output, "{}", res).ok();
+    }
 }
 
 fn capitalize_first_character(s: String) -> String {
@@ -27,8 +31,8 @@ mod tests {
     use crate::test_helper;
 
     #[test]
-    fn test_solution_of_p281a() {
+    fn solution1() {
         let cases = vec![["ApPLe", "ApPLe"], ["konjac", "Konjac"]];
-        test_helper(cases, solution_of_p281a);
+        test_helper(cases, Solution1);
     }
 }

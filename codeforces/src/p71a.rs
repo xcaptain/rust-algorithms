@@ -1,7 +1,23 @@
 // https://codeforces.com/contest/71/problem/A
 
-use crate::Scanner;
+use crate::{Scanner, Solution};
 use std::io::{Read, Write};
+
+#[derive(Default)]
+pub struct Solution1;
+
+impl Solution for Solution1 {
+    fn solve(&self, input: &mut dyn Read, output: &mut dyn Write) {
+        let mut scan = Scanner::new(input);
+
+        let n = scan.next_line();
+        for _i in 0..n {
+            let line = scan.next_line::<String>();
+            let r = abbr(line);
+            writeln!(output, "{}", r).ok();
+        }
+    }
+}
 
 fn abbr(s: String) -> String {
     let l = s.len();
@@ -14,17 +30,6 @@ fn abbr(s: String) -> String {
         );
     }
     s
-}
-
-pub fn solution_of_p71a(input: &mut dyn Read, out: &mut dyn Write) {
-    let mut scan = Scanner::new(input);
-
-    let n = scan.next_line();
-    for _i in 0..n {
-        let line = scan.next_line::<String>();
-        let r = abbr(line);
-        writeln!(out, "{}", r).ok();
-    }
 }
 
 #[cfg(test)]
@@ -55,6 +60,6 @@ i18n
 p43s",
         ]];
 
-        test_helper(cases, solution_of_p71a);
+        test_helper(cases, Solution1::default());
     }
 }

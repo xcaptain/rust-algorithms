@@ -1,19 +1,23 @@
 // https://codeforces.com/problemset/problem/160/A
 
-use crate::Scanner;
+use crate::{Scanner, Solution};
 use std::io::{Read, Write};
 
-pub fn solution_of_p160a(input: &mut dyn Read, out: &mut dyn Write) {
-    let mut scanner = Scanner::new(input);
-    let mut _n = scanner.next_line::<String>().parse::<usize>().unwrap();
-    let mut arr: Vec<usize> = scanner
-        .next_line::<String>()
-        .split(' ')
-        .map(|e| e.parse::<usize>().unwrap())
-        .collect();
-    arr.sort_by(|a, b| b.cmp(a)); // asc order
-    let res = minium_take(arr);
-    write!(out, "{}", res).ok();
+pub struct Solution1;
+
+impl Solution for Solution1 {
+    fn solve(&self, input: &mut dyn Read, output: &mut dyn Write) {
+        let mut scanner = Scanner::new(input);
+        let mut _n = scanner.next_line::<String>().parse::<usize>().unwrap();
+        let mut arr: Vec<usize> = scanner
+            .next_line::<String>()
+            .split(' ')
+            .map(|e| e.parse::<usize>().unwrap())
+            .collect();
+        arr.sort_by(|a, b| b.cmp(a)); // asc order
+        let res = minium_take(arr);
+        write!(output, "{}", res).ok();
+    }
 }
 
 fn minium_take(arr: Vec<usize>) -> usize {
@@ -36,7 +40,7 @@ mod tests {
     use crate::test_helper;
 
     #[test]
-    fn test_solution_of_p160a() {
+    fn solution1() {
         let cases = vec![
             [
                 "2
@@ -47,6 +51,6 @@ mod tests {
 2 1 2", "2",
             ],
         ];
-        test_helper(cases, solution_of_p160a);
+        test_helper(cases, Solution1);
     }
 }

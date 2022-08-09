@@ -1,29 +1,33 @@
 // https://codeforces.com/problemset/problem/231/A
 
-use crate::Scanner;
+use crate::{Scanner, Solution};
 use std::io::{Read, Write};
 
-pub fn solution_of_p231a(input: &mut dyn Read, out: &mut dyn Write) {
-    let mut scanner = Scanner::new(input);
-    let n = scanner.next_line::<String>().parse::<usize>().unwrap();
-    let mut res = 0;
-    for _i in 0..n {
-        let arr: Vec<usize> = scanner
-            .next_line::<String>()
-            .split(' ')
-            .map(|e| e.parse::<usize>().unwrap())
-            .collect();
-        let mut arr_n = 0;
-        for item in &arr {
-            if item == &1 {
-                arr_n += 1;
+pub struct Solution1;
+
+impl Solution for Solution1 {
+    fn solve(&self, input: &mut dyn Read, output: &mut dyn Write) {
+        let mut scanner = Scanner::new(input);
+        let n = scanner.next_line::<String>().parse::<usize>().unwrap();
+        let mut res = 0;
+        for _i in 0..n {
+            let arr: Vec<usize> = scanner
+                .next_line::<String>()
+                .split(' ')
+                .map(|e| e.parse::<usize>().unwrap())
+                .collect();
+            let mut arr_n = 0;
+            for item in &arr {
+                if item == &1 {
+                    arr_n += 1;
+                }
+            }
+            if arr_n >= 2 {
+                res += 1;
             }
         }
-        if arr_n >= 2 {
-            res += 1;
-        }
+        write!(output, "{}", res).ok();
     }
-    write!(out, "{}", res).ok();
 }
 
 #[cfg(test)]
@@ -32,7 +36,7 @@ mod tests {
     use crate::test_helper;
 
     #[test]
-    fn test_solution_of_p231a() {
+    fn solution1() {
         let cases = vec![
             [
                 "3
@@ -48,6 +52,6 @@ mod tests {
                 "1",
             ],
         ];
-        test_helper(cases, solution_of_p231a);
+        test_helper(cases, Solution1);
     }
 }

@@ -1,14 +1,18 @@
 // https://codeforces.com/problemset/problem/266/A
 
-use crate::Scanner;
+use crate::{Scanner, Solution};
 use std::io::{Read, Write};
 
-pub fn solution_of_p266a(input: &mut dyn Read, out: &mut dyn Write) {
-    let mut scanner = Scanner::new(input);
-    let _n = scanner.next_line::<String>().parse::<usize>().unwrap();
-    let arr: Vec<char> = scanner.next_line::<String>().chars().collect();
-    let res = min_move_ways(arr);
-    write!(out, "{}", res).ok();
+pub struct Solution1;
+
+impl Solution for Solution1 {
+    fn solve(&self, input: &mut dyn Read, output: &mut dyn Write) {
+        let mut scanner = Scanner::new(input);
+        let _n = scanner.next_line::<String>().parse::<usize>().unwrap();
+        let arr: Vec<char> = scanner.next_line::<String>().chars().collect();
+        let res = min_move_ways(arr);
+        write!(output, "{}", res).ok();
+    }
 }
 
 fn min_move_ways(mut arr: Vec<char>) -> usize {
@@ -47,7 +51,7 @@ mod tests {
     use crate::test_helper;
 
     #[test]
-    fn test_solution_of_p266a() {
+    fn solution1() {
         let cases = vec![
             [
                 "3
@@ -69,6 +73,6 @@ BRBGG
 ", "1",
             ],
         ];
-        test_helper(cases, solution_of_p266a);
+        test_helper(cases, Solution1);
     }
 }

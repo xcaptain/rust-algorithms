@@ -1,31 +1,35 @@
 // https://codeforces.com/problemset/problem/158/A
-use crate::Scanner;
+use crate::{Scanner, Solution};
 use std::io::{Read, Write};
 
-pub fn solution_of_p158a(input: &mut dyn Read, out: &mut dyn Write) {
-    let mut scanner = Scanner::new(input);
+pub struct Solution1;
 
-    let line1 = scanner.next_line::<String>();
-    let line1_arr: Vec<usize> = line1
-        .split(' ')
-        .map(|s| s.parse::<usize>().unwrap())
-        .collect();
-    let k = line1_arr[1];
+impl Solution for Solution1 {
+    fn solve(&self, input: &mut dyn Read, output: &mut dyn Write) {
+        let mut scanner = Scanner::new(input);
 
-    let line2 = scanner.next_line::<String>();
-    let line2_arr: Vec<usize> = line2
-        .split(' ')
-        .map(|s| s.parse::<usize>().unwrap())
-        .collect();
+        let line1 = scanner.next_line::<String>();
+        let line1_arr: Vec<usize> = line1
+            .split(' ')
+            .map(|s| s.parse::<usize>().unwrap())
+            .collect();
+        let k = line1_arr[1];
 
-    let mut res = 0;
-    for item in line2_arr.iter() {
-        if *item >= line2_arr[k - 1] && *item > 0 {
-            res += 1;
+        let line2 = scanner.next_line::<String>();
+        let line2_arr: Vec<usize> = line2
+            .split(' ')
+            .map(|s| s.parse::<usize>().unwrap())
+            .collect();
+
+        let mut res = 0;
+        for item in line2_arr.iter() {
+            if *item >= line2_arr[k - 1] && *item > 0 {
+                res += 1;
+            }
         }
-    }
 
-    write!(out, "{}", res).ok();
+        write!(output, "{}", res).ok();
+    }
 }
 
 #[cfg(test)]
@@ -34,7 +38,7 @@ mod tests {
     use crate::test_helper;
 
     #[test]
-    fn test_solution_of_p158a() {
+    fn solution1() {
         let cases = vec![
             [
                 "8 5
@@ -56,6 +60,6 @@ mod tests {
             ],
         ];
 
-        test_helper(cases, solution_of_p158a);
+        test_helper(cases, Solution1);
     }
 }

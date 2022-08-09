@@ -1,14 +1,18 @@
 // https://codeforces.com/problemset/problem/617/A
 
-use crate::Scanner;
+use crate::{Scanner, Solution};
 use std::io::{Read, Write};
 
-pub fn solution_for_cf(input: &mut dyn Read, out: &mut dyn Write) {
-    let mut scanner = Scanner::new(input);
-    let x = scanner.next_line::<i32>();
-    let steps = solution(x);
+pub struct Solution1;
 
-    write!(out, "{}", steps).ok();
+impl Solution for Solution1 {
+    fn solve(&self, input: &mut dyn Read, output: &mut dyn Write) {
+        let mut scanner = Scanner::new(input);
+        let x = scanner.next_line::<i32>();
+        let steps = solution(x);
+
+        write!(output, "{}", steps).ok();
+    }
 }
 
 fn solution(x: i32) -> i32 {
@@ -27,8 +31,8 @@ mod tests {
     use crate::test_helper;
 
     #[test]
-    fn test_solution_for_cf() {
+    fn solution1() {
         let cases = vec![["5", "1"], ["12", "3"], ["1000000", "200000"]];
-        test_helper(cases, solution_for_cf);
+        test_helper(cases, Solution1);
     }
 }
